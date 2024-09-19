@@ -6,8 +6,11 @@ results/
 testing/
 testing*
 *.pyc
-__pycache__/
 
 # PFR files
 *.stdout
 *.stderr
+
+# nf-test files
+.nf-test/
+.nf-test.log
