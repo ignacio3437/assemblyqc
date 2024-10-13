@@ -1,5 +1,6 @@
 bump_version: null
 lint:
+  actions_ci: false
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
@@ -27,7 +28,7 @@ lint:
     - validation.summary.beforeText
     - validation.summary.afterText
   template_strings: false
-nf_core_version: 3.0.1
+nf_core_version: 3.0.2
 org_path: null
 repository_type: pipeline
 template:
@@ -43,5 +44,5 @@ template:
     - igenomes
     - multiqc
     - fastqc
-  version: 3.0.0
+  version: 2.2.0dev
 update: null
