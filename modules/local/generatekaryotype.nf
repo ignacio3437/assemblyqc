@@ -35,8 +35,8 @@ process GENERATEKARYOTYPE {
         exit 0
     fi
 
-    tmp_file=\$(mktemp)
-    printf '%s\\n' "\${ref_seqs[@]}" > "\$tmp_file"
+    t_file="tfile.txt"
+    printf '%s\\n' "\${ref_seqs[@]}" > "\$t_file"
 
     if [[ $seq_tag = "all" ]];then
         cat $target_seq_len > filtered.target.seq.len
@@ -45,7 +45,7 @@ process GENERATEKARYOTYPE {
     fi
     cat filtered.target.seq.len | awk '{print \$1,\$2,"grey"}' OFS="\\t" > colored.filtered.target.seq.len
 
-    grep -w -f "\$tmp_file" $ref_seq_len > filtered.ref.seq.len
+    grep -w -f "\$t_file" $ref_seq_len > filtered.ref.seq.len
     cat filtered.ref.seq.len | awk '{print \$1,\$2,"black"}' OFS="\\t" > colored.filtered.ref.seq.len
 
     cat colored.filtered.ref.seq.len | sort -k1V > merged.seq.lengths
@@ -68,7 +68,7 @@ process GENERATEKARYOTYPE {
     | awk '{print "chr -",\$1,\$1,"0",\$2-1,\$3}' OFS="\\t" \
     > karyotype_target.tsv
 
-    rm "\$tmp_file"
+    rm "\$t_file"
     """
 
     stub:
