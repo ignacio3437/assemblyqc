@@ -7,6 +7,7 @@ include { HICQC                         } from '../../modules/local/hicqc'
 include { MAKEAGPFROMFASTA              } from '../../modules/local/makeagpfromfasta'
 include { AGP2ASSEMBLY                  } from '../../modules/local/agp2assembly'
 include { ASSEMBLY2BEDPE                } from '../../modules/local/assembly2bedpe'
+include { FILTER_BAM                    } from '../../modules/local/filter_bam'
 include { MATLOCK_BAM2_JUICER           } from '../../modules/local/matlock_bam2_juicer'
 include { JUICER_SORT                   } from '../../modules/local/juicer_sort'
 include { RUNASSEMBLYVISUALIZER         } from '../../modules/local/runassemblyvisualizer'
@@ -114,8 +115,10 @@ workflow FQ2HIC {
                                     | mix(AGP2ASSEMBLY.out.versions.first())
                                     | mix(ASSEMBLY2BEDPE.out.versions.first())
 
-    // MODULE: MATLOCK_BAM2_JUICER | JUICER_SORT
-    MATLOCK_BAM2_JUICER ( ch_bam_and_ref.map { meta3, bam, fa -> [ meta3.id, bam ] } )
+    // MODULE: FILTER_BAM | MATLOCK_BAM2_JUICER | JUICER_SORT
+    FILTER_BAM ( ch_bam_and_ref.map { meta3, bam, fa -> [ meta3.id, bam ] }  )
+
+    MATLOCK_BAM2_JUICER ( FILTER_BAM.out.hic_filtered_bam_scaffolds )
 
     JUICER_SORT ( MATLOCK_BAM2_JUICER.out.links )
 

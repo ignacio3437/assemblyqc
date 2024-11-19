@@ -7,7 +7,7 @@ process MATLOCK_BAM2_JUICER {
         'biocontainers/matlock:20181227--h4b03ef3_3' }"
 
     input:
-    tuple val(sample_id_on_tag), path(hic_bam_scaffolds)
+    tuple val(sample_id_on_tag), path(hic_filtered_bam_scaffolds)
 
     output:
     tuple val(sample_id_on_tag), path("out.links.txt")  , emit: links
@@ -19,7 +19,7 @@ process MATLOCK_BAM2_JUICER {
     script:
     def VERSION = '20181227'
     """
-    matlock bam2 juicer $hic_bam_scaffolds out.links.txt
+    matlock bam2 juicer $hic_filtered_bam_scaffolds out.links.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
