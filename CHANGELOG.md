@@ -8,10 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Added`
 
 1. Updated nf-core pipeline template to 3.2.0
+2. The minimum required Nextflow version is now 24.10.0
 
 ### `Dependencies`
 
-1. Nextflow!>=24.04.2
+1. Nextflow!>=24.10.0
 2. nf-schema@2.3.0
 
 ## v2.2.0 - [05-Nov-2024]
