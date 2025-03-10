@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 1. Updated nf-core pipeline template to 3.2.0
 2. The minimum required Nextflow version is now 24.10.0
 
+### `Tool updates`
+
+|              Module(s)               |  Tool  |       From        |        To         |
+| :----------------------------------: | :----: | :---------------: | :---------------: |
+| SEQKIT_SEQ,SEQKIT_RMDUP, SEQKIT_SORT | seqkit |       2.8.1       |       2.9.0       |
+|             MERYL_COUNT              | meryl  | 1.4.1--h4ac6f70_0 | 1.4.1--h4ac6f70_1 |
+
 ### `Dependencies`
 
 1. Nextflow!>=24.10.0

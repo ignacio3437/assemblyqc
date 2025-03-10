@@ -17,12 +17,12 @@
                     },
                     "bwa/index": {
                         "branch": "main",
-                        "git_sha": "ae9714c21ede9199a3118e3c20b65484aa73e232",
+                        "git_sha": "a769708f41968e3c1eb6b32d838daadba410635a",
                         "installed_by": ["fastq_bwa_mem_samblaster"]
                     },
                     "bwa/mem": {
                         "branch": "main",
-                        "git_sha": "ae9714c21ede9199a3118e3c20b65484aa73e232",
+                        "git_sha": "a769708f41968e3c1eb6b32d838daadba410635a",
                         "installed_by": ["fastq_bwa_mem_samblaster"]
                     },
                     "cat/cat": {
@@ -32,27 +32,27 @@
                     },
                     "custom/relabelfasta": {
                         "branch": "main",
-                        "git_sha": "a8939d36280e7d9037c7cf164eeede19e46546a4",
+                        "git_sha": "072113038b5591f8244ce76b2c9dd8100c912b18",
                         "installed_by": ["modules"]
                     },
                     "custom/restoregffids": {
                         "branch": "main",
-                        "git_sha": "a8939d36280e7d9037c7cf164eeede19e46546a4",
+                        "git_sha": "072113038b5591f8244ce76b2c9dd8100c912b18",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "custom/shortenfastaids": {
                         "branch": "main",
-                        "git_sha": "a8939d36280e7d9037c7cf164eeede19e46546a4",
+                        "git_sha": "072113038b5591f8244ce76b2c9dd8100c912b18",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "gffread": {
                         "branch": "main",
-                        "git_sha": "ae9714c21ede9199a3118e3c20b65484aa73e232",
+                        "git_sha": "a769708f41968e3c1eb6b32d838daadba410635a",
                         "installed_by": ["fasta_gxf_busco_plot"]
                     },
                     "gt/gff3": {
                         "branch": "main",
-                        "git_sha": "ae9714c21ede9199a3118e3c20b65484aa73e232",
+                        "git_sha": "5406460c6294584316a3b5cd2212b9ba25690a1a",
                         "installed_by": ["gff3_gt_gff3_gff3validator_stat"]
                     },
                     "gt/gff3validator": {
@@ -67,7 +67,7 @@
                     },
                     "gunzip": {
                         "branch": "main",
-                        "git_sha": "ae9714c21ede9199a3118e3c20b65484aa73e232",
+                        "git_sha": "a769708f41968e3c1eb6b32d838daadba410635a",
                         "installed_by": ["modules"]
                     },
                     "ltrfinder": {
@@ -107,12 +107,12 @@
                     },
                     "samtools/faidx": {
                         "branch": "main",
-                        "git_sha": "ae9714c21ede9199a3118e3c20b65484aa73e232",
+                        "git_sha": "a769708f41968e3c1eb6b32d838daadba410635a",
                         "installed_by": ["gff3_gt_gff3_gff3validator_stat"]
                     },
                     "seqkit/seq": {
                         "branch": "main",
-                        "git_sha": "ae9714c21ede9199a3118e3c20b65484aa73e232",
+                        "git_sha": "5406460c6294584316a3b5cd2212b9ba25690a1a",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "syri": {
@@ -131,7 +131,7 @@
                     },
                     "fasta_ltrretriever_lai": {
                         "branch": "main",
-                        "git_sha": "8ec55a2c8e4ce3af070393768f6c2c57f5c34076",
+                        "git_sha": "9d3787feb8ed5581c21c2cd9afa12fc68a1d82eb",
                         "installed_by": ["subworkflows"]
                     },
                     "fastq_bwa_mem_samblaster": {
@@ -152,122 +152,122 @@
                 "nf-core": {
                     "custom/sratoolsncbisettings": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fastq_download_prefetch_fasterqdump_sratools"]
                     },
                     "fastavalidator": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "fastp": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "df6f67c19f76671b42ffa395cd2fde8958111eba",
                         "installed_by": ["fastq_fastqc_umitools_fastp"]
                     },
                     "fastqc": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fastq_fastqc_umitools_fastp"]
                     },
                     "fcs/fcsadaptor": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "gfastats": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "gffread": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "gunzip": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "merqury/hapmers": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "merqury/merqury": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "meryl/count": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "meryl/unionsum": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "minimap2/align": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "orthofinder": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "seqkit/rmdup": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     },
                     "seqkit/seq": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fasta_explore_search_plot_tidk", "fasta_ltrretriever_lai"]
                     },
                     "seqkit/sort": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fasta_explore_search_plot_tidk"]
                     },
                     "sratools/fasterqdump": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fastq_download_prefetch_fasterqdump_sratools", "modules"]
                     },
                     "sratools/prefetch": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fastq_download_prefetch_fasterqdump_sratools", "modules"]
                     },
                     "tidk/explore": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fasta_explore_search_plot_tidk"]
                     },
                     "tidk/plot": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fasta_explore_search_plot_tidk"]
                     },
                     "tidk/search": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fasta_explore_search_plot_tidk"]
                     },
                     "umitools/extract": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["fastq_fastqc_umitools_fastp"]
                     },
                     "untar": {
                         "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "git_sha": "81880787133db07d9b4c1febd152c090eb8325dc",
                         "installed_by": ["modules"]
                     }
                 }
@@ -276,7 +276,7 @@
                 "nf-core": {
                     "fasta_explore_search_plot_tidk": {
                         "branch": "master",
-                        "git_sha": "ab80a04707104a4baf39341581dfbced5da05479",
+                        "git_sha": "60645c2b45e56579de0a0c89416805cae44c1f46",
                         "installed_by": ["subworkflows"]
                     },
                     "fastq_download_prefetch_fasterqdump_sratools": {
@@ -286,7 +286,7 @@
                     },
                     "fastq_fastqc_umitools_fastp": {
                         "branch": "master",
-                        "git_sha": "46eca555142d6e597729fcb682adcc791796f514",
+                        "git_sha": "51c21921e151011213e5cf553cf06e6657e77594",
                         "installed_by": ["subworkflows"]
                     },
                     "utils_nextflow_pipeline": {
