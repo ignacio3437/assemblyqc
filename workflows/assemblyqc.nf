@@ -3,10 +3,7 @@
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-
-
 include { paramsSummaryMap       } from 'plugin/nf-schema'
-
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_assemblyqc_pipeline'
 
@@ -23,7 +20,6 @@ workflow ASSEMBLYQC {
     main:
 
     ch_versions = Channel.empty()
-    
 
     //
     // Collate and save software versions
@@ -31,7 +27,7 @@ workflow ASSEMBLYQC {
     softwareVersionsToYAML(ch_versions)
         .collectFile(
             storeDir: "${params.outdir}/pipeline_info",
-            name:  ''  + 'pipeline_software_' +  ''  + 'versions.yml',
+            name:  'assemblyqc_software_'  + 'versions.yml',
             sort: true,
             newLine: true
         ).set { ch_collated_versions }
