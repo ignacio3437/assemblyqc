@@ -3,5 +3,6 @@
 channels:
   - conda-forge
   - bioconda
+
 dependencies:
-  - bioconda::ltr_finder_parallel=1.1
+  - bioconda::busco=5.8.2

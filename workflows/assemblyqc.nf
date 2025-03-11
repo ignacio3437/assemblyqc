@@ -16,7 +16,7 @@ include { FCS_FCSADAPTOR                    } from '../modules/nf-core/fcs/fcsad
 include { NCBI_FCS_GX                       } from '../subworkflows/local/ncbi_fcs_gx'
 include { ASSEMBLATHON_STATS                } from '../modules/local/assemblathon_stats'
 include { GFASTATS                          } from '../modules/nf-core/gfastats/main'
-include { FASTA_GXF_BUSCO_PLOT              } from '../subworkflows/gallvp/fasta_gxf_busco_plot/main'
+include { FASTA_GXF_BUSCO_PLOT              } from '../subworkflows/nf-core/fasta_gxf_busco_plot/main'
 include { FASTA_LTRRETRIEVER_LAI            } from '../subworkflows/gallvp/fasta_ltrretriever_lai/main'
 include { FASTA_KRAKEN2                     } from '../subworkflows/local/fasta_kraken2'
 include { FQ2HIC                            } from '../subworkflows/local/fq2hic'
@@ -469,7 +469,8 @@ workflow ASSEMBLYQC {
         params.busco_mode,
         params.busco_lineage_datasets?.tokenize(' '),
         params.busco_download_path,
-        [] // val_busco_config
+        [], // val_busco_config,
+        true // val_busco_cleanup
     )
 
     ch_busco_summary                        = FASTA_GXF_BUSCO_PLOT.out.assembly_short_summaries_txt
