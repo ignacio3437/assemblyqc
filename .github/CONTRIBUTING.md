@@ -1,4 +1,4 @@
-# plant-food-research-open/assemblyqc: Contributing Guidelines
+# `plant-food-research-open/assemblyqc`: Contributing Guidelines
 
 Hi there!
 Many thanks for taking an interest in improving plant-food-research-open/assemblyqc.
@@ -26,7 +26,7 @@ If you're not used to this workflow with git, you can start with some [docs from
 You have the option to test your changes locally by running the pipeline. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
 
 ```bash
-nf-test test --profile debug,test,docker --verbose
+nf-test test --profile docker tests/
 ```
 
 When you create a pull request with changes, [GitHub Actions](https://github.com/features/actions) will run automatic tests.
@@ -52,19 +52,19 @@ These tests are run both with the latest available version of `Nextflow` and als
 
 :warning: Only in the unlikely and regretful event of a release happening with a bug.
 
-- On your own fork, make a new branch `patch` based on `upstream/main`.
+- On your own fork, make a new branch `patch` based on `upstream/main` or `upstream/master`.
 - Fix the bug, and bump version (X.Y.Z+1).
-- A PR should be made on `main` from patch to directly this particular bug.
+- Open a pull-request from `patch` to `main`/`master` with the changes.
 
 ## Pipeline contribution conventions
 
-To make the plant-food-research-open/assemblyqc code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
+To make the `plant-food-research-open/assemblyqc` code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
 
 ### Adding a new step
 
 If you wish to contribute a new step, please use the following coding standards:
 
-1. Define the corresponding input channel into your new process from the expected previous process channel
+1. Define the corresponding input channel into your new process from the expected previous process channel.
 2. Write the process block (see below).
 3. Define the output channel if needed (see below).
 4. Add any new parameters to `nextflow.config` with a default (see below).
@@ -76,7 +76,7 @@ If you wish to contribute a new step, please use the following coding standards:
 
 ### Default values
 
-Parameters should be initialised / defined with default values in `nextflow.config` under the `params` scope.
+Parameters should be initialised / defined with default values within the `params` scope in `nextflow.config`.
 
 Once there, use `nf-core pipelines schema build` to add to `nextflow_schema.json`.
 

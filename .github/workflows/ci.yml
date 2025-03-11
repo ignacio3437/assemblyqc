@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         NXF_VER:
-          - "24.04.2"
+          - "24.10.5"
 
         nf_test_files: ["${{ fromJson(needs.nf-test-changes.outputs.nf_test_files) }}"]
         profile:
@@ -54,7 +54,7 @@ jobs:
       - name: Check out pipeline code
         uses: actions/checkout@v4.2.1
 
-      - name: Install Nextflow
+      - name: Set up Nextflow
         uses: nf-core/setup-nextflow@v2
         with:
           version: "${{ matrix.NXF_VER }}"
