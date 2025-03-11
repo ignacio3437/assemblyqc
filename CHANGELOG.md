@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 |              Module(s)               |  Tool  |       From        |        To         |
 | :----------------------------------: | :----: | :---------------: | :---------------: |
 | SEQKIT_SEQ,SEQKIT_RMDUP, SEQKIT_SORT | seqkit |       2.8.1       |       2.9.0       |
+|             BUSCO_BUSCO              | BUSCO  |       5.7.1       |       5.8.2       |
 |             MERYL_COUNT              | meryl  | 1.4.1--h4ac6f70_0 | 1.4.1--h4ac6f70_1 |
 |                GUNZIP                | gunzip |        1.1        |       1.13        |
 
