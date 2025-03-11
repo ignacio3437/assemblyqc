@@ -389,6 +389,12 @@ workflow FASTA_SYNTENY {
     versions                            = ch_versions
 }
 
+// inputArray is a list of lists, each containing 3 elements:
+// [ [ tag, fasta, labels ], [ tag, fasta, labels ], ... ]
+//
+// Returns a list of lists, each containing 6 elements:
+//
+// [ [ tag1, fasta1, labels1, tag2, fasta2, labels2 ], [ tag1, fasta1, labels1, tag3, fasta3, labels3 ], ... ]
 def getUniqueWithinCombinations(inputArray) {
     if (inputArray.size() <= 1) {
         return []
@@ -396,35 +402,11 @@ def getUniqueWithinCombinations(inputArray) {
 
     inputArray.sort { a, b -> a[0].compareTo(b[0]) }
 
-    def outputList = []
-
-    for (int i = 0; i < inputArray.size() - 1; i++) {
-        for (int j = i + 1; j < inputArray.size(); j++) {
-            def combination = [
-                inputArray[i][0],
-                inputArray[i][1],
-                inputArray[i][2],
-                inputArray[j][0],
-                inputArray[j][1],
-                inputArray[j][2]
-            ]
-            outputList.add(combination)
+    return inputArray.indexed().collectMany { i, elem1 ->
+        inputArray[(i + 1)..<inputArray.size()].collect { elem2 ->
+            [elem1[0], elem1[1], elem1[2], elem2[0], elem2[1], elem2[2]]
         }
     }
-    return outputList
-}
-
-def appendTags(tag, valuesArray) {
-    if (valuesArray.size() <= 1) {
-        return []
-    }
-
-    def outputList = []
-
-    for (int i = 0; i < valuesArray.size(); i++) {
-        outputList.add([tag, valuesArray[i]])
-    }
-    return outputList
 }
 
 def flattenSplitBundles(inputArray) {

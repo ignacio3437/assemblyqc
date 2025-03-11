@@ -3,12 +3,17 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v2.3.0dev - [11-March-2025]
+## v2.3.0dev - [12-March-2025]
 
 ### `Added`
 
 1. Updated nf-core pipeline template to 3.2.0
 2. The minimum required Nextflow version is now 24.10.5
+3. Now the pipeline parameters are presented in separate sections on the PARAMS summary page in the report
+
+### `Fixed`
+
+1. Fixed Nextflow language server errors
 
 ### `Tool updates`
 
