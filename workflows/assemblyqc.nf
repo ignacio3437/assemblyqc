@@ -590,7 +590,8 @@ workflow ASSEMBLYQC {
         ch_hic_read_files,
         ch_hic_input_assembly,
         params.hic_skip_fastp,
-        params.hic_skip_fastqc
+        params.hic_skip_fastqc,
+        params.hic_alphanumeric_sort
     )
 
     ch_hic_fastp_log                        = FQ2HIC.out.fastp_log

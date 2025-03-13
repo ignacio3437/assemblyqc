@@ -16,6 +16,7 @@ workflow FQ2HIC {
     ref                             // [ val(meta2), fa ]
     hic_skip_fastp                  // val: true|false
     hic_skip_fastqc                 // val: true|false
+    hic_alphanumeric_sort           // val: true|false
 
     main:
     ch_versions                     = Channel.empty()
@@ -39,9 +40,11 @@ workflow FQ2HIC {
     ch_versions                     = ch_versions.mix(FASTQ_FASTQC_UMITOOLS_FASTP.out.versions)
 
     // MODULE: SEQKIT_SORT
-    SEQKIT_SORT ( ref )
+    SEQKIT_SORT ( hic_alphanumeric_sort ? ref : Channel.empty() )
 
-    ch_sorted_ref                   = SEQKIT_SORT.out.fastx
+    ch_sorted_ref                   = hic_alphanumeric_sort
+                                    ? SEQKIT_SORT.out.fastx
+                                    : ref
     ch_versions                     = ch_versions.mix(SEQKIT_SORT.out.versions)
 
     // SUBWORKFLOW: FASTQ_BWA_MEM_SAMBLASTER
@@ -59,17 +62,17 @@ workflow FQ2HIC {
                                     | join(
                                         ch_sorted_ref.map { meta2, fa -> [ meta2.id, fa ] }
                                     )
-                                    | map { ref_id, meta, bam, fa ->
+                                    | map { _ref_id, meta, bam, fa ->
                                         [ [ id: "${meta.id}.on.${meta.ref_id}" ], bam, fa ]
                                     }
 
-    HICQC ( ch_bam_and_ref.map { meta3, bam, fa -> [ meta3, bam ] } )
+    HICQC ( ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] } )
 
     ch_hicqc_pdf                    = HICQC.out.pdf
     ch_versions                     = ch_versions.mix(HICQC.out.versions)
 
     // MODULE: MAKEAGPFROMFASTA | AGP2ASSEMBLY | ASSEMBLY2BEDPE
-    MAKEAGPFROMFASTA ( ch_bam_and_ref.map { meta3, bam, fa -> [ meta3.id, fa ] } )
+    MAKEAGPFROMFASTA ( ch_bam_and_ref.map { meta3, _bam, fa -> [ meta3.id, fa ] } )
     AGP2ASSEMBLY ( MAKEAGPFROMFASTA.out.agp )
     ASSEMBLY2BEDPE ( AGP2ASSEMBLY.out.assembly )
 
@@ -78,7 +81,7 @@ workflow FQ2HIC {
                                     | mix(ASSEMBLY2BEDPE.out.versions.first())
 
     // MODULE: MATLOCK_BAM2_JUICER | JUICER_SORT
-    MATLOCK_BAM2_JUICER ( ch_bam_and_ref.map { meta3, bam, fa -> [ meta3.id, bam ] } )
+    MATLOCK_BAM2_JUICER ( ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3.id, bam ] } )
 
     JUICER_SORT ( MATLOCK_BAM2_JUICER.out.links )
 

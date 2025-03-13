@@ -74,6 +74,7 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 | `hic_skip_fastqc`       | Skip HiC read QC                                                                         | `boolean` |                                                   |          |        |
 | `hic_fastp_ext_args`    | Additional parameters for fastp trimming                                                 | `string`  | --qualified_quality_phred 20 --length_required 50 |          |        |
 | `hic_samtools_ext_args` | Additional parameters for samtools view command run after samblaster                     | `string`  | -F 3852                                           |          |        |
+| `hic_alphanumeric_sort` | Sort FASTA sequences by their labels for creating the HiC contact map?                   | `boolean` | True                                              |          |        |
 
 ## Merqury options
 
@@ -121,11 +122,12 @@ Parameters used to describe centralised config profiles. These should not be edi
 
 Less common options for the pipeline, typically set in a config file.
 
-| Parameter          | Description                                                     | Type      | Default | Required | Hidden |
-| ------------------ | --------------------------------------------------------------- | --------- | ------- | -------- | ------ |
-| `version`          | Display version and exit.                                       | `boolean` |         |          | True   |
-| `publish_dir_mode` | Method used to save pipeline results to output directory.       | `string`  | copy    |          | True   |
-| `email_on_fail`    | Email address for completion summary, only when pipeline fails. | `string`  |         |          | True   |
-| `plaintext_email`  | Send plain-text email instead of HTML.                          | `boolean` |         |          | True   |
-| `monochrome_logs`  | Do not use coloured log outputs.                                | `boolean` |         |          | True   |
-| `hook_url`         | Incoming hook URL for messaging service                         | `string`  |         |          | True   |
+| Parameter             | Description                                                                                                 | Type      | Default | Required | Hidden |
+| --------------------- | ----------------------------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
+| `version`             | Display version and exit.                                                                                   | `boolean` |         |          | True   |
+| `publish_dir_mode`    | Method used to save pipeline results to output directory.                                                   | `string`  | copy    |          | True   |
+| `email_on_fail`       | Email address for completion summary, only when pipeline fails.                                             | `string`  |         |          | True   |
+| `plaintext_email`     | Send plain-text email instead of HTML.                                                                      | `boolean` |         |          | True   |
+| `monochrome_logs`     | Do not use coloured log outputs.                                                                            | `boolean` |         |          | True   |
+| `hook_url`            | Incoming hook URL for messaging service                                                                     | `string`  |         |          | True   |
+| `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string`  |         |          | True   |
