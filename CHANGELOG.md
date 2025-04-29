@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 3. Now the pipeline parameters are presented in separate sections on the PARAMS summary page in the report
 4. Added parameter `hic_alphanumeric_sort` to allow disabling of FASTA sorting by sequence labels [#188](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/188)
 5. Now FastQC is skipped by default [#199](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/199)
+6. Updated NCBI FCS GX to 0.5.5 [#195](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/195)
 
 ### `Fixed`
 
@@ -21,14 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Tool Updates`
 
-| Tool     | Old Version | New Version |
-| -------- | ----------- | ----------- |
-| busco    | 5.7.1       | 5.8.2       |
-| seqkit   | 2.8.1       | 2.9.0       |
-| fastp    | 0.23.4      | 0.24.0      |
-| gfastats | 1.3.6       | 1.3.10      |
-| minimap2 | 2.28        | 2.29        |
-| samtools | 1.20        | 1.21        |
+| Tool        | Old Version | New Version |
+| ----------- | ----------- | ----------- |
+| busco       | 5.7.1       | 5.8.2       |
+| seqkit      | 2.8.1       | 2.9.0       |
+| ncbi-fcs-gx | 0.5.4       | 0.5.5       |
+| fastp       | 0.23.4      | 0.24.0      |
+| gfastats    | 1.3.6       | 1.3.10      |
+| minimap2    | 2.28        | 2.29        |
+| samtools    | 1.20        | 1.21        |
 
 ### `Dependencies`
 
