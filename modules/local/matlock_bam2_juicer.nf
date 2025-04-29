@@ -42,7 +42,7 @@ process MATLOCK_BAM2_JUICER {
     stub:
     def VERSION = '20181227'
     """
-    out.links.txt
+    touch out.links.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
