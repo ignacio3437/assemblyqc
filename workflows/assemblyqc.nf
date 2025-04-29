@@ -67,7 +67,7 @@ workflow ASSEMBLYQC {
 
                                                 [ [ id: tag ], file(fasta, checkIfExists: true) ]
                                             }
-                                            | branch { meta, fasta ->
+                                            | branch { _meta, fasta ->
                                                 gz: "$fasta".endsWith(".gz")
                                                 rest: ! "$fasta".endsWith(".gz")
                                             }
@@ -81,7 +81,7 @@ workflow ASSEMBLYQC {
                                                 ? [ [ id: tag ], file(gff, checkIfExists: true) ]
                                                 : null
                                             }
-                                            | branch { meta, gff ->
+                                            | branch { _meta, gff ->
                                                 gz: "$gff".endsWith(".gz")
                                                 rest: ! "$gff".endsWith(".gz")
                                             }
@@ -129,7 +129,7 @@ workflow ASSEMBLYQC {
     FASTAVALIDATOR ( ch_target_assembly )
 
     ch_fastavalidator_assembly              = ch_target_assembly.join(FASTAVALIDATOR.out.success_log)
-                                            | map { meta, fasta, log -> [ meta, fasta ] }
+                                            | map { meta, fasta, _log -> [ meta, fasta ] }
 
     ch_fastavalidator_log                   = FASTAVALIDATOR.out.error_log
                                             | map { meta, error_log ->
@@ -162,7 +162,7 @@ workflow ASSEMBLYQC {
     ch_invalid_assembly_log                 = ch_fastavalidator_log
                                             | mix(
                                                 SEQKIT_RMDUP.out.log
-                                                | map { meta, error_log ->
+                                                | map { _meta, error_log ->
                                                     if ( error_log.text.contains('0 duplicated records removed') ) {
                                                         return null
                                                     }
@@ -187,7 +187,7 @@ workflow ASSEMBLYQC {
                                             }
 
     ch_gt_stats                             = GFF3_GT_GFF3_GFF3VALIDATOR_STAT.out.gff3_stats
-                                            | map { meta, yml -> yml }
+                                            | map { _meta, yml -> yml }
 
     ch_versions                             = ch_versions.mix(GFF3_GT_GFF3_GFF3VALIDATOR_STAT.out.versions)
 
@@ -223,13 +223,13 @@ workflow ASSEMBLYQC {
                                                 | map { meta, report ->
                                                     [ meta, file(report).readLines().size < 2 ]
                                                 }
-                                                | filter { meta, is_clean ->
+                                                | filter { _meta, is_clean ->
                                                     ( is_clean || ( ! params.contamination_stops_pipeline ) )
                                                 }
                                                 | join(
                                                     ch_valid_target_assembly
                                                 )
-                                                | map { meta, clean, fa ->
+                                                | map { meta, _clean, fa ->
                                                     [ meta, fa ]
                                                 }
                                             )
@@ -263,7 +263,7 @@ workflow ASSEMBLYQC {
                                             }
 
     ch_fcs_gx_taxonomy_plot                 = NCBI_FCS_GX.out.gx_taxonomy_plot
-                                            | map { tag, cut, html -> [ tag, html ] }
+                                            | map { tag, _cut, html -> [ tag, html ] }
 
     ch_fcs_gx_passed_assembly               = params.ncbi_fcs_gx_skip
                                             ? (
@@ -275,14 +275,14 @@ workflow ASSEMBLYQC {
                                                 | map { tag, report ->
                                                     [ tag, file(report).readLines().size < 3 ]
                                                 }
-                                                | filter { tag, is_clean ->
+                                                | filter { _tag, is_clean ->
                                                     ( is_clean || ( ! params.contamination_stops_pipeline ) )
                                                 }
                                                 | join(
                                                     ch_valid_target_assembly
                                                     | map { meta, fa -> [ meta.id, fa ] }
                                                 )
-                                                | map { tag, clean, fa ->
+                                                | map { tag, _clean, fa ->
                                                     [ tag, fa ]
                                                 }
                                             )
@@ -294,7 +294,7 @@ workflow ASSEMBLYQC {
                                             | join(
                                                 ch_fcs_gx_passed_assembly
                                             )
-                                            | map { tag, fa, fa2 ->
+                                            | map { tag, fa, _fa2 ->
                                                 [ tag, fa ]
                                             }
 
@@ -316,8 +316,8 @@ workflow ASSEMBLYQC {
     ch_hic_reads_branch                     = ch_hic_reads
                                             | combine(ch_hic_input_assembly.first())
                                             // Wait till first clean assembly arrives
-                                            | map { meta, fq, meta2, fasta -> [ meta, fq ] }
-                                            | branch { meta, fq ->
+                                            | map { meta, fq, _meta2, _fasta -> [ meta, fq ] }
+                                            | branch { meta, _fq ->
                                                 sra: meta.is_sra
                                                 rest: ! meta.is_sra
                                             }
@@ -339,17 +339,17 @@ workflow ASSEMBLYQC {
                                                     meta,
                                                     fq,
                                                     assemblies
-                                                        .findAll { meta2, fasta -> meta2.id in meta.assemblies }
-                                                        .collect { meta2, fasta -> fasta }
+                                                        .findAll { meta2, _fasta -> meta2.id in meta.assemblies }
+                                                        .collect { _meta2, fasta -> fasta }
                                                         .flatten()
                                                         .sort(false)
                                                 ]
                                             }
-                                            | filter { meta, fq, fastas -> fastas }
+                                            | filter { _meta, _fq, fastas -> fastas }
 
     ch_reads_branch                         = ch_reads_assemblies
-                                            | map { meta, fq, fastas -> [ meta, fq ] }
-                                            | branch { meta, fq ->
+                                            | map { meta, fq, _fastas -> [ meta, fq ] }
+                                            | branch { meta, _fq ->
                                                 sra: meta.is_sra
                                                 rest: ! meta.is_sra
                                             }
@@ -368,15 +368,15 @@ workflow ASSEMBLYQC {
                                                     meta,
                                                     fq,
                                                     assemblies
-                                                        .findAll { meta2, fasta -> meta2.id in meta.assemblies }
-                                                        .collect { meta2, fasta -> fasta }
+                                                        .findAll { meta2, _fasta -> meta2.id in meta.assemblies }
+                                                        .collect { _meta2, fasta -> fasta }
                                                         .flatten()
                                                         .sort(false)
                                                 ]
                                             }
-                                            | filter { meta, fq, fastas -> fastas }
-                                            | map { meta, fq, assemblies -> [ meta, fq ] }
-                                            | branch { meta, fq ->
+                                            | filter { _meta, _fq, fastas -> fastas }
+                                            | map { meta, fq, _assemblies -> [ meta, fq ] }
+                                            | branch { meta, _fq ->
                                                 sra: meta.is_sra
                                                 rest: ! meta.is_sra
                                             }
@@ -391,15 +391,15 @@ workflow ASSEMBLYQC {
                                                     meta,
                                                     fq,
                                                     assemblies
-                                                        .findAll { meta2, fasta -> meta2.id in meta.assemblies }
-                                                        .collect { meta2, fasta -> fasta }
+                                                        .findAll { meta2, _fasta -> meta2.id in meta.assemblies }
+                                                        .collect { _meta2, fasta -> fasta }
                                                         .flatten()
                                                         .sort(false)
                                                 ]
                                             }
-                                            | filter { meta, fq, fastas -> fastas }
-                                            | map { meta, fq, assemblies -> [ meta, fq ] }
-                                            | branch { meta, fq ->
+                                            | filter { _meta, _fq, fastas -> fastas }
+                                            | map { meta, fq, _assemblies -> [ meta, fq ] }
+                                            | branch { meta, _fq ->
                                                 sra: meta.is_sra
                                                 rest: ! meta.is_sra
                                             }
@@ -416,10 +416,10 @@ workflow ASSEMBLYQC {
     ch_fetchngs                             = FETCHNGS.out.reads
                                             | join(
                                                 ch_fetchngs_inputs
-                                                | map { meta, sra -> [ [ id: meta.id, single_end: meta.single_end ], meta ] }
+                                                | map { meta, _sra -> [ [ id: meta.id, single_end: meta.single_end ], meta ] }
                                             )
-                                            | map { meta, fq, meta2 -> [ meta2, fq ] }
-                                            | branch { meta, fq ->
+                                            | map { _meta, fq, meta2 -> [ meta2, fq ] }
+                                            | branch { meta, _fq ->
                                                 hic:        meta.type == 'hic'
                                                 reads:      meta.type == 'reads'
                                                 maternal:   meta.type == 'maternal'
@@ -447,14 +447,14 @@ workflow ASSEMBLYQC {
         'gfa', // output format
         '', // estimated genome size
         '', // target specific sequence by header
-        [], // agp file
-        [], // include bed
-        [], // exclude bed
-        [] // instructions
+        [ [], [] ], // agp file
+        [ [], [] ], // include bed
+        [ [], [] ], // exclude bed
+        [ [], [] ] // instructions
     )
 
     ch_gfastats_stats                       = GFASTATS.out.assembly_summary
-                                            | map { tag, stats -> stats }
+                                            | map { _tag, stats -> stats }
     ch_versions                             = ch_versions.mix(GFASTATS.out.versions.first())
 
     // SUBWORKFLOW: FASTA_GXF_BUSCO_PLOT
@@ -516,14 +516,14 @@ workflow ASSEMBLYQC {
                                             )
 
     FASTA_EXPLORE_SEARCH_PLOT_TIDK(
-        ch_tidk_inputs.map { meta, fa, seq -> [ meta, fa ] },
-        ch_tidk_inputs.map { meta, fa, seq -> [ meta, seq ] }
+        ch_tidk_inputs.map { meta, fa, _seq -> [ meta, fa ] },
+        ch_tidk_inputs.map { meta, _fa, seq -> [ meta, seq ] }
     )
 
     ch_tidk_outputs                         = FASTA_EXPLORE_SEARCH_PLOT_TIDK.out.apriori_svg
                                             | mix(FASTA_EXPLORE_SEARCH_PLOT_TIDK.out.aposteriori_svg)
                                             | mix(FASTA_EXPLORE_SEARCH_PLOT_TIDK.out.aposteriori_sequence)
-                                            | map { meta, file -> file }
+                                            | map { _meta, file -> file }
                                             | mix(
                                                 Channel.of("$params.tidk_repeat_seq")
                                                 | collectFile(name: 'a_priori.sequence', newLine: true)
@@ -541,7 +541,7 @@ workflow ASSEMBLYQC {
                                                 remainder: true
                                             )
                                             // Danger! This partial join can fail
-                                            | filter { id, fasta, mono -> fasta }
+                                            | filter { _id, fasta, _mono -> fasta }
                                             // This filter safeguards against fail on upstream
                                             // process failure: https://github.com/nextflow-io/nextflow/issues/5043
                                             // fasta comes from upstream processes
@@ -550,8 +550,8 @@ workflow ASSEMBLYQC {
                                             | map { id, fasta, mono -> [ id, fasta, mono ?: [] ] }
 
     FASTA_LTRRETRIEVER_LAI(
-        ch_lai_inputs.map { id, fasta, mono -> [ [ id:id ], fasta ] },
-        ch_lai_inputs.map { id, fasta, mono -> [ [ id:id ], mono ] },
+        ch_lai_inputs.map { id, fasta, _mono -> [ [ id:id ], fasta ] },
+        ch_lai_inputs.map { id, _fasta, mono -> [ [ id:id ], mono ] },
         false // Not skipping LAI using this flag
     )
 
@@ -559,10 +559,10 @@ workflow ASSEMBLYQC {
                                             | join(FASTA_LTRRETRIEVER_LAI.out.lai_out, remainder: true)
                                             // This partial join can't fail because both outputs are
                                             // from the same process
-                                            | map { meta, log, out -> out ? [ log, out ] : [log] }
+                                            | map { _meta, log, out -> out ? [ log, out ] : [log] }
                                             | mix(
                                                 FASTA_LTRRETRIEVER_LAI.out.ltrretriever_log
-                                                | map { meta, log -> log }
+                                                | map { _meta, log -> log }
                                             )
 
     ch_versions                             = ch_versions.mix(FASTA_LTRRETRIEVER_LAI.out.versions)
@@ -600,13 +600,13 @@ workflow ASSEMBLYQC {
     ch_hic_assembly                         = FQ2HIC.out.assembly
     ch_hic_report_files                     = ch_hic_html
                                             | mix(
-                                                ch_hic_assembly.map { tag, assembly -> assembly }
+                                                ch_hic_assembly.map { _tag, assembly -> assembly }
                                             )
                                             | mix(
-                                                ch_hicqc_pdf.map { meta, pdf -> pdf }
+                                                ch_hicqc_pdf.map { _meta, pdf -> pdf }
                                             )
                                             | mix(
-                                                ch_hic_fastp_log.map { meta, log -> log }
+                                                ch_hic_fastp_log.map { _meta, log -> log }
                                             )
     ch_versions                             = ch_versions.mix(FQ2HIC.out.versions)
 
@@ -648,7 +648,7 @@ workflow ASSEMBLYQC {
 
     // MODULE: MERYL_UNIONSUM
     ch_reads_meryl_branch                   = ch_reads_meryl
-                                            | branch { meta, meryl ->
+                                            | branch { meta, _meryl ->
                                                 single: meta.single_end
                                                 paired: ! meta.single_end
                                             }
@@ -675,14 +675,14 @@ workflow ASSEMBLYQC {
     ch_maternal_meryl                       = MAT_MERYL_COUNT.out.meryl_db
                                             | join(
                                                 ch_maternal_reads_files
-                                                | map { meta, fq -> [ [ id: meta.id ], meta ] }
+                                                | map { meta, _fq -> [ [ id: meta.id ], meta ] }
                                             )
-                                            | map { meta, meryl, meta2 -> [ meta2, meryl ] }
+                                            | map { _meta, meryl, meta2 -> [ meta2, meryl ] }
     ch_versions                             = ch_versions.mix(MAT_MERYL_COUNT.out.versions.first())
 
     // MODULE: MAT_UNIONSUM
     ch_maternal_meryl_branch                = ch_maternal_meryl
-                                            | branch { meta, meryl_db ->
+                                            | branch { meta, _meryl_db ->
                                                 single: meta.single_end
                                                 paired: ! meta.single_end
                                             }
@@ -708,14 +708,14 @@ workflow ASSEMBLYQC {
     ch_paternal_meryl                       = PAT_MERYL_COUNT.out.meryl_db
                                             | join(
                                                 ch_paternal_reads_files
-                                                | map { meta, fq -> [ [ id: meta.id ], meta ] }
+                                                | map { meta, _fq -> [ [ id: meta.id ], meta ] }
                                             )
-                                            | map { meta, meryl, meta2 -> [ meta2, meryl ] }
+                                            | map { _meta, meryl, meta2 -> [ meta2, meryl ] }
     ch_versions                             = ch_versions.mix(PAT_MERYL_COUNT.out.versions.first())
 
     // MODULE: PAT_UNIONSUM
     ch_paternal_meryl_branch                = ch_paternal_meryl
-                                            | branch { meta, meryl ->
+                                            | branch { meta, _meryl ->
                                                 single: meta.single_end
                                                 paired: ! meta.single_end
                                             }
@@ -731,7 +731,7 @@ workflow ASSEMBLYQC {
     // MODULE: MERQURY_HAPMERS
     ch_all_assemblies_with_parents          = ch_maternal_union_meryl
                                             | mix(ch_paternal_union_meryl)
-                                            | flatMap { meta, meryl -> meta.assemblies }
+                                            | flatMap { meta, _meryl -> meta.assemblies }
                                             | unique
                                             | collect
                                             | map { [ it ] }
@@ -741,29 +741,29 @@ workflow ASSEMBLYQC {
                                             | combine(
                                                 ch_all_assemblies_with_parents
                                             )
-                                            | filter { meta, meryl, p_asms -> ! meta.assemblies.any { it in p_asms } }
-                                            | map { meta, meryl, p_asms -> [ meta, meryl, [], [] ] }
+                                            | filter { meta, _meryl, p_asms -> ! meta.assemblies.any { it in p_asms } }
+                                            | map { meta, meryl, _p_asms -> [ meta, meryl, [], [] ] }
 
     ch_group_meryl                          = ch_reads_union_meryl
                                             | combine ( ch_maternal_union_meryl )
-                                            | filter { meta, meryl, meta2, mat_meryl ->
+                                            | filter { meta, _meryl, meta2, _mat_meryl ->
                                                 meta.assemblies.every { it in meta2.assemblies }
                                             }
-                                            | map { meta, meryl, meta2, mat_meryl ->
+                                            | map { meta, meryl, _meta2, mat_meryl ->
                                                 [ meta, meryl, mat_meryl ]
                                             }
                                             | combine ( ch_paternal_union_meryl )
-                                            | filter { meta, meryl, mat_meryl, meta2, pat_meryl ->
+                                            | filter { meta, _meryl, _mat_meryl, meta2, _pat_meryl ->
                                                 meta.assemblies.every { it in meta2.assemblies }
                                             }
-                                            | map { meta, meryl, mat_meryl, meta2, pat_meryl ->
+                                            | map { meta, meryl, mat_meryl, _meta2, pat_meryl ->
                                                 [ meta, meryl, mat_meryl, pat_meryl ]
                                             }
 
     MERQURY_HAPMERS(
-        ch_group_meryl.map { meta, meryl, mat_meryl, pat_meryl -> [ meta, meryl ] },
-        ch_group_meryl.map { meta, meryl, mat_meryl, pat_meryl -> mat_meryl },
-        ch_group_meryl.map { meta, meryl, mat_meryl, pat_meryl -> pat_meryl }
+        ch_group_meryl.map { meta, meryl, _mat_meryl, _pat_meryl -> [ meta, meryl ] },
+        ch_group_meryl.map { _meta, _meryl, mat_meryl, _pat_meryl -> mat_meryl },
+        ch_group_meryl.map { _meta, _meryl, _mat_meryl, pat_meryl -> pat_meryl }
     )
 
     ch_parental_hapmers                     = MERQURY_HAPMERS.out.mat_hapmer_meryl
@@ -773,7 +773,7 @@ workflow ASSEMBLYQC {
     // Prepare group meryl dbs
     ch_meryl_all                            = ch_group_meryl
                                             | join(ch_parental_hapmers)
-                                            | map { meta, meryl, mat_meryl, pat_meryl, hap_mat_meryl, hap_pat_meryl ->
+                                            | map { meta, meryl, _mat_meryl, _pat_meryl, hap_mat_meryl, hap_pat_meryl ->
                                                 [ meta, meryl, hap_mat_meryl, hap_pat_meryl ]
                                             }
                                             | mix(ch_meryl_without_parents)
@@ -790,7 +790,7 @@ workflow ASSEMBLYQC {
     ch_merqury_inputs                       = ch_meryl_all
                                             | join(
                                                 ch_reads_assemblies
-                                                | map { meta, fq, fastas -> [ meta, fastas ] }
+                                                | map { meta, _fq, fastas -> [ meta, fastas ] }
                                             )
 
     MERQURY_MERQURY ( ch_merqury_inputs )
@@ -806,7 +806,7 @@ workflow ASSEMBLYQC {
                                             | mix(ch_merqury_spectra_cn_fl_png)
                                             | mix(ch_merqury_spectra_asm_fl_png)
                                             | mix(ch_hapmers_blob_png)
-                                            | flatMap { meta, data -> data }
+                                            | flatMap { _meta, data -> data }
     ch_versions                             = ch_versions.mix(MERQURY_MERQURY.out.versions.first())
 
     // MODULE: GFFREAD
@@ -824,8 +824,8 @@ workflow ASSEMBLYQC {
                                             | buffer ( size: 3 )
 
     GFFREAD(
-        ch_gffread_inputs.map { meta, gff, fasta -> [ meta, gff ] },
-        ch_gffread_inputs.map { meta, gff, fasta -> fasta }
+        ch_gffread_inputs.map { meta, gff, _fasta -> [ meta, gff ] },
+        ch_gffread_inputs.map { _meta, _gff, fasta -> fasta }
     )
 
     ch_proteins_fasta                       = GFFREAD.out.gffread_fasta
@@ -833,12 +833,12 @@ workflow ASSEMBLYQC {
 
     // ORTHOFINDER
     ORTHOFINDER(
-        ch_proteins_fasta.map { meta, fasta -> fasta }.collect().map { fastas -> [ [ id: 'assemblyqc' ], fastas ] },
+        ch_proteins_fasta.map { _meta, fasta -> fasta }.collect().map { fastas -> [ [ id: 'assemblyqc' ], fastas ] },
         [ [], [] ]
     )
 
     ch_orthofinder_outputs                  = ORTHOFINDER.out.orthofinder
-                                            | map { meta, dir -> dir }
+                                            | map { _meta, dir -> dir }
     ch_versions                             = ch_versions.mix(ORTHOFINDER.out.versions)
 
     // Collate and save software versions
@@ -861,8 +861,8 @@ workflow ASSEMBLYQC {
     CREATEREPORT(
         ch_invalid_assembly_log             .collect().ifEmpty([]),
         ch_invalid_gff3_log                 .collect().ifEmpty([]),
-        ch_fcs_adaptor_report               .map { meta, file -> file }.collect().ifEmpty([]),
-        ch_fcs_gx_report                    .mix(ch_fcs_gx_taxonomy_plot).map { meta, file -> file }.collect().ifEmpty([]),
+        ch_fcs_adaptor_report               .map { _meta, file -> file }.collect().ifEmpty([]),
+        ch_fcs_gx_report                    .mix(ch_fcs_gx_taxonomy_plot).map { _meta, file -> file }.collect().ifEmpty([]),
         ch_assemblathon_stats               .collect().ifEmpty([]),
         ch_gfastats_stats                   .collect().ifEmpty([]),
         ch_gt_stats                         .collect().ifEmpty([]),

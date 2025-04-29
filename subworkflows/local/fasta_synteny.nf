@@ -51,10 +51,10 @@ workflow FASTA_SYNTENY {
                                         | buffer(size:6)
 
     ch_xref_fa_branch                   = ch_xref_fasta_labels
-                                        | map { tag, fa, txt ->
+                                        | map { tag, fa, _txt ->
                                             [ [ id: tag ], fa ]
                                         }
-                                        | branch { meta, fa ->
+                                        | branch { _meta, fa ->
                                             gz: "$fa".endsWith(".gz")
                                             rest: !"$fa".endsWith(".gz")
                                         }
@@ -72,7 +72,7 @@ workflow FASTA_SYNTENY {
                                         | join(
                                             ch_xref_fasta_labels
                                         )
-                                        | map { tag, fa, input_fa, seq_list ->
+                                        | map { tag, fa, _input_fa, seq_list ->
                                             [ tag, fa, seq_list ]
                                         }
 
@@ -87,7 +87,7 @@ workflow FASTA_SYNTENY {
                                         )
 
     ch_combination_labels               = ch_combination
-                                        | map { target_tag, target_fa, target_txt, xref_tag, xref_fa, xref_txt ->
+                                        | map { target_tag, _target_fa, target_txt, xref_tag, _xref_fa, xref_txt ->
                                             [ "${target_tag}.on.${xref_tag}", target_txt, xref_txt ]
                                         }
 
@@ -222,7 +222,7 @@ workflow FASTA_SYNTENY {
                                         | mix(ch_xref_ungz_fa_labels)
 
     ch_common_label_count               = ch_assembly_labels
-                                        | map { tag, fa, labels ->
+                                        | map { _tag, _fa, labels ->
                                             labels.readLines().findAll { it != '' }.size()
                                         }
                                         | collect
@@ -230,7 +230,7 @@ workflow FASTA_SYNTENY {
 
     ch_plotsr_formatted_labels          = ch_assembly_labels
                                         | combine(ch_common_label_count)
-                                        | map { tag, fa, labels, num ->
+                                        | map { tag, _fa, labels, num ->
                                             def label_lines = labels
                                                 .readLines()
                                                 .collect { it.trim() }
@@ -258,10 +258,10 @@ workflow FASTA_SYNTENY {
     // MODULE: CUSTOM_RELABELFASTA
     ch_relabel_inputs                   = ch_assembly_labels
                                         | join(ch_plotsr_formatted_labels)
-                                        | map { tag, fa, old_l, new_l -> [ tag, fa, new_l ] }
+                                        | map { tag, fa, _old_l, new_l -> [ tag, fa, new_l ] }
     CUSTOM_RELABELFASTA(
-        ch_relabel_inputs.map { tag, fa, labels -> [ [ id: tag ], fa ] },
-        ch_relabel_inputs.map { tag, fa, labels -> labels }
+        ch_relabel_inputs.map { tag, fa, _labels -> [ [ id: tag ], fa ] },
+        ch_relabel_inputs.map { _tag, _fa, labels -> labels }
     )
 
     ch_plotsr_assembly                  = CUSTOM_RELABELFASTA.out.fasta
@@ -303,8 +303,8 @@ workflow FASTA_SYNTENY {
                                             [ [ id: "${tmeta.id}.on.${rmeta.id}" ], tfa, rfa ]
                                         }
     MINIMAP2_ALIGN(
-        ch_minimap_inputs.map { meta, tfa, rfa -> [ meta, tfa ] },
-        ch_minimap_inputs.map { meta, tfa, rfa -> [ meta, rfa ] },
+        ch_minimap_inputs.map { meta, tfa, _rfa -> [ meta, tfa ] },
+        ch_minimap_inputs.map { meta, _tfa, rfa -> [ meta, rfa ] },
         true,   // bam_format
         'bai',  // bam_index_extension
         false,  // cigar_paf_format
@@ -319,9 +319,9 @@ workflow FASTA_SYNTENY {
                                         | join(ch_minimap_inputs)
 
     SYRI(
-        ch_syri_inputs.map { meta, bam, tfa, rfa -> [ meta, bam ] },
-        ch_syri_inputs.map { meta, bam, tfa, rfa -> tfa },
-        ch_syri_inputs.map { meta, bam, tfa, rfa -> rfa },
+        ch_syri_inputs.map { meta, bam, _tfa, _rfa -> [ meta, bam ] },
+        ch_syri_inputs.map { _meta, _bam, tfa, _rfa -> tfa },
+        ch_syri_inputs.map { _meta, _bam, _tfa, rfa -> rfa },
         'B' // BAM
     )
 
@@ -332,7 +332,7 @@ workflow FASTA_SYNTENY {
     // MODULE: PLOTSR
     ch_plotsr_inputs                    = ch_syri
                                         | join(ch_syri_inputs)
-                                        | map { meta, syri, bam, tfa, rfa ->
+                                        | map { _meta, syri, _bam, tfa, rfa ->
 
                                             [
                                                 [ id: 'plotsr' ],
@@ -367,9 +367,9 @@ workflow FASTA_SYNTENY {
                                         }
 
     PLOTSR(
-        ch_plotsr_inputs.map { meta, syri, fastas, txt -> [ meta, syri ] },
-        ch_plotsr_inputs.map { meta, syri, fastas, txt -> fastas },
-        ch_plotsr_inputs.map { meta, syri, fastas, txt -> txt },
+        ch_plotsr_inputs.map { meta, syri, _fastas, _txt -> [ meta, syri ] },
+        ch_plotsr_inputs.map { _meta, _syri, fastas, _txt -> fastas },
+        ch_plotsr_inputs.map { _meta, _syri, _fastas, txt -> txt },
         [],
         [],
         [],
@@ -382,10 +382,10 @@ workflow FASTA_SYNTENY {
 
     emit:
     png                                 = CIRCOS.out.png_file
-                                        | mix( ch_plotsr_png.map { meta, png -> png } )
+                                        | mix( ch_plotsr_png.map { _meta, png -> png } )
     html                                = LINEARSYNTENY.out.html
-    syri_fail_log                       = ch_syri_fail_log.map { meta, log -> log }
-    plotsr_labels                       = ch_plotsr_formatted_labels.map { tag, labels -> labels }
+    syri_fail_log                       = ch_syri_fail_log.map { _meta, log -> log }
+    plotsr_labels                       = ch_plotsr_formatted_labels.map { _tag, labels -> labels }
     versions                            = ch_versions
 }
 

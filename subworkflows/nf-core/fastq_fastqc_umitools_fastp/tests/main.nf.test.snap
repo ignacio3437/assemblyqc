@@ -28,7 +28,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.fastp.json:md5,7cf3bff1922b512bcca58439eb2d3679"
+                    "test.fastp.json:md5,af3a785830086b58ddf9e2708685c776"
                 ]
             ],
             [
@@ -57,9 +57,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:42:42.262180451"
+        "timestamp": "2025-04-29T13:33:47.102423"
     },
     "sarscov2 paired-end [fastq] | with_umi": {
         "content": [
@@ -87,7 +87,7 @@
                         "id": "test",
                         "single_end": true
                     },
-                    "test.fastp.json:md5,da0403af3eb7d950f209a1e758de2db0"
+                    "test.fastp.json:md5,2610923d30d0ea71290b1a96216eccd3"
                 ]
             ],
             [
@@ -114,9 +114,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:42:31.905020586"
+        "timestamp": "2025-04-29T13:33:35.691012"
     },
     "sarscov2 paired-end [fastq] | umi_discard_read = 2 - stub": {
         "content": [
@@ -466,7 +466,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.fastp.json:md5,7cf3bff1922b512bcca58439eb2d3679"
+                    "test.fastp.json:md5,af3a785830086b58ddf9e2708685c776"
                 ]
             ],
             [
@@ -495,9 +495,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:42:49.469455815"
+        "timestamp": "2025-04-29T13:33:59.343464"
     },
     "sarscov2 paired-end [fastq] | min_trimmed_reads = 26 - stub": {
         "content": [
@@ -765,7 +765,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.fastp.json:md5,5009a892192f2084c2af69c153d88d6c"
+                    "test.fastp.json:md5,3f04f619146cec8f3ce43df682da151b"
                 ]
             ],
             [
@@ -804,9 +804,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:43:06.081852222"
+        "timestamp": "2025-04-29T13:34:19.867844"
     },
     "sarscov2 paired-end [fastq] | skip_fastqc": {
         "content": [
@@ -837,7 +837,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.fastp.json:md5,7cf3bff1922b512bcca58439eb2d3679"
+                    "test.fastp.json:md5,af3a785830086b58ddf9e2708685c776"
                 ]
             ],
             [
@@ -864,9 +864,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:41:40.619624901"
+        "timestamp": "2025-04-29T13:33:19.997027"
     },
     "sarscov2 paired-end [fastq] | save_trimmed_fail - stub": {
         "content": [
@@ -1552,7 +1552,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.fastp.json:md5,8f99097bfa04b629891105b8af9c429f"
+                    "test.fastp.json:md5,011a77dd4ea02b5c3f712dfd94c35b32"
                 ]
             ],
             [
@@ -1587,9 +1587,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:43:23.073649509"
+        "timestamp": "2025-04-29T13:34:41.336805"
     },
     "sarscov2 paired-end [fastq]": {
         "content": [
@@ -1620,7 +1620,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.fastp.json:md5,7cf3bff1922b512bcca58439eb2d3679"
+                    "test.fastp.json:md5,af3a785830086b58ddf9e2708685c776"
                 ]
             ],
             [
@@ -1649,9 +1649,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:41:35.19441141"
+        "timestamp": "2025-04-29T13:33:14.66432"
     },
     "sarscov2 paired-end [fastq] - stub": {
         "content": [
@@ -1907,7 +1907,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.fastp.json:md5,8f99097bfa04b629891105b8af9c429f"
+                    "test.fastp.json:md5,011a77dd4ea02b5c3f712dfd94c35b32"
                 ]
             ],
             [
@@ -1942,9 +1942,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-31T13:43:16.218890529"
+        "timestamp": "2025-04-29T13:34:30.766285"
     },
     "sarscov2 paired-end [fastq] | with_umi - stub": {
         "content": [

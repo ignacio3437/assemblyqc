@@ -8,7 +8,7 @@
                             "id": "test",
                             "ref_id": "genome"
                         },
-                        "test.on.genome.samblaster.bam:md5,3122d7b54207fbb39e144bfc91c1900a"
+                        "test.on.genome.samblaster.bam:md5,a949523492c98d2eb68fb21c6c69e86c"
                     ]
                 ],
                 "1": [
@@ -22,7 +22,7 @@
                             "id": "test",
                             "ref_id": "genome"
                         },
-                        "test.on.genome.samblaster.bam:md5,3122d7b54207fbb39e144bfc91c1900a"
+                        "test.on.genome.samblaster.bam:md5,a949523492c98d2eb68fb21c6c69e86c"
                     ]
                 ],
                 "versions": [
@@ -34,9 +34,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-04-11T11:48:25.269319"
+        "timestamp": "2025-04-29T14:02:42.612991"
     },
     "sarscov2-fq-gz-stub": {
         "content": [
