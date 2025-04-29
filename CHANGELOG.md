@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Fixed`
 
 1. Fixed Nextflow language server errors
+2. HiC QC report is now generated before excluding unmapped and duplicate RPs [#197](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/197)
 
 ### `Tool Updates`
 
