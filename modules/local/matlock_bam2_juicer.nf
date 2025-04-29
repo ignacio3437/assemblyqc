@@ -3,8 +3,8 @@ process MATLOCK_BAM2_JUICER {
     label 'process_single'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/matlock:20181227--h4b03ef3_3':
-        'biocontainers/matlock:20181227--h4b03ef3_3' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/59/59df5236cc790cac47380a5654f39052a1cb3f9c7868ed397e4b3205a9fb2776/data':
+        'community.wave.seqera.io/library/matlock_samtools:3c30bc2808902fde' }"
 
     input:
     tuple val(sample_id_on_tag), path(hic_bam_scaffolds)
@@ -18,8 +18,31 @@ process MATLOCK_BAM2_JUICER {
 
     script:
     def VERSION = '20181227'
+    def args2 = task.ext.args2 ?: ''
     """
-    matlock bam2 juicer $hic_bam_scaffolds out.links.txt
+    samtools \\
+        view \\
+        $args2 \\
+        -Sb \\
+        $hic_bam_scaffolds \\
+        > ${sample_id_on_tag}.juicer.bam
+
+    matlock \\
+        bam2 \\
+        juicer \\
+        ${sample_id_on_tag}.juicer.bam \\
+        out.links.txt
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        matlock: $VERSION
+    END_VERSIONS
+    """
+
+    stub:
+    def VERSION = '20181227'
+    """
+    touch out.links.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
