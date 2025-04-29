@@ -40,7 +40,6 @@ process DNADIFF {
     """
 
     stub:
-    def inter_extension     = many_to_many_align ? 'mcoords'    : '1coords'
     def out_extension       = many_to_many_align ? 'm.xcoords'  : '1.xcoords'
     """
     touch "${target_on_ref}.${out_extension}"

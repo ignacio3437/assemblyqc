@@ -14,6 +14,9 @@ nextflow_process {
         config './nextflow.config'
 
         when {
+            params {
+                busco_args = '--tar'
+            }
             process {
                 """
                 input[0] = [
@@ -49,8 +52,8 @@ nextflow_process {
 
             assert snapshot(
                     process.out.batch_summary[0][1],
-                    process.out.full_table[0][1],
-                    process.out.missing_busco_list[0][1],
+                    // process.out.full_table[0][1], Dated
+                    // process.out.missing_busco_list[0][1], Dated
                     process.out.versions[0]
                 ).match()
 
@@ -76,6 +79,9 @@ nextflow_process {
         config './nextflow.config'
 
         when {
+            params {
+                busco_args = '--tar'
+            }
             process {
                 """
                 input[0] = [
@@ -128,8 +134,8 @@ nextflow_process {
             }
 
             assert snapshot(
-                    process.out.full_table[0][1],
-                    process.out.missing_busco_list[0][1],
+                    // process.out.full_table[0][1],
+                    // process.out.missing_busco_list[0][1],
                     process.out.versions[0]
                 ).match()
 
@@ -159,9 +165,12 @@ nextflow_process {
 
     test("test_busco_eukaryote_metaeuk") {
 
-        config './nextflow.metaeuk.config'
+        config './nextflow.config'
 
         when {
+            params {
+                busco_args = '--tar --metaeuk'
+            }
             process {
                 """
                 input[0] = [
@@ -197,8 +206,8 @@ nextflow_process {
 
             assert snapshot(
                     process.out.batch_summary[0][1],
-                    process.out.full_table[0][1],
-                    process.out.missing_busco_list[0][1],
+                    // process.out.full_table[0][1],
+                    // process.out.missing_busco_list[0][1],
                     process.out.versions[0]
                 ).match()
 
@@ -223,9 +232,12 @@ nextflow_process {
 
     test("test_busco_eukaryote_augustus") {
 
-        config './nextflow.augustus.config'
+        config './nextflow.config'
 
         when {
+            params {
+                busco_args = '--tar --augustus'
+            }
             process {
                 """
                 input[0] = [
@@ -270,6 +282,9 @@ nextflow_process {
         config './nextflow.config'
 
         when {
+            params {
+                busco_args = '--tar'
+            }
             process {
                 """
                 input[0] = [
@@ -305,8 +320,8 @@ nextflow_process {
 
             assert snapshot(
                     process.out.batch_summary[0][1],
-                    process.out.full_table[0][1],
-                    process.out.missing_busco_list[0][1],
+                    // process.out.full_table[0][1],
+                    // process.out.missing_busco_list[0][1],
                     process.out.versions[0]
                 ).match()
 
@@ -333,6 +348,9 @@ nextflow_process {
         config './nextflow.config'
 
         when {
+            params {
+                busco_args = '--tar'
+            }
             process {
                 """
                 input[0] = [
@@ -368,8 +386,8 @@ nextflow_process {
 
             assert snapshot(
                     process.out.batch_summary[0][1],
-                    process.out.full_table[0][1],
-                    process.out.missing_busco_list[0][1],
+                    // process.out.full_table[0][1],
+                    // process.out.missing_busco_list[0][1],
                     process.out.translated_dir[0][1],
                     process.out.single_copy_proteins[0][1],
                     process.out.versions[0]
@@ -395,6 +413,9 @@ nextflow_process {
         config './nextflow.config'
 
         when {
+            params {
+                busco_args = '--tar'
+            }
             process {
                 """
                 input[0] = [
@@ -415,8 +436,8 @@ nextflow_process {
 
             assert snapshot(
                     process.out.batch_summary[0][1],
-                    process.out.full_table[0][1],
-                    process.out.missing_busco_list[0][1],
+                    // process.out.full_table[0][1],
+                    // process.out.missing_busco_list[0][1],
                     process.out.versions[0]
                 ).match()
 
@@ -425,7 +446,7 @@ nextflow_process {
                 assert contains('Results from dataset')
                 assert contains('how to cite BUSCO')
             }
-            
+
             assert path("${process.out.busco_dir[0][1]}/*/auto_lineage").exists() == false
             assert path("${process.out.busco_dir[0][1]}/*/**/{miniprot,hmmer,.bbtools}_output").exists() == false
 
