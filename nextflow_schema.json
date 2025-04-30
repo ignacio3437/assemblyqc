@@ -230,7 +230,8 @@
                 "hic_skip_fastqc": {
                     "type": "boolean",
                     "description": "Skip HiC read QC",
-                    "fa_icon": "fas fa-forward"
+                    "fa_icon": "fas fa-forward",
+                    "default": true
                 },
                 "hic_fastp_ext_args": {
                     "type": "string",
