@@ -84,7 +84,7 @@ workflow PIPELINE_INITIALISATION {
     ch_hic_reads                            = ! params.hic
                                             ? Channel.empty()
                                             : (
-                                                "$params.hic".find(/.*[\/].*\.(fastq|fq)\.gz/)
+                                                "$params.hic".find(/\S+\{1,2\}[\w\.]*\.f(ast)?q\.gz/)
                                                 ? Channel.fromFilePairs(params.hic, checkIfExists: true)
                                                 : Channel.of( [ params.hic, 'is_sra' ] )
                                             )
