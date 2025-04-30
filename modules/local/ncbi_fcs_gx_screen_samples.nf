@@ -2,10 +2,10 @@ process NCBI_FCS_GX_SCREEN_SAMPLES {
     tag 'all samples'
     label 'process_high'
 
-    conda "bioconda::ncbi-fcs-gx=0.5.4"
+    conda "bioconda::ncbi-fcs-gx=0.5.5"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/ncbi-fcs-gx:0.5.4--h4ac6f70_0':
-        'biocontainers/ncbi-fcs-gx:0.5.4--h4ac6f70_0' }"
+        'https://depot.galaxyproject.org/singularity/ncbi-fcs-gx:0.5.5--h9948957_0':
+        'biocontainers/ncbi-fcs-gx:0.5.5--h9948957_0' }"
 
     input:
     path samples
@@ -21,7 +21,7 @@ process NCBI_FCS_GX_SCREEN_SAMPLES {
     task.ext.when == null || task.ext.when
 
     script:
-    def VERSION = '0.5.4'
+    def VERSION = '0.5.5'
     """
     export GX_NUM_CORES=$task.cpus
 
@@ -47,7 +47,7 @@ process NCBI_FCS_GX_SCREEN_SAMPLES {
     """
 
     stub:
-    def VERSION = '0.5.4'
+    def VERSION = '0.5.5'
     """
     for sample_fasta in $samples;
     do
