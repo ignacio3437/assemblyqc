@@ -28,7 +28,7 @@ lint:
     - validation.summary.beforeText
     - validation.summary.afterText
   template_strings: false
-nf_core_version: 3.2.0
+nf_core_version: 3.2.1
 repository_type: pipeline
 template:
   author: Usman Rashid, Ken Smith, Ross Crowhurst, Chen Wu, Marcus Davy
