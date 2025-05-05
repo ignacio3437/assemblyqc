@@ -1,8 +1,8 @@
 {
-    "hic param - stub": {
+    "hic - HY - test": {
         "content": [
             {
-                "successful tasks": 19,
+                "successful tasks": 20,
                 "versions": {
                     "AGP2ASSEMBLY": {
                         "juicebox_scripts": "0.1.0"
@@ -26,6 +26,9 @@
                     },
                     "FASTP": {
                         "fastp": "0.24.0"
+                    },
+                    "GUNZIP_FASTA": {
+                        "gunzip": 1.13
                     },
                     "HIC2HTML": {
                         "python": "3.11.3"
@@ -66,20 +69,40 @@
                     }
                 },
                 "stable paths": [
-                    "test_stats.csv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "test.agp.assembly:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "test.assembly.bedpe:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "Dummy_hic.fastp.html:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "Dummy_hic.fastp.json:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "Dummy_hic.fastp.log:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "Dummy_hic.paired.fail.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                    "Dummy_hic_1.fail.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                    "Dummy_hic_1.fastp.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                    "Dummy_hic_2.fail.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                    "Dummy_hic_2.fastp.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                    "Dummy_hic.on.test.pdf:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "test.hic:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "test.html:md5,bbd8f07f11522eb75bb9429e86e95713"
+                    "HY_stats.csv:md5,fc61def49f669e7b3f885bf2555bcd46",
+                    "HY.hic:md5,805f7d2a74c15188a71dff0d4d5971b3",
+                    "HY.html:md5,79a673890258cc579930963f57e085f2",
+                    "HY.agp.assembly:md5,48f07547635ccfd80eddc5b9a0d8040f",
+                    "HY.assembly.bedpe:md5,511c63569e96a71cc3c14d13c7198f15",
+                    "HYh1h2_Chr01_6000000_6015000.R.fastp.json:md5,0f757d8f9e7b1fcf8cee5b18127ee02d",
+                    "HYh1h2_Chr01_6000000_6015000.R.fastp.log:md5,3f69b486eb55ae9bfaa4dfcea713631f"
+                ],
+                "stable names": [
+                    "assemblathon_stats",
+                    "assemblathon_stats/HY_stats.csv",
+                    "hic",
+                    "hic/HY.hic",
+                    "hic/HY.html",
+                    "hic/assembly",
+                    "hic/assembly/HY.agp.assembly",
+                    "hic/bedpe",
+                    "hic/bedpe/HY.assembly.bedpe",
+                    "hic/fastp",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.html",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.json",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.log",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.paired.fail.fastq.gz",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_1.fail.fastq.gz",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_1.fastp.fastq.gz",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_2.fail.fastq.gz",
+                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_2.fastp.fastq.gz",
+                    "hic/hicqc",
+                    "hic/hicqc/HYh1h2_Chr01_6000000_6015000.R.on.HY_qc_report.pdf",
+                    "pipeline_info",
+                    "report.html",
+                    "report.json",
+                    "synteny",
+                    "synteny/plotsr"
                 ]
             }
         ],
@@ -87,6 +110,6 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.6"
         },
-        "timestamp": "2025-04-30T10:19:29.149583"
+        "timestamp": "2025-05-01T16:29:14.568305"
     }
 }
