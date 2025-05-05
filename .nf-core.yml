@@ -19,7 +19,6 @@ lint:
     - .github/workflows/branch.yml
     - .github/workflows/linting.yml
     - docs/README.md
-  included_configs: false
   multiqc_config: false
   nextflow_config:
     - manifest.name
@@ -44,4 +43,4 @@ template:
     - igenomes
     - multiqc
     - fastqc
-  version: 2.2.0dev
+  version: 2.3.0dev
