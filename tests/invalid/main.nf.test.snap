@@ -2,7 +2,7 @@
     "invalid": {
         "content": [
             {
-                "successful tasks": 25,
+                "successful tasks": 31,
                 "versions": {
                     "ASSEMBLATHON_STATS": {
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
@@ -39,6 +39,7 @@
                     }
                 },
                 "stable paths": [
+                    "ALL_NSs_stats.csv:md5,e82e1d92c9ba7203591693e63fc6ecf9",
                     "FI1_stats.csv:md5,8d1274e52117e39b413ff71a76c40331",
                     "TT_2021a_stats.csv:md5,55fa0923a6d47fdd19201486848b48fe",
                     "FI1.gt.stat.yml:md5,2fc1b9c84af0c2323d78a9ac623a3022"
@@ -47,8 +48,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nextflow": "24.10.6"
         },
-        "timestamp": "2025-03-11T11:22:41.585379"
+        "timestamp": "2025-05-16T17:44:03.578922"
     }
 }

@@ -20,6 +20,7 @@ nextflow_pipeline {
                 { assert 'WARN: GFF3 validation failed for TT_2021a' in workflow.stdout },
                 { assert 'WARN: FASTA validation failed for MISC' in workflow.stdout },
                 { assert 'WARN: FASTA validation failed for DUPSEQ due to presence of duplicate sequences' in workflow.stdout },
+                { assert 'WARN: FASTA validation failed for ALL_NSs' in workflow.stdout },
                 { assert snapshot(
                     [
                         'successful tasks': workflow.trace.succeeded().size(),
