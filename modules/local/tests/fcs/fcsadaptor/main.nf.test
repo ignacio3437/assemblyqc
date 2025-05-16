@@ -1,0 +1,41 @@
+nextflow_process {
+
+    name "Test Process FCS_FCSADAPTOR"
+    script "../../../../nf-core/fcs/fcsadaptor/main.nf"
+    process "FCS_FCSADAPTOR"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "fcs"
+    tag "fcs/fcsadaptor"
+
+    test("Fasta with a complex header") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test' ],
+                    file("$baseDir" + '/modules/local/tests/fcs/fcsadaptor/testdata/test.fa', checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.cleaned_assembly == [] },
+                { assert snapshot(
+                    file(process.out.skipped_trims[0][1]).name,
+                    process.out.adaptor_report,
+                    process.out.pipeline_args,
+                    process.out.versions,
+                    ).match()
+                },
+                { assert path(process.out.log[0][1]).text.contains('[step all_cleaned_fasta] completed success') }
+            )
+        }
+
+    }
+}
