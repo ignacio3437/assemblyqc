@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v2.3.0dev - [06-May-2025]
+## v2.3.0dev - [19-May-2025]
 
 ### `Added`
 
@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 1. Fixed Nextflow language server errors
 2. HiC QC report is now generated before excluding unmapped and duplicate RPs [#197](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/197)
 3. Bumped default memory for `RUNASSEMBLYVISUALIZER` to 16.GBs [#186](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/186)
+4. Fixed an issue where NCBI FCS Adaptor failed with error `permanentFail` due to unconventional fasta headers [#168](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/168)
 
 ### `Tool Updates`
 
