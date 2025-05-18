@@ -163,7 +163,7 @@
                     },
                     "fcs/fcsadaptor": {
                         "branch": "master",
-                        "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
+                        "git_sha": "d9e21f6f33fecc0615792dc2a04882318df79511",
                         "installed_by": ["modules"]
                     },
                     "gfastats": {
