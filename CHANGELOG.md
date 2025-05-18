@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 4. Added parameter `hic_alphanumeric_sort` to allow disabling of FASTA sorting by sequence labels [#188](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/188)
 5. Now FastQC is skipped by default [#199](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/199)
 6. Updated NCBI FCS GX to 0.5.5 [#195](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/195)
+7. Added [fa-lint](https://github.com/GallVp/fa-lint) to detect all N's in fasta sequences [#173](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/173)
 
 ### `Fixed`
 

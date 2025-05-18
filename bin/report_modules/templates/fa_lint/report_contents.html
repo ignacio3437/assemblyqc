@@ -1,0 +1,18 @@
+{% set vars = {'is_first': True} %} {% for item in range(all_stats_dicts["FA_LINT"]|length) %} {% set active_text
+= 'display: block' if vars.is_first else 'display: none' %}
+<div
+    id="tabcontent_FA_LINT_{{ all_stats_dicts['FA_LINT'][item]['hap'] }}"
+    class="tabcontent-FA_LINT"
+    style="{{ active_text }}"
+>
+    <div class="results-section">
+        <div class="section-heading-wrapper">
+            <div class="section-heading">{{ all_stats_dicts['FA_LINT'][item]['hap'] }}</div>
+        </div>
+        <div class="section-para-wrapper">
+            <p>Validation <b style="color: red">failed!</b></p>
+        </div>
+        <div class="section-para-wrapper">{{ all_stats_dicts['FA_LINT'][item]['validation_log'] }}</div>
+    </div>
+</div>
+{% if vars.update({'is_first': False}) %} {% endif %} {% endfor %}

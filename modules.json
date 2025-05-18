@@ -35,6 +35,11 @@
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
+                    "falint": {
+                        "branch": "main",
+                        "git_sha": "ed019147766f92302d2664df9bcc9d6632030e47",
+                        "installed_by": ["modules"]
+                    },
                     "gt/gff3": {
                         "branch": "main",
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
@@ -145,11 +150,6 @@
                         "branch": "master",
                         "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
                         "installed_by": ["fastq_download_prefetch_fasterqdump_sratools"]
-                    },
-                    "fastavalidator": {
-                        "branch": "master",
-                        "git_sha": "05954dab2ff481bcb999f24455da29a5828af08d",
-                        "installed_by": ["modules"]
                     },
                     "fastp": {
                         "branch": "master",

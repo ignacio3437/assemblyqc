@@ -21,8 +21,8 @@
                         "bwa": "0.7.18-r1243-dirty",
                         "samtools": 1.21
                     },
-                    "FASTAVALIDATOR": {
-                        "py_fasta_validator": 0.6
+                    "FALINT": {
+                        "fa-lint": "1.0.0"
                     },
                     "FASTP": {
                         "fastp": "0.24.0"
@@ -75,7 +75,7 @@
                     "HY.agp.assembly:md5,48f07547635ccfd80eddc5b9a0d8040f",
                     "HY.assembly.bedpe:md5,511c63569e96a71cc3c14d13c7198f15",
                     "HYh1h2_Chr01_6000000_6015000.R.fastp.json:md5,0f757d8f9e7b1fcf8cee5b18127ee02d",
-                    "HYh1h2_Chr01_6000000_6015000.R.fastp.log:md5,3f69b486eb55ae9bfaa4dfcea713631f"
+                    "HYh1h2_Chr01_6000000_6015000.R.fastp.log:md5,d6e39568e87d0daac7cac334ff7f794c"
                 ],
                 "stable names": [
                     "assemblathon_stats",
@@ -110,6 +110,6 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.6"
         },
-        "timestamp": "2025-05-01T16:29:14.568305"
+        "timestamp": "2025-05-19T11:10:39.980459"
     }
 }

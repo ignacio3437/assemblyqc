@@ -12,8 +12,8 @@
     <button class="tablinks active" onclick="openTool(event, 'PARAMS')">PARAMS</button>
     <button class="tablinks active" onclick="openTool(event, 'TOOLS')">TOOLS</button>
 
-    {% if 'FASTA_VALIDATE' in all_stats_dicts %}
-    <button class="tablinks active" onclick="openTool(event, 'FASTA_VALIDATE')">FASTA VALIDATE</button>
+    {% if 'FA_LINT' in all_stats_dicts %}
+    <button class="tablinks active" onclick="openTool(event, 'FA_LINT')">FA LINT</button>
     {% endif %}
 
     {% if 'GFF3_VALIDATE' in all_stats_dicts %}
@@ -89,8 +89,8 @@
   {% include 'params/params.html' %}
   {% include 'tools/tools.html' %}
 
-  {% if 'FASTA_VALIDATE' in all_stats_dicts %}
-  {%include 'fasta_validate/fasta_validate.html' %}
+  {% if 'FA_LINT' in all_stats_dicts %}
+  {%include 'fa_lint/fa_lint.html' %}
   {% endif %}
 
   {% if 'GFF3_VALIDATE' in all_stats_dicts %}
