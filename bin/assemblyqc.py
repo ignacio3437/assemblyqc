@@ -9,7 +9,7 @@ from report_modules.parsers.params_parser import parse_params_json
 from report_modules.parsers.tools_parser import parse_tools_yaml
 
 from report_modules.parsers.gff3_validate_parser import parse_gff3_validate_folder
-from report_modules.parsers.fasta_validate_parser import parse_fasta_validate_folder
+from report_modules.parsers.fa_lint_parser import parse_fa_lint_folder
 
 from report_modules.parsers.ncbi_fcs_adaptor_parser import parse_ncbi_fcs_adaptor_folder
 from report_modules.parsers.ncbi_fcs_gx_parser import parse_ncbi_fcs_gx_folder
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     data_from_tools = {}
 
     data_from_tools = {**data_from_tools, **parse_gff3_validate_folder()}
-    data_from_tools = {**data_from_tools, **parse_fasta_validate_folder()}
+    data_from_tools = {**data_from_tools, **parse_fa_lint_folder()}
     data_from_tools = {**data_from_tools, **parse_ncbi_fcs_adaptor_folder()}
     data_from_tools = {**data_from_tools, **parse_ncbi_fcs_gx_folder()}
     data_from_tools = {**data_from_tools, **parse_assemblathon_stats_folder()}

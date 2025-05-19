@@ -19,7 +19,7 @@
 <p align="center"><img src="docs/images/assemblyqc.png"></p>
 
 - `Assembly`
-  - [fasta_validator](https://github.com/linsalrob/fasta_validator) + [SeqKit rmdup](https://github.com/shenwei356/seqkit): FASTA validation
+  - [fa-lint](https://github.com/GallVp/fa-lint) + [SeqKit rmdup](https://github.com/shenwei356/seqkit): FASTA validation
   - [assemblathon_stats](https://github.com/PlantandFoodResearch/assemblathon2-analysis/blob/a93cba25d847434f7eadc04e63b58c567c46a56d/assemblathon_stats.pl), [gfastats](https://github.com/vgl-hub/gfastats): Assembly statistics
   - [NCBI FCS-adaptor](https://github.com/ncbi/fcs): Adaptor contamination pass/fail
   - [NCBI FCS-GX](https://github.com/ncbi/fcs): Foreign organism contamination pass/fail

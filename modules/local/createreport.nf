@@ -5,7 +5,7 @@ process CREATEREPORT {
     container "docker.io/gallvp/python3npkgs:v0.7"
 
     input:
-    path fastavalidator_logs        , stageAs: 'fastavalidator_logs/*'
+    path fa_lint_logs               , stageAs: 'fa_lint_logs/*'
     path gff3_validate_logs         , stageAs: 'gff3_validate_logs/*'
     path ncbi_fcs_adaptor_reports   , stageAs: 'ncbi_fcs_adaptor_reports/*'
     path fcs_gx_reports             , stageAs: 'fcs_gx_reports/*'

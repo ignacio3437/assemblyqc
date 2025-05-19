@@ -10,9 +10,9 @@
 
 ## Pipeline tools
 
-- py_fasta_validator, [MIT](https://github.com/linsalrob/py_fasta_validator/blob/master/LICENSE)
+- fa-lint, [MIT](https://github.com/GallVp/fa-lint/blob/master/LICENSE)
 
-  > Edwards, R.A. 2019. fasta_validate: a fast and efficient fasta validator written in pure C. doi: <https://doi.org/10.5281/zenodo.2532044>
+  > <https://github.com/GallVp/fa-lint>
 
 - GenomeTools, [ISC](http://genometools.org/license.html)
 
