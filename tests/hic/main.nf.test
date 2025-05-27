@@ -21,6 +21,7 @@ nextflow_pipeline {
                     'pipeline_info/*.{html,json,txt,yml}',
                     'hic/fastp/*.fastq.gz',
                     'hic/fastp/*.html',
+                    'hic/fastp/*.log',
                     'hic/hicqc/*.pdf',
                     'report.{html,json}'
                 ],
