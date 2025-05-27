@@ -60,6 +60,11 @@
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
                         "installed_by": ["modules"]
                     },
+                    "hicqc": {
+                        "branch": "main",
+                        "git_sha": "f6702e927a46d126a0222e7932da7dff02401495",
+                        "installed_by": ["modules"]
+                    },
                     "ltrfinder": {
                         "branch": "main",
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
