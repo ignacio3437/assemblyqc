@@ -103,7 +103,7 @@
                         "python": "3.11.3"
                     },
                     "HICQC": {
-                        "hic_qc.py": "0+untagged.261.g6881c33"
+                        "hic_qc.py": "3.1"
                     },
                     "JUICER_SORT": {
                         "sort": 8.3

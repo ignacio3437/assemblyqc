@@ -1,7 +1,7 @@
 include { FASTQ_FASTQC_UMITOOLS_FASTP   } from '../nf-core/fastq_fastqc_umitools_fastp/main'
 include { FASTQ_BWA_MEM_SAMBLASTER      } from '../gallvp/fastq_bwa_mem_samblaster/main'
 include { SEQKIT_SORT                   } from '../../modules/nf-core/seqkit/sort/main'
-include { HICQC                         } from '../../modules/local/hicqc'
+include { HICQC                         } from '../../modules/gallvp/hicqc'
 include { MAKEAGPFROMFASTA              } from '../../modules/local/makeagpfromfasta'
 include { AGP2ASSEMBLY                  } from '../../modules/local/agp2assembly'
 include { ASSEMBLY2BEDPE                } from '../../modules/local/assembly2bedpe'
