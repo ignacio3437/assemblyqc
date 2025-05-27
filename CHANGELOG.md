@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | Tool        | Old Version | New Version |
 | ----------- | ----------- | ----------- |
 | busco       | 5.7.1       | 5.8.2       |
+| hic_qc      | 6881c33_ps  | v1.3        |
 | seqkit      | 2.8.1       | 2.9.0       |
 | ncbi-fcs-gx | 0.5.4       | 0.5.5       |
 | fastp       | 0.23.4      | 0.24.0      |
