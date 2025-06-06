@@ -10,6 +10,6 @@ class ReportPrinter:
         self.file_loader = FileSystemLoader(path)
         self.env = Environment(loader=self.file_loader)
 
-    def print_template(self, stats):
+    def print(self, stats):
         template = self.env.get_template("base.html")
-        print(template.render(all_stats_dicts=stats))
+        return template.render(all_stats_dicts=stats)

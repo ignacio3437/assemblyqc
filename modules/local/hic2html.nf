@@ -1,11 +1,11 @@
 process HIC2HTML {
-    tag "$sample_id_on_tag"
+    tag "$meta.id"
     label 'process_single'
 
     container "docker.io/gallvp/python3npkgs:v0.7"
 
     input:
-    tuple val(sample_id_on_tag), path(hic_file)
+    tuple val(meta), path(hic)
 
     output:
     path "*.html"           , emit: html
@@ -15,9 +15,11 @@ process HIC2HTML {
     task.ext.when == null || task.ext.when
 
     script:
+    def prefix = task.ext.prefix ?: "$meta.id"
     """
-    file_name="$hic_file"
-    hic2html.py "$hic_file" > "\${file_name%.*}.html"
+    hic2html.py \\
+        "$hic" \\
+        > ${prefix}.html
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

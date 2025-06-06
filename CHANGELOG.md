@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [27-May-2025]
+## v3.0.0dev - [06-June-2025]
 
 ### `Added`
 
@@ -14,14 +14,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 5. Now FastQC is skipped by default [#199](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/199)
 6. Updated NCBI FCS GX to 0.5.5 [#195](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/195)
 7. Added [fa-lint](https://github.com/GallVp/fa-lint) to detect all N's in fasta sequences [#173](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/173)
+8. Added sub-workflow `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` [#211](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/211)
 
 ### `Fixed`
 
 1. Fixed Nextflow language server errors
 2. HiC QC report is now generated before excluding unmapped and duplicate RPs [#197](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/197)
-3. Bumped default memory for `RUNASSEMBLYVISUALIZER` to 16.GBs [#186](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/186)
+3. ~~Bumped default memory for `RUNASSEMBLYVISUALIZER` to 16.GBs [#186](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/186)~~
 4. Fixed an issue where NCBI FCS Adaptor failed with error `permanentFail` due to unconventional fasta headers [#168](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/168)
 5. Fixed an issue where `hic_qc` was not able to detect forward/reverse reads and the samblaster command [#161](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/161)
+6. Now sorting HiC BAM by query name before passing to `YAHS_JUICERPRE` so that `-q` flag is not ignored [#216](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/216)
+
+### `Deprecated`
+
+1. Removed the `resourceLimits` section from `nextflow.config`. The user must specify the `resourceLimits` for their environment if needed.
+2. Removed parameter `hic_samtools_ext_args` as filtering is now down by `YAHS_JUICERPRE` which is equivalent to samtools flag `-F 3844` [#127](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/127)
+3. Removed modules: `JUICER_SORT`, `MATLOCK_BAM2_JUICER`, `RUNASSEMBLYVISUALIZER` as these have been superseded by the addition of the `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` sub-workflow
+4. Removed local modules `AGP2ASSEMBLY`, `ASSEMBLY2BEDPE` and `MAKEAGPFROMFASTA` as the assembly mode for HiC file is not supported anymore
 
 ### `Tool Updates`
 

@@ -88,10 +88,6 @@
 
   > <https://github.com/s-andrews/FastQC>
 
-- run-assembly-visualizer.sh, [MIT](https://github.com/aidenlab/3d-dna/blob/master/LICENSE)
-
-  > Dudchenko O, Batra SS, Omer AD, Nyquist SK, Hoeger M, Durand NC, Shamim MS, Machol I, Lander, Aiden AP, Aiden EL 2017. De novo assembly of the Aedes aegypti genome using Hi-C yields chromosome-length scaffolds.Science356, 92-95(2017). doi: <https://doi.org/10.1126/science.aal3327>. Available at: <https://github.com/aidenlab/3d-dna/commit/63029aa3bc5ba9bbdad9dd9771ace583cc95e273>
-
 - hic_qc, [AGPL v3](https://github.com/phasegenomics/hic_qc/blob/master/LICENSE)
 
   > <https://github.com/phasegenomics/hic_qc/commit/6881c3390fd4afb85009a52918b4d068100c58b4>
@@ -104,9 +100,9 @@
 
   > Li H. 2013. Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. <https://doi.org/10.48550/arXiv.1303.3997>
 
-- Matlock, [AGPL v3](https://github.com/phasegenomics/matlock/blob/master/LICENSE)
+- YaHS, [MIT](https://github.com/c-zhou/yahs/blob/main/LICENSE)
 
-  > <https://github.com/phasegenomics/matlock>; <https://quay.io/biocontainers/matlock:20181227--h4b03ef3_3>
+  > Chenxi Zhou, Shane A McCarthy, Richard Durbin, YaHS: yet another Hi-C scaffolding tool, Bioinformatics, Volume 39, Issue 1, January 2023, btac808, <https://doi.org/10.1093/bioinformatics/btac808>
 
 - samblaster, [MIT](https://github.com/GregoryFaust/samblaster/blob/master/LICENSE.txt)
 

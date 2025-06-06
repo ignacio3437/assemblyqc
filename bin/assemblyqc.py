@@ -2,6 +2,7 @@
 
 import json
 import yaml
+import logging
 
 from report_modules.report_printer import ReportPrinter
 
@@ -30,6 +31,8 @@ from report_modules.parsers.hic_parser import parse_hic_folder
 from report_modules.parsers.synteny_parser import parse_synteny_folder
 from report_modules.parsers.merqury_parser import parse_merqury_folder
 from report_modules.parsers.orthofinder_parser import parse_orthofinder_folder
+
+logging.basicConfig(level=logging.INFO, force=True)
 
 if __name__ == "__main__":
     params_dict, params_table = parse_params_json("params_json.json")
@@ -78,7 +81,10 @@ if __name__ == "__main__":
     }
 
     report_printer = ReportPrinter()
-    report_template = report_printer.print_template(data_from_tools)
+    report_html = report_printer.print(data_from_tools)
 
     with open("report.json", "w") as fp:
         json.dump(data_from_tools, fp)
+
+    with open("report.html", "w") as fp:
+        fp.write(report_html)

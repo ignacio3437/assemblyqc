@@ -3,8 +3,11 @@ from pathlib import Path
 import pandas as pd
 from tabulate import tabulate
 import re
+import logging
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
+
+LOG = logging.getLogger(__name__)
 
 
 def colorize_fastp_log(log: Path):
@@ -56,12 +59,15 @@ def parse_hic_folder(folder_name="hic_outputs"):
     hic_folder_path = Path(f"{dir}/{folder_name}")
 
     if not os.path.exists(hic_folder_path):
+        LOG.info(f"{hic_folder_path} not detected")
         return {}
 
     list_of_hic_files = hic_folder_path.glob("*.html")
     list_of_hic_files = [
         x for x in list_of_hic_files if re.match(r"^\w+\.html$", x.name)
     ]
+
+    LOG.info(f"Found hic html files: {list_of_hic_files}")
 
     data = {"HIC": []}
 
@@ -73,19 +79,21 @@ def parse_hic_folder(folder_name="hic_outputs"):
             hic_file_name,
         )[0]
 
+        LOG.info(f"Detected tag {tag}")
+
         # Get the labels table
-        labels_table = pd.read_csv(f"{folder_name}/{tag}.agp.assembly", sep=" ")
-        labels_table = labels_table[labels_table.iloc[:, 0].str.startswith(">")].iloc[
-            :, [0, 2]
-        ]
-        labels_table.columns = ["Sequence", "Length"]
-        labels_table.Length = labels_table.Length.astype(int)
+        # labels_table = pd.read_csv(f"{folder_name}/{tag}.agp.assembly", sep=" ")
+        # labels_table = labels_table[labels_table.iloc[:, 0].str.startswith(">")].iloc[
+        #     :, [0, 2]
+        # ]
+        # labels_table.columns = ["Sequence", "Length"]
+        # labels_table.Length = labels_table.Length.astype(int)
 
         # Get the HiC QC report
         hicqc_report = [
             x
             for x in hic_folder_path.glob("*.pdf")
-            if re.match(rf"[\S]+\.on\.{tag}_qc_report\.pdf", x.name)
+            if re.match(rf"{tag}_qc_report\.pdf", x.name)
         ][0]
 
         # Get FASTP log if it is there
@@ -101,14 +109,14 @@ def parse_hic_folder(folder_name="hic_outputs"):
             {
                 "hap": tag,
                 "hic_html_file_name": hic_file_name,
-                "labels_table": labels_table.to_dict("records"),
-                "labels_table_html": tabulate(
-                    labels_table,
-                    headers=["Sequence", "Length"],
-                    tablefmt="html",
-                    numalign="left",
-                    showindex=False,
-                ),
+                # "labels_table": labels_table.to_dict("records"),
+                # "labels_table_html": tabulate(
+                #     labels_table,
+                #     headers=["Sequence", "Length"],
+                #     tablefmt="html",
+                #     numalign="left",
+                #     showindex=False,
+                # ),
                 "hicqc_report_pdf": os.path.basename(str(hicqc_report)),
                 "fastp_log": fastp_log,
             }
