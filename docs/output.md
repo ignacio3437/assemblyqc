@@ -1,12 +1,12 @@
 # plant-food-research-open/assemblyqc: Output
 
-## Introduction
+## Introduction<!-- omit in toc -->
 
 This document describes the output produced by the pipeline. Most of the plots are taken from the AssemblyQC report which summarises results at the end of the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-## Pipeline overview
+## Pipeline overview<!-- omit in toc -->
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data to produce following outputs:
 
@@ -183,10 +183,7 @@ Kraken 2 [assigns taxonomic labels](https://ccb.jhu.edu/software/kraken2/) to se
     - `*_1_fastqc.zip/*_2_fastqc.zip`: FastQC stats for the reads passed by FASTP.
   - `hicqc`
     - `*.on.*_qc_report.pdf`: HiC QC report for reads mapped to an assembly.
-  - `assembly/`
-    - `*.agp.assembly`: AGP assembly file listing the length of each contig in the assembly.
-  - `bedpe/` - `*.assembly.bedpe`: `*.agp.assembly` file converted to BEDPE to highlight the contigs on the HiC contact map.
-  </details>
+    </details>
 
 Hi-C contact mapping experiments measure the frequency of physical contact between loci in the genome. The resulting dataset, called a “contact map,” is represented using a [two-dimensional heatmap](https://github.com/igvteam/juicebox.js) where the intensity of each pixel indicates the frequency of contact between a pair of loci.
 

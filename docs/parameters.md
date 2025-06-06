@@ -73,7 +73,6 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 | `hic_skip_fastp`        | Skip HiC read trimming                                                                   | `boolean` |                                                   |          |        |
 | `hic_skip_fastqc`       | Skip HiC read QC                                                                         | `boolean` | True                                              |          |        |
 | `hic_fastp_ext_args`    | Additional parameters for fastp trimming                                                 | `string`  | --qualified_quality_phred 20 --length_required 50 |          |        |
-| `hic_samtools_ext_args` | Additional parameters for samtools view command run after samblaster                     | `string`  | -F 3852                                           |          |        |
 | `hic_alphanumeric_sort` | Sort FASTA sequences by their labels for creating the HiC contact map?                   | `boolean` | True                                              |          |        |
 
 ## Merqury options

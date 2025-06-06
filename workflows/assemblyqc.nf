@@ -597,11 +597,7 @@ workflow ASSEMBLYQC {
     ch_hic_fastp_log                        = FQ2HIC.out.fastp_log
     ch_hicqc_pdf                            = FQ2HIC.out.hicqc_pdf
     ch_hic_html                             = FQ2HIC.out.html
-    ch_hic_assembly                         = FQ2HIC.out.assembly
     ch_hic_report_files                     = ch_hic_html
-                                            | mix(
-                                                ch_hic_assembly.map { _tag, assembly -> assembly }
-                                            )
                                             | mix(
                                                 ch_hicqc_pdf.map { _meta, pdf -> pdf }
                                             )

@@ -45,8 +45,7 @@ process CREATEREPORT {
         '$params_summary_json' \\
         > params_summary_json.json
 
-    assemblyqc.py \\
-        > report.html
+    assemblyqc.py
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
