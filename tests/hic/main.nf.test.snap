@@ -15,7 +15,7 @@
                         "samtools": 1.21
                     },
                     "FALINT": {
-                        "fa-lint": "1.0.0"
+                        "fa-lint": "1.1.0"
                     },
                     "FASTP": {
                         "fastp": "0.24.0"

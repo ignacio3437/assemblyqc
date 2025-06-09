@@ -244,6 +244,13 @@
                     "default": true,
                     "fa_icon": "fas fa-question-circle",
                     "description": "Sort FASTA sequences by their labels for creating the HiC contact map?"
+                },
+                "hic_mapq": {
+                    "type": "integer",
+                    "default": 1,
+                    "fa_icon": "fas fa-ruler-horizontal",
+                    "description": "HiC MAPQ threshold to apply at the YAHS juicer pre stage",
+                    "minimum": 0
                 }
             }
         },

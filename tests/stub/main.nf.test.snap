@@ -52,7 +52,7 @@
                         "gffread": "0.12.7"
                     },
                     "FALINT": {
-                        "fa-lint": "1.0.0"
+                        "fa-lint": "1.1.0"
                     },
                     "FASTQC_RAW": {
                         "fastqc": "0.12.1"
