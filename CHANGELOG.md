@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [06-June-2025]
+## v3.0.0dev - [10-June-2025]
 
 ### `Added`
 
@@ -13,8 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 4. Added parameter `hic_alphanumeric_sort` to allow disabling of FASTA sorting by sequence labels [#188](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/188)
 5. Now FastQC is skipped by default [#199](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/199)
 6. Updated NCBI FCS GX to 0.5.5 [#195](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/195)
-7. Added [fa-lint](https://github.com/GallVp/fa-lint) to detect all N's in fasta sequences [#173](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/173)
+7. Added [fa-lint](https://github.com/GallVp/fa-lint) to detect all N's in fasta sequences [#173](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/173)[#224](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/224)
 8. Added sub-workflow `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` [#211](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/211)
+9. Updated Plant&Food Nextflow to `24.10.6` [#225](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/225)
+10. Added parameter `hic_mapq` and set the default to 1 for now [#218](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/218)
 
 ### `Fixed`
 

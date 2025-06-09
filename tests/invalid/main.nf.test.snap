@@ -8,7 +8,7 @@
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
                     },
                     "FALINT": {
-                        "fa-lint": "1.0.0"
+                        "fa-lint": "1.1.0"
                     },
                     "GT_GFF3": {
                         "genometools": "1.6.5"

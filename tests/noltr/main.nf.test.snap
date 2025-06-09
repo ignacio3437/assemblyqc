@@ -18,7 +18,7 @@
                         "biopython": 1.75
                     },
                     "FALINT": {
-                        "fa-lint": "1.0.0"
+                        "fa-lint": "1.1.0"
                     },
                     "GUNZIP_FASTA": {
                         "gunzip": 1.13

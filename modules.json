@@ -37,7 +37,7 @@
                     },
                     "falint": {
                         "branch": "main",
-                        "git_sha": "ed019147766f92302d2664df9bcc9d6632030e47",
+                        "git_sha": "2135978e6763b08b4073aba2a4a64360eb8bc76c",
                         "installed_by": ["modules"]
                     },
                     "gt/gff3": {
