@@ -1,7 +1,7 @@
 nextflow_process {
 
     name "Test Process FCS_FCSADAPTOR"
-    script "../../../../nf-core/fcs/fcsadaptor/main.nf"
+    script "../../../../modules/nf-core/fcs/fcsadaptor/main.nf"
     process "FCS_FCSADAPTOR"
 
     tag "modules"
@@ -16,7 +16,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id: 'test' ],
-                    file("$baseDir" + '/modules/local/tests/fcs/fcsadaptor/testdata/test.fa', checkIfExists: true)
+                    file("$baseDir" + '/tests/modules/fcs/fcsadaptor/testdata/test.fa', checkIfExists: true)
                 ]
                 """
             }

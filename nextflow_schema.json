@@ -239,6 +239,11 @@
                     "description": "Additional parameters for fastp trimming",
                     "fa_icon": "fas fa-terminal"
                 },
+                "hic_save_trimmed": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-question-circle",
+                    "description": "To save or not to save the trimmed FastQ files"
+                },
                 "hic_alphanumeric_sort": {
                     "type": "boolean",
                     "default": true,

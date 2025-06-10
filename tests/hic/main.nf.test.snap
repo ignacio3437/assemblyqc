@@ -77,11 +77,6 @@
                     "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.html",
                     "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.json",
                     "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.log",
-                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.paired.fail.fastq.gz",
-                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_1.fail.fastq.gz",
-                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_1.fastp.fastq.gz",
-                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_2.fail.fastq.gz",
-                    "hic/fastp/HYh1h2_Chr01_6000000_6015000.R_2.fastp.fastq.gz",
                     "hic/hicqc",
                     "hic/hicqc/HY_qc_report.pdf",
                     "pipeline_info",
@@ -96,6 +91,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.2"
         },
-        "timestamp": "2025-06-06T15:22:32.510865"
+        "timestamp": "2025-06-11T09:52:03.812486"
     }
 }

@@ -73,6 +73,7 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 | `hic_skip_fastp`        | Skip HiC read trimming                                                                   | `boolean` |                                                   |          |        |
 | `hic_skip_fastqc`       | Skip HiC read QC                                                                         | `boolean` | True                                              |          |        |
 | `hic_fastp_ext_args`    | Additional parameters for fastp trimming                                                 | `string`  | --qualified_quality_phred 20 --length_required 50 |          |        |
+| `hic_save_trimmed`      | To save or not to save the trimmed FastQ files                                           | `boolean` |                                                   |          |        |
 | `hic_alphanumeric_sort` | Sort FASTA sequences by their labels for creating the HiC contact map?                   | `boolean` | True                                              |          |        |
 | `hic_mapq`              | HiC MAPQ threshold to apply at the YAHS juicer pre stage                                 | `integer` | 1                                                 |          |        |
 
