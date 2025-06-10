@@ -169,7 +169,7 @@
                 "https://nf-co.re/plant-food-research-open/assemblyqc/dev/"
             ],
             "version": [
-                "2.3.0dev"
+                "3.0.0dev"
             ]
         },
         {
@@ -201,7 +201,7 @@
             "@id": "#252001d3-ba31-4f04-a9f6-1ce6c7fd8ec7",
             "@type": "TestInstance",
             "name": "GitHub Actions workflow for testing plant-food-research-open/assemblyqc",
-            "resource": "repos/plant-food-research-open/assemblyqc/actions/workflows/ci.yml",
+            "resource": "repos/plant-food-research-open/assemblyqc/actions/workflows/nf-test.yml",
             "runsOn": {
                 "@id": "https://w3id.org/ro/terms/test#GithubService"
             },
