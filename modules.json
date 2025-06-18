@@ -135,7 +135,7 @@
                     },
                     "yahs/juicerpre": {
                         "branch": "main",
-                        "git_sha": "391f22823c10f071e7b7b4dd4619d3bc7f0f6bf4",
+                        "git_sha": "f2854aef454e4ab129cce5a6b364f5834a3856f8",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
                     }
                 }
@@ -144,7 +144,7 @@
                 "gallvp": {
                     "bam_fasta_yahs_juicer_pre_juicer_tools_pre": {
                         "branch": "main",
-                        "git_sha": "c6f75a342e2e9ce48e42163f3f0ff1de4688040d",
+                        "git_sha": "e5a92dc589c83044231ab396fd0c4cc69d456c4e",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_ltrretriever_lai": {
