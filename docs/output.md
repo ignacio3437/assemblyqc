@@ -183,7 +183,9 @@ Kraken 2 [assigns taxonomic labels](https://ccb.jhu.edu/software/kraken2/) to se
     - `*_1_fastqc.zip/*_2_fastqc.zip`: FastQC stats for the reads passed by FASTP.
   - `hicqc`
     - `*.on.*_qc_report.pdf`: HiC QC report for reads mapped to an assembly.
-    </details>
+  - `*.assembly`: Assembly file created when the 'assembly' mode is turned on.
+  - `*.assembly.agp`: Assembly AGP file created when the 'assembly' mode is turned on.
+  </details>
 
 Hi-C contact mapping experiments measure the frequency of physical contact between loci in the genome. The resulting dataset, called a “contact map,” is represented using a [two-dimensional heatmap](https://github.com/igvteam/juicebox.js) where the intensity of each pixel indicates the frequency of contact between a pair of loci.
 

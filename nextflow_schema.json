@@ -256,6 +256,16 @@
                     "fa_icon": "fas fa-ruler-horizontal",
                     "description": "HiC MAPQ threshold to apply at the YAHS juicer pre stage",
                     "minimum": 0
+                },
+                "hic_assembly_mode": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-question-circle",
+                    "description": "To set or not to set the assembly mode for YAHS juicer pre stage"
+                },
+                "hic_juicer_tools_pre_ext_args": {
+                    "type": "string",
+                    "fa_icon": "fas fa-terminal",
+                    "description": "Extra parameters for the JuicerTools pre stage"
                 }
             }
         },

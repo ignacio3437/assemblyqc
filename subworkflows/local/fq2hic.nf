@@ -14,6 +14,7 @@ workflow FQ2HIC {
     hic_skip_fastp                  // val: true|false
     hic_skip_fastqc                 // val: true|false
     hic_alphanumeric_sort           // val: true|false
+    hic_assembly_mode               // val: true|false
 
     main:
     ch_versions                     = Channel.empty()
@@ -73,7 +74,8 @@ workflow FQ2HIC {
     // SUBWORKFLOW: BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE
     BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE (
         ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] },
-        ch_sorted_ref
+        ch_sorted_ref,
+        hic_assembly_mode
     )
 
     ch_hic                          = BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE.out.hic

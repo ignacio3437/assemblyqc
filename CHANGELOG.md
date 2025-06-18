@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [17-June-2025]
+## v3.0.0dev - [18-June-2025]
 
 ### `Added`
 
@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 9. Updated Plant&Food Nextflow to `24.10.6` [#225](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/225)
 10. Added parameter `hic_mapq` and set the default to 1 for now [#218](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/218)
 11. Added parameter `hic_save_trimmed` and set its default to `false` [#222](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/222)
+12. Added parameter `hic_assembly_mode` and `hic_juicer_tools_pre_ext_args` to support assembly mode for HiC [#219](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/219)
 
 ### `Fixed`
 
