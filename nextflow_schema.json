@@ -244,11 +244,23 @@
                     "fa_icon": "fas fa-question-circle",
                     "description": "To save or not to save the trimmed FastQ files"
                 },
+                "hic_map_combinations": {
+                    "type": "string",
+                    "fa_icon": "fas fa-object-group",
+                    "description": "Space separated tags denoting assemblies and assembly combinations for HiC map construction. For example, \"tag1 tag2:tag3\". In \"tag2:tag3\", \"tag2\" is treated as the query when applying refsort. Leaving as null results in each assembly getting a separate HiC map.",
+                    "pattern": "^\\w+(\\s\\w+(:\\w+)?)*$"
+                },
                 "hic_alphanumeric_sort": {
                     "type": "boolean",
                     "default": true,
                     "fa_icon": "fas fa-question-circle",
                     "description": "Sort FASTA sequences by their labels for creating the HiC contact map?"
+                },
+                "hic_refsort": {
+                    "type": "boolean",
+                    "default": true,
+                    "fa_icon": "fas fa-question-circle",
+                    "description": "Apply HapHic refsort to query fasta in paired HiC map combinations"
                 },
                 "hic_mapq": {
                     "type": "integer",
