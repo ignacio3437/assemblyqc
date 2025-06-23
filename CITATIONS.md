@@ -88,6 +88,10 @@
 
   > <https://github.com/s-andrews/FastQC>
 
+- HapHiC, [BSD-3-Clause](https://github.com/zengxiaofei/HapHiC/blob/main/LICENSE)
+
+  > Xingtan Zhang, Shengcheng Zhang, Qian Zhao, Ray Ming, Haibao Tang. (2019) Assembly of allele-aware, chromosomal-scale autopolyploid genomes based on Hi-C data. Nature Plants, 5:833-845. doi: <https://doi.org/10.1038/s41477-019-0487-8>
+
 - hic_qc, [AGPL v3](https://github.com/phasegenomics/hic_qc/blob/master/LICENSE)
 
   > <https://github.com/phasegenomics/hic_qc/commit/6881c3390fd4afb85009a52918b4d068100c58b4>

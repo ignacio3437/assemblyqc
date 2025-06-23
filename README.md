@@ -31,6 +31,7 @@
     - [sra-tools](https://github.com/ncbi/sra-tools): HiC data download from SRA or use of local FASTQ files
     - [fastp](https://github.com/OpenGene/fastp), [FastQC](https://github.com/s-andrews/FastQC): Read QC and trimming
     - [SeqKit sort](https://github.com/shenwei356/seqkit): Alphanumeric sorting of FASTA by sequence ID
+    - [HapHiC refsort](https://github.com/zengxiaofei/HapHiC): Reference-based sorting of FASTA
     - [bwa-mem](https://github.com/lh3/bwa): HiC read alignment
     - [samblaster](https://github.com/GregoryFaust/samblaster): Duplicate marking
     - [hic_qc](https://github.com/phasegenomics/hic_qc): HiC read and alignment statistics

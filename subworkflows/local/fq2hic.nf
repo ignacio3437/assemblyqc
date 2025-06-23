@@ -1,8 +1,9 @@
 include { FASTQ_FASTQC_UMITOOLS_FASTP   } from '../nf-core/fastq_fastqc_umitools_fastp/main'
+
 include { FASTQ_BWA_MEM_SAMBLASTER      } from '../gallvp/fastq_bwa_mem_samblaster/main'
-include { SEQKIT_SORT                   } from '../../modules/nf-core/seqkit/sort/main'
 include { HICQC                         } from '../../modules/gallvp/hicqc'
 
+include { FASTA_SEQKIT_REFSORT          } from '../gallvp/fasta_seqkit_refsort/main'
 include { BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE } from '../gallvp/bam_fasta_yahs_juicer_pre_juicer_tools_pre/main'
 
 include { HIC2HTML                      } from '../../modules/local/hic2html'
@@ -10,10 +11,12 @@ include { HIC2HTML                      } from '../../modules/local/hic2html'
 workflow FQ2HIC {
     take:
     reads                           // [ val(meta), [ fq ] ]
-    ref                             // [ val(meta2), fa ]
+    ch_ref                          // [ val(meta2), fa ]
+    hic_map_combinations            // val: null|[]|"tag1 tag2:tag3"
     hic_skip_fastp                  // val: true|false
     hic_skip_fastqc                 // val: true|false
     hic_alphanumeric_sort           // val: true|false
+    hic_refsort                     // val: true|false
     hic_assembly_mode               // val: true|false
 
     main:
@@ -37,13 +40,16 @@ workflow FQ2HIC {
     ch_trim_reads                   = FASTQ_FASTQC_UMITOOLS_FASTP.out.reads
     ch_versions                     = ch_versions.mix(FASTQ_FASTQC_UMITOOLS_FASTP.out.versions)
 
-    // MODULE: SEQKIT_SORT
-    SEQKIT_SORT ( hic_alphanumeric_sort ? ref : Channel.empty() )
+    // SUBWORKFLOW: FASTA_SEQKIT_REFSORT
+    FASTA_SEQKIT_REFSORT (
+        ch_ref,
+        hic_map_combinations,
+        hic_alphanumeric_sort,
+        hic_refsort
+    )
 
-    ch_sorted_ref                   = hic_alphanumeric_sort
-                                    ? SEQKIT_SORT.out.fastx
-                                    : ref
-    ch_versions                     = ch_versions.mix(SEQKIT_SORT.out.versions)
+    ch_sorted_ref                   = FASTA_SEQKIT_REFSORT.out.fasta
+    ch_versions                     = ch_versions.mix(FASTA_SEQKIT_REFSORT.out.versions)
 
     // SUBWORKFLOW: FASTQ_BWA_MEM_SAMBLASTER
     val_sort_bam = true

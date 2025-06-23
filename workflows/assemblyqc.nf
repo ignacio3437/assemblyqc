@@ -589,9 +589,11 @@ workflow ASSEMBLYQC {
     FQ2HIC(
         ch_hic_read_files,
         ch_hic_input_assembly,
+        params.hic_map_combinations,
         params.hic_skip_fastp,
         params.hic_skip_fastqc,
         params.hic_alphanumeric_sort,
+        params.hic_refsort,
         params.hic_assembly_mode
     )
 

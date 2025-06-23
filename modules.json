@@ -60,6 +60,11 @@
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
                         "installed_by": ["modules"]
                     },
+                    "haphic/refsort": {
+                        "branch": "main",
+                        "git_sha": "d7844a62f7e18a5fab8de5c43f3f908bc594e404",
+                        "installed_by": ["fasta_seqkit_refsort"]
+                    },
                     "hicqc": {
                         "branch": "main",
                         "git_sha": "16f95a965fb53636bc4e2d143332384c1879348e",
@@ -68,7 +73,7 @@
                     "juiceboxscripts/makeagpfromfasta": {
                         "branch": "main",
                         "git_sha": "96daa61199a35f7982cc839685f295775b42d161",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre", "fasta_seqkit_refsort"]
                     },
                     "juicertools/pre": {
                         "branch": "main",
@@ -98,7 +103,7 @@
                     "minimap2/align": {
                         "branch": "main",
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
-                        "installed_by": ["modules"]
+                        "installed_by": ["fasta_seqkit_refsort", "modules"]
                     },
                     "plotsr": {
                         "branch": "main",
@@ -122,6 +127,11 @@
                         "branch": "main",
                         "git_sha": "546b0d4d1c911d871c67f33866761b68b09e93ce",
                         "installed_by": ["fasta_ltrretriever_lai"]
+                    },
+                    "seqkit/sort": {
+                        "branch": "main",
+                        "git_sha": "65726596906e57173136e918e30f8cffc6a0daf5",
+                        "installed_by": ["fasta_seqkit_refsort"]
                     },
                     "sort": {
                         "branch": "main",
@@ -150,6 +160,11 @@
                     "fasta_ltrretriever_lai": {
                         "branch": "main",
                         "git_sha": "9d3787feb8ed5581c21c2cd9afa12fc68a1d82eb",
+                        "installed_by": ["subworkflows"]
+                    },
+                    "fasta_seqkit_refsort": {
+                        "branch": "main",
+                        "git_sha": "65726596906e57173136e918e30f8cffc6a0daf5",
                         "installed_by": ["subworkflows"]
                     },
                     "fastq_bwa_mem_samblaster": {

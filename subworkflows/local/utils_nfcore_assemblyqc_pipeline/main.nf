@@ -77,7 +77,7 @@ workflow PIPELINE_INITIALISATION {
     ch_input_validated                      = ch_input
                                             | map { row -> row[0] }
                                             | collect
-                                            | map { tags -> validateInputTags( tags ) }
+                                            | map { tags -> validateInputTags( tags, params.hic_map_combinations ) }
                                             | combine ( ch_input.map { row -> [ row ] } )
                                             | map { _result, row -> row }
 
@@ -266,7 +266,7 @@ def validateInputParameters() {
     }
 }
 
-def validateInputTags(assemblyTags) {
+def validateInputTags(assemblyTags, hicCombinations) {
 
     def tagCounts = [:]
     assemblyTags.each { tag ->
@@ -276,6 +276,14 @@ def validateInputTags(assemblyTags) {
 
     if (repeatedTags.size() > 0) {
         error("Please check input assemblysheet -> Multiple assemblies have the same tags!: ${repeatedTags}")
+    }
+
+    def hicTags = hicCombinations != null ? hicCombinations.tokenize(' ').collect { it.tokenize(':') }.flatten() : []
+
+    hicTags.each {
+        if ( it !in assemblyTags ) {
+            error("Please check input hic_map_combinations -> $it was not found in the assemblysheet!")
+        }
     }
 
     return true
