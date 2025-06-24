@@ -248,7 +248,7 @@
                     "type": "string",
                     "fa_icon": "fas fa-object-group",
                     "description": "Space separated tags denoting assemblies and assembly combinations for HiC map construction. For example, \"tag1 tag2:tag3\". In \"tag2:tag3\", \"tag2\" is treated as the query when applying refsort. Leaving as null results in each assembly getting a separate HiC map.",
-                    "pattern": "^\\w+(\\s\\w+(:\\w+)?)*$"
+                    "pattern": "^\\w(\\w+)*(\\s?\\w+(:\\w+)?)*$"
                 },
                 "hic_alphanumeric_sort": {
                     "type": "boolean",
