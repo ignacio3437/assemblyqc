@@ -109,16 +109,15 @@ The pipeline uses nf-core modules contributed by following authors:
 <a href="https://github.com/jfy133"><img src="https://github.com/jfy133.png" width="50" height="50"></a>
 <a href="https://github.com/midnighter"><img src="https://github.com/midnighter.png" width="50" height="50"></a>
 <a href="https://github.com/joseespinosa"><img src="https://github.com/joseespinosa.png" width="50" height="50"></a>
+<a href="https://github.com/maxulysse"><img src="https://github.com/maxulysse.png" width="50" height="50"></a>
 <a href="https://github.com/sofstam"><img src="https://github.com/sofstam.png" width="50" height="50"></a>
 <a href="https://github.com/sateeshperi"><img src="https://github.com/sateeshperi.png" width="50" height="50"></a>
-<a href="https://github.com/maxulysse"><img src="https://github.com/maxulysse.png" width="50" height="50"></a>
 <a href="https://github.com/matthdsm"><img src="https://github.com/matthdsm.png" width="50" height="50"></a>
 <a href="https://github.com/heuermh"><img src="https://github.com/heuermh.png" width="50" height="50"></a>
 <a href="https://github.com/grst"><img src="https://github.com/grst.png" width="50" height="50"></a>
 <a href="https://github.com/fellen31"><img src="https://github.com/fellen31.png" width="50" height="50"></a>
-<a href="https://github.com/ewels"><img src="https://github.com/ewels.png" width="50" height="50"></a>
-<a href="https://github.com/edmundmiller"><img src="https://github.com/edmundmiller.png" width="50" height="50"></a>
 <a href="https://github.com/adamrtalbot"><img src="https://github.com/adamrtalbot.png" width="50" height="50"></a>
+<a href="https://github.com/ewels"><img src="https://github.com/ewels.png" width="50" height="50"></a>
 <a href="https://github.com/robsyme"><img src="https://github.com/robsyme.png" width="50" height="50"></a>
 <a href="https://github.com/priyanka-surana"><img src="https://github.com/priyanka-surana.png" width="50" height="50"></a>
 <a href="https://github.com/phue"><img src="https://github.com/phue.png" width="50" height="50"></a>
@@ -128,11 +127,14 @@ The pipeline uses nf-core modules contributed by following authors:
 <a href="https://github.com/kevinmenden"><img src="https://github.com/kevinmenden.png" width="50" height="50"></a>
 <a href="https://github.com/jvhagey"><img src="https://github.com/jvhagey.png" width="50" height="50"></a>
 <a href="https://github.com/jeremy1805"><img src="https://github.com/jeremy1805.png" width="50" height="50"></a>
+<a href="https://github.com/ignacio3437"><img src="https://github.com/ignacio3437.png" width="50" height="50"></a>
 <a href="https://github.com/friederikehanssen"><img src="https://github.com/friederikehanssen.png" width="50" height="50"></a>
 <a href="https://github.com/felixkrueger"><img src="https://github.com/felixkrueger.png" width="50" height="50"></a>
 <a href="https://github.com/erikrikarddaniel"><img src="https://github.com/erikrikarddaniel.png" width="50" height="50"></a>
+<a href="https://github.com/edmundmiller"><img src="https://github.com/edmundmiller.png" width="50" height="50"></a>
 <a href="https://github.com/d4straub"><img src="https://github.com/d4straub.png" width="50" height="50"></a>
 <a href="https://github.com/charles-plessy"><img src="https://github.com/charles-plessy.png" width="50" height="50"></a>
+<a href="https://github.com/fernandoduartef"><img src="https://github.com/fernandoduartef.png" width="50" height="50"></a>
 
 ## Contributions and Support
 
