@@ -46,6 +46,16 @@
     }
 
     window.addEventListener("DOMContentLoaded", (event) => {
+
+        setTimeout(() => {
+            const iframes = document.querySelectorAll('.iframe-wrapper-hic iframe');
+            iframes.forEach(iframe => {
+                const src = iframe.src;
+                iframe.src = '';
+                iframe.src = src;
+            });
+        }, 250);
+
         const topNavBarButtons = document.getElementById("topNavBarButtons");
 
         if (topNavBarButtons.children.length < 1) {
