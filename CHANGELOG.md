@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [25-June-2025]
+## v3.0.0dev - [30-June-2025]
 
 ### `Added`
 
@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 5. Fixed an issue where `hic_qc` was not able to detect forward/reverse reads and the samblaster command [#161](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/161)
 6. Now sorting HiC BAM by query name before passing to `YAHS_JUICERPRE` so that `-q` flag is not ignored [#216](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/216)
 7. Fixed an issue where `hic_map_combinations` parameter did not allow `tag1:tag2` [#236](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/236)
+8. Fixed an issue where the HiC map did not correctly load the track annotations [#238](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/238)
 
 ### `Deprecated`
 
