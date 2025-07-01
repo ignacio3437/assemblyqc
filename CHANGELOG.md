@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 2. Removed parameter `hic_samtools_ext_args` as filtering is now down by `YAHS_JUICERPRE` which is equivalent to samtools flag `-F 3844` [#127](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/127)
 3. Removed modules: `JUICER_SORT`, `MATLOCK_BAM2_JUICER`, `RUNASSEMBLYVISUALIZER` as these have been superseded by the addition of the `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` sub-workflow
 4. Removed local modules `AGP2ASSEMBLY`, `ASSEMBLY2BEDPE` and `MAKEAGPFROMFASTA` as the assembly mode for HiC file is not supported anymore
+5. Now the OrthoFinder module only publishes: `Comparative_Genomics_Statistics`, `Gene_Duplication_Events`, `Orthogroups`, `Phylogenetic_Hierarchical_Orthogroups`, and `Species_Tree` to the results directory [#243](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/243)
 
 ### `Tool Updates`
 
