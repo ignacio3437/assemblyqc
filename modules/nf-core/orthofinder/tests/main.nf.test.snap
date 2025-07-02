@@ -79,7 +79,28 @@
                     ]
                 ],
                 "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    
+                ],
+                "7": [
                     "versions.yml:md5,86b472c85626aac1840eec0769016f5c"
+                ],
+                "duplications": [
+                    
+                ],
+                "hogs": [
+                    
                 ],
                 "orthofinder": [
                     [
@@ -131,6 +152,15 @@
                         ]
                     ]
                 ],
+                "orthogroups": [
+                    
+                ],
+                "species_tree": [
+                    
+                ],
+                "statistics": [
+                    
+                ],
                 "versions": [
                     "versions.yml:md5,86b472c85626aac1840eec0769016f5c"
                 ],
@@ -151,7 +181,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-03T11:07:31.319665056"
+        "timestamp": "2024-11-21T10:58:59.791488"
     },
     "sarscov2 - candidatus_portiera_aleyrodidarum - proteome - resume": {
         "content": [

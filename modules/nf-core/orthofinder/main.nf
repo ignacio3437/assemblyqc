@@ -12,9 +12,14 @@ process ORTHOFINDER {
     tuple val(meta2), path(prior_run)
 
     output:
-    tuple val(meta), path("$prefix")                     , emit: orthofinder
-    tuple val(meta), path("$prefix/WorkingDirectory")    , emit: working
-    path "versions.yml"                                  , emit: versions
+    tuple val(meta), path("$prefix")                                , emit: orthofinder
+    tuple val(meta), path("$prefix/WorkingDirectory")               , emit: working
+    tuple val(meta), path("Comparative_Genomics_Statistics")        , emit: statistics      , optional: true
+    tuple val(meta), path("Gene_Duplication_Events")                , emit: duplications    , optional: true
+    tuple val(meta), path("Orthogroups")                            , emit: orthogroups     , optional: true
+    tuple val(meta), path("Phylogenetic_Hierarchical_Orthogroups")  , emit: hogs            , optional: true
+    tuple val(meta), path("Species_Tree")                           , emit: species_tree    , optional: true
+    path "versions.yml"                                             , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -43,6 +48,31 @@ process ORTHOFINDER {
     if [ -e ${prior_run}/OrthoFinder/Results_$prefix ]; then
         mv ${prior_run}/OrthoFinder/Results_$prefix $prefix
     fi
+
+    cp -r \\
+        $prefix/Comparative_Genomics_Statistics \\
+        Comparative_Genomics_Statistics \\
+        || echo "Comparative_Genomics_Statistics was not produced"
+    
+    cp -r \\
+        $prefix/Gene_Duplication_Events \\
+        Gene_Duplication_Events \\
+        || echo "Gene_Duplication_Events was not produced"
+    
+    cp -r \\
+        $prefix/Orthogroups \\
+        Orthogroups \\
+        || echo "Orthogroups was not produced"
+    
+    cp -r \\
+        $prefix/Phylogenetic_Hierarchical_Orthogroups \\
+        Phylogenetic_Hierarchical_Orthogroups \\
+        || echo "Phylogenetic_Hierarchical_Orthogroups was not produced"
+    
+    cp -r \\
+        $prefix/Species_Tree \\
+        Species_Tree \\
+        || echo "Species_Tree was not produced"
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
