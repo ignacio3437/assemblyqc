@@ -9,6 +9,7 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 | `input`   | Input assembly sheet in CSV format                                                                                       | `string` |         | True     |        |
 | `outdir`  | The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure. | `string` |         | True     |        |
 | `email`   | Email address for completion summary.                                                                                    | `string` |         |          |        |
+| `tags`    | One or more comma separated tags for nf-shard                                                                            | `string` |         |          |        |
 
 ## Validation options
 

@@ -2,6 +2,7 @@
     "input": "/workspace/assemblyqc/testdata/v3/assemblysheet.csv",
     "outdir": "./results",
     "email": null,
+    "tags": "plant-food-research-open,assemblyqc,pfr",
     "check_sequence_duplicates": true,
     "assemblathon_stats_n_limit": 100,
     "gfastats_skip": false,
