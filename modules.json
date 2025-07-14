@@ -22,7 +22,7 @@
                     },
                     "custom/interleavefasta": {
                         "branch": "main",
-                        "git_sha": "43ebc58b28509250ea4614c6ace26a258057d770",
+                        "git_sha": "6ce7bf4c7097a644610d3d6867551e629647839c",
                         "installed_by": ["fasta_seqkit_refsort"]
                     },
                     "custom/relabelfasta": {
@@ -169,7 +169,7 @@
                     },
                     "fasta_seqkit_refsort": {
                         "branch": "main",
-                        "git_sha": "02c04a56782504f92f9167bb5c1e93a2e1bac5b3",
+                        "git_sha": "f913b9b9a35bc41b041dc8fd13d6f3528741a21b",
                         "installed_by": ["subworkflows"]
                     },
                     "fastq_bwa_mem_samblaster": {
