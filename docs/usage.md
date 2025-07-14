@@ -114,7 +114,6 @@ The data for these examples comes from: [umd.edu](https://obj.umiacs.umd.edu/mar
 ### Synteny analysis
 
 - `synteny_xref_assemblies`: Similar to `--input`, this parameter also provides a CSV sheet listing external reference assemblies which are included in the synteny analysis but are not analysed by other QC tools. See the [example xrefsheet](../assets/xrefsheet.csv) included with the pipeline. Its fields are:
-
   - `tag:` A unique tag which represents the reference assembly in the final report
   - `fasta:` FASTA file
   - `synteny_labels:` A two column tsv file listing fasta sequence ids (first column) and their labels for the synteny plots (second column)
