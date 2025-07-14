@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 13. Added parameter `hic_map_combinations` to allow creation of single and combined HiC maps in parallel [#220](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/220)
 14. Added parameter `hic_refsort` to make sorting by reference optional
 15. Added v3 of PFR test dataset [#240](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/240)
+16. Sub-workflow `FASTA_SEQKIT_REFSORT` now works for n-genome combinations [#247](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/247)
 
 ### `Fixed`
 
