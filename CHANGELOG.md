@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 14. Added parameter `hic_refsort` to make sorting by reference optional
 15. Added v3 of PFR test dataset [#240](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/240)
 16. Sub-workflow `FASTA_SEQKIT_REFSORT` now works for n-genome combinations [#247](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/247)
+17. Tags for nf-shard can now be added via the `--tags` parameter without nf-schema warnings [#254](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/254)
 
 ### `Fixed`
 

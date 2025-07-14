@@ -32,6 +32,11 @@
                     "description": "Email address for completion summary.",
                     "fa_icon": "fas fa-envelope",
                     "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "tags": {
+                    "type": "string",
+                    "fa_icon": "fas fa-tags",
+                    "description": "One or more comma separated tags for nf-shard"
                 }
             },
             "required": ["input", "outdir"]
