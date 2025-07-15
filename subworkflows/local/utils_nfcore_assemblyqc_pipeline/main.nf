@@ -163,6 +163,14 @@ workflow PIPELINE_INITIALISATION {
     ch_params_as_json                       = Channel.of ( jsonifyParams ( params ) )
     ch_summary_params_as_json               = Channel.of ( jsonifySummaryParams ( summary_params ) )
 
+    // Print parameter warnings
+    if ( params.hic_assembly_mode ) {
+        def msg = "Parameter 'hic_assembly_mode' is set to 'true'. To avoid pipeline crash at the " +
+            "JUICERTOOLS_PRE step, '-n' has been added to the arguments for the 'juicer_tools pre' command " +
+            "which disables HiC map normalizations. https://github.com/Plant-Food-Research-Open/assemblyqc/issues/258"
+        log.warn ( msg )
+    }
+
     emit:
     input                                   = ch_input_validated
     hic_reads                               = ch_hic_reads
