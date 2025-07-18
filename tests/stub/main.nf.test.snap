@@ -151,7 +151,7 @@
                         "fcs_gx": "0.5.5"
                     },
                     "NCBI_FCS_GX_SETUP_SAMPLE": {
-                        "ubuntu": "20.04.1l"
+                        "ubuntu": "24.04.1l"
                     },
                     "PLOTSR": {
                         "plotsr": "1.1.1"
@@ -293,6 +293,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-07-17T22:51:23.896765016"
+        "timestamp": "2025-07-18T03:53:11.09941574"
     }
 }
