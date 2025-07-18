@@ -8,7 +8,7 @@
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
                     },
                     "FALINT": {
-                        "fa-lint": "1.1.0"
+                        "fa-lint": "1.2.0"
                     },
                     "GT_GFF3": {
                         "genometools": "1.6.5"
@@ -40,8 +40,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.6"
+            "nextflow": "25.04.6"
         },
-        "timestamp": "2025-05-19T11:19:08.355146"
+        "timestamp": "2025-07-17T22:52:21.815179984"
     }
 }
