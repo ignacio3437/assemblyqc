@@ -15,7 +15,7 @@
                         "samtools": 1.21
                     },
                     "FALINT": {
-                        "fa-lint": "1.1.0"
+                        "fa-lint": "1.2.0"
                     },
                     "FASTP": {
                         "fastp": "0.24.0"
@@ -90,9 +90,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.5"
+            "nextflow": "25.04.6"
         },
-        "timestamp": "2025-07-02T11:06:38.384215"
+        "timestamp": "2025-07-17T22:03:42.218292395"
     },
     "hic - HY - test": {
         "content": [
@@ -110,7 +110,7 @@
                         "samtools": 1.21
                     },
                     "FALINT": {
-                        "fa-lint": "1.1.0"
+                        "fa-lint": "1.2.0"
                     },
                     "FASTP": {
                         "fastp": "0.24.0"
@@ -184,8 +184,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.5"
+            "nextflow": "25.04.6"
         },
-        "timestamp": "2025-07-02T11:06:13.327289"
+        "timestamp": "2025-07-17T22:02:21.388517524"
     }
 }

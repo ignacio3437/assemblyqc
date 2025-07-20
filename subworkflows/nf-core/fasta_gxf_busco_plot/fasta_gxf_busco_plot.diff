@@ -1,5 +1,4 @@
 Changes in component 'nf-core/fasta_gxf_busco_plot'
-'subworkflows/nf-core/fasta_gxf_busco_plot/meta.yml' is unchanged
 Changes in 'fasta_gxf_busco_plot/main.nf':
 --- subworkflows/nf-core/fasta_gxf_busco_plot/main.nf
 +++ subworkflows/nf-core/fasta_gxf_busco_plot/main.nf
@@ -22,7 +21,8 @@ Changes in 'fasta_gxf_busco_plot/main.nf':
                                                          "short_summary.specific.${meta.lineage}.${meta.id}_${lineage_name}.proteins.txt",
                                                          txt.text
 
+'subworkflows/nf-core/fasta_gxf_busco_plot/meta.yml' is unchanged
+'subworkflows/nf-core/fasta_gxf_busco_plot/tests/main.nf.test' is unchanged
 'subworkflows/nf-core/fasta_gxf_busco_plot/tests/main.nf.test.snap' is unchanged
 'subworkflows/nf-core/fasta_gxf_busco_plot/tests/nextflow.config' is unchanged
-'subworkflows/nf-core/fasta_gxf_busco_plot/tests/main.nf.test' is unchanged
 ************************************************************
