@@ -47,8 +47,8 @@ process YAHS_JUICERPRE {
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-
     touch ${prefix}.txt
+    touch ${prefix}.sizes
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

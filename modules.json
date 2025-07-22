@@ -161,7 +161,8 @@
                     "yahs/juicerpre": {
                         "branch": "main",
                         "git_sha": "f2854aef454e4ab129cce5a6b364f5834a3856f8",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"],
+                        "patch": "modules/gallvp/yahs/juicerpre/yahs-juicerpre.diff"
                     }
                 }
             },

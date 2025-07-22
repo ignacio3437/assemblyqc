@@ -4,24 +4,13 @@ import sys
 from pathlib import Path
 import os
 
-# ASSEMBLY_MODE_TEMPLATE_DATA = """
-# state: "1,1,1,0,0,1,NONE",
-# tracks: [
-#     {
-#         name: "Scaffold boundaries",
-#         url: `${baseURL}/BEDPE_FILE_NAME`,
-#     },
-#     {
-#         name: " ",
-#         url: `${baseURL}/BED_FILE_NAME`,
-#         color: "#037ffc",
-#     },
-# ],
-# """
-
 ASSEMBLY_MODE_TEMPLATE_DATA = """
 state: "1,1,1,0,0,1,NONE",
 tracks: [
+    {
+        name: "Scaffold boundaries",
+        url: `${baseURL}/BEDPE_FILE_NAME`,
+    },
     {
         name: " ",
         url: `${baseURL}/BED_FILE_NAME`,
