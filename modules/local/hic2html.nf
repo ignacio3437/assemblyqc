@@ -6,6 +6,7 @@ process HIC2HTML {
 
     input:
     tuple val(meta), path(hic)
+    val assembly_mode
 
     output:
     path "*.html"           , emit: html
@@ -19,6 +20,7 @@ process HIC2HTML {
     """
     hic2html.py \\
         "$hic" \\
+        $assembly_mode \\
         > ${prefix}.html
 
     cat <<-END_VERSIONS > versions.yml

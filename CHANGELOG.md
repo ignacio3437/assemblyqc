@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [16-July-2025]
+## v3.0.0dev - [23-July-2025]
 
 ### `Added`
 
@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 15. Added v3 of PFR test dataset [#240](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/240)
 16. Sub-workflow `FASTA_SEQKIT_REFSORT` now works for n-genome combinations [#247](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/247)
 17. Tags for nf-shard can now be added via the `--tags` parameter without nf-schema warnings [#254](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/254)
+18. `hic_assembly_mode` is now set to `true` by default [#263](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/263)
+19. Updated JuiceBox.js to 2.5.1
 
 ### `Fixed`
 

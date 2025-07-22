@@ -20,6 +20,11 @@
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
+                    "custom/assembly2bedpe": {
+                        "branch": "main",
+                        "git_sha": "bbcbb7b7717998f84bc14d06f16214a85f0d7f0e",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
+                    },
                     "custom/interleavefasta": {
                         "branch": "main",
                         "git_sha": "6ce7bf4c7097a644610d3d6867551e629647839c",
@@ -74,6 +79,11 @@
                         "branch": "main",
                         "git_sha": "16f95a965fb53636bc4e2d143332384c1879348e",
                         "installed_by": ["modules"]
+                    },
+                    "juiceboxscripts/agp2assembly": {
+                        "branch": "main",
+                        "git_sha": "234f2d1840a45fa839b41f05d1226c0a8fceb7f0",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
                     },
                     "juiceboxscripts/makeagpfromfasta": {
                         "branch": "main",
@@ -151,7 +161,8 @@
                     "yahs/juicerpre": {
                         "branch": "main",
                         "git_sha": "f2854aef454e4ab129cce5a6b364f5834a3856f8",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"],
+                        "patch": "modules/gallvp/yahs/juicerpre/yahs-juicerpre.diff"
                     }
                 }
             },
@@ -159,7 +170,7 @@
                 "gallvp": {
                     "bam_fasta_yahs_juicer_pre_juicer_tools_pre": {
                         "branch": "main",
-                        "git_sha": "e5a92dc589c83044231ab396fd0c4cc69d456c4e",
+                        "git_sha": "4bc00c242f5ce1f479be154bdd782694581ca6b9",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_ltrretriever_lai": {

@@ -88,7 +88,10 @@ workflow FQ2HIC {
     ch_versions                     = ch_versions.mix(BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE.out.versions)
 
     // MODULE: HIC2HTML
-    HIC2HTML ( ch_hic )
+    HIC2HTML (
+        ch_hic,
+        hic_assembly_mode
+    )
 
     ch_versions                     = ch_versions.mix(HIC2HTML.out.versions.first())
 

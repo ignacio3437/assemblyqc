@@ -277,7 +277,8 @@
                 "hic_assembly_mode": {
                     "type": "boolean",
                     "fa_icon": "fas fa-question-circle",
-                    "description": "To set or not to set the assembly mode for YAHS juicer pre stage"
+                    "description": "To set or not to set the assembly mode for YAHS juicer pre stage",
+                    "default": true
                 },
                 "hic_juicer_tools_pre_ext_args": {
                     "type": "string",
