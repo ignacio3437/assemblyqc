@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 8. Fixed an issue where the HiC map did not correctly load the track annotations [#238](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/238)
 9. Fixed an issue where the Nextflow head job was consuming more than 4.GB due to an fasta interleaving workflow being run on `exec:` [#239](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/239)
 10. Fixed an issue where the pipeline crashed when the `hic_assembly_mode` was set to `true` [#258](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/258)
+11. Fixed an issue where assemblathon was crashing on MMC due to `xargs -I {} find {} -maxdepth 0 -print 2>/dev/null`. 
 
 ### `Deprecated`
 

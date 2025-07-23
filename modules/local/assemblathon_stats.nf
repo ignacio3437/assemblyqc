@@ -22,7 +22,7 @@ process ASSEMBLATHON_STATS {
     def VERSION = "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
     """
     paths_to_check=\$(printf "%s\\n" \$(echo \$PATH | tr ':' ' ') \\
-        | xargs -I {} find {} -maxdepth 0 -print 2>/dev/null \\
+        | awk 'system("[ -d \"" $0 "\" ]") == 0' \\
         | grep -v '^\$' \\
         | grep -v '/sbin' \\
         | xargs
