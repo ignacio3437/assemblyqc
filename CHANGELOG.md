@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 9. Fixed an issue where the Nextflow head job was consuming more than 4.GB due to an fasta interleaving workflow being run on `exec:` [#239](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/239)
 10. Fixed an issue where the pipeline crashed when the `hic_assembly_mode` was set to `true` [#258](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/258)
 11. Fixed an issue where assemblathon was crashing on MMC due to `xargs -I {} find {} -maxdepth 0 -print 2>/dev/null`.
+12. Fixed an issue where `JUICERTOOLS_PRE` was not requesting the right ammount of memory. [#268](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/268)
 
 ### `Deprecated`
 
