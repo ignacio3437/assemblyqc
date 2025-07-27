@@ -496,6 +496,11 @@
                     "description": "Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.",
                     "hidden": true
                 }
+                "use_all_cpus": {
+                    "type": "boolean",
+                    "description": "Use all available CPUs for the pipeline. If set to true, the pipeline will use all available CPUs on the system.",
+                    "fa_icon": "fas fa-microchip"
+                }
             }
         }
     },
