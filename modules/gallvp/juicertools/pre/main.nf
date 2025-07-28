@@ -36,7 +36,7 @@ process JUICERTOOLS_PRE {
     juicer_tools \\
         pre \\
         $args \\
-        --threads $task.cpus \\
+        --threads \${task_cpus} \\
         $txt \\
         ${prefix}.hic \\
         $sizes
