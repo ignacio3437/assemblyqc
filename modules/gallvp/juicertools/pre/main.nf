@@ -26,12 +26,12 @@ process JUICERTOOLS_PRE {
 	"""
     n_proc=\$(nproc 2>/dev/null || < /proc/cpuinfo grep '^process' -c)
     task_cpus=\$([ "$use_all_cpus" = "yes" ] && echo "\$n_proc" || echo "$task.cpus")
-    
+
     m_proc=\$(awk '/MemTotal/ {print int(\$2 / 1024 / 1024)}' /proc/meminfo)
     avail_mem=\$([ "$use_all_cpus" = "yes" ] && echo "\$m_proc" || echo "$task_mem" )
 
     mkdir user_home
-    export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=user_prefs -Duser.home=user_home -Xms${avail_mem}g -Xmx${avail_mem}g"
+    export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=user_prefs -Duser.home=user_home -Xms\${avail_mem}g -Xmx\${avail_mem}g"
 
     juicer_tools \\
         pre \\
