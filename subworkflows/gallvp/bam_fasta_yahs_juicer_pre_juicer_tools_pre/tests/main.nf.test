@@ -17,6 +17,7 @@ nextflow_workflow {
     tag "custom/assembly2bedpe"
     tag "juicertools/pre"
     tag "sort"
+    tag "juicer/indexbychr"
 
     setup {
         run("GUNZIP") {
@@ -50,6 +51,7 @@ nextflow_workflow {
                 ])
                 input[1] = GUNZIP.out.gunzip
                 input[2] = false // val_assembly_mode
+                input[3] = false // val_use_index
                 """
             }
         }
@@ -79,6 +81,7 @@ nextflow_workflow {
                 ])
                 input[1] = GUNZIP.out.gunzip
                 input[2] = true // val_assembly_mode
+                input[3] = false // val_use_index
                 """
             }
         }
