@@ -2,7 +2,7 @@
     "full - stub": {
         "content": [
             {
-                "successful tasks": 91,
+                "successful tasks": 92,
                 "versions": {
                     "ASSEMBLATHON_STATS": {
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
@@ -110,6 +110,9 @@
                     },
                     "JUICERTOOLS_PRE": {
                         "juicertools": "2.20.00"
+                    },
+                    "JUICER_INDEXBYCHR": {
+                        "bioawk": 20110810
                     },
                     "KRAKEN2": {
                         "kraken2": "2.1.2"
@@ -300,6 +303,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-07-23T10:14:19.576249"
+        "timestamp": "2025-08-07T16:50:59.429027"
     }
 }

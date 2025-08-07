@@ -90,9 +90,14 @@
                         "git_sha": "96daa61199a35f7982cc839685f295775b42d161",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre", "fasta_seqkit_refsort"]
                     },
+                    "juicer/indexbychr": {
+                        "branch": "main",
+                        "git_sha": "10f8e93ef5a86b4f3bcf01e29eb23f6bc70fe4b5",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
+                    },
                     "juicertools/pre": {
                         "branch": "main",
-                        "git_sha": "38801f810e515e04b55cdaac55ab62837d5d67fc",
+                        "git_sha": "baafbe6d96c3b1078e0b7358ae56308d5c765943",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
                     },
                     "ltrfinder": {
@@ -170,7 +175,7 @@
                 "gallvp": {
                     "bam_fasta_yahs_juicer_pre_juicer_tools_pre": {
                         "branch": "main",
-                        "git_sha": "4bc00c242f5ce1f479be154bdd782694581ca6b9",
+                        "git_sha": "1ac8eabbda9a27938d837ac2bb7f1752dc753bfb",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_ltrretriever_lai": {
