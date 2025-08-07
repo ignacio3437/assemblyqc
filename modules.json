@@ -175,7 +175,7 @@
                 "gallvp": {
                     "bam_fasta_yahs_juicer_pre_juicer_tools_pre": {
                         "branch": "main",
-                        "git_sha": "1ac8eabbda9a27938d837ac2bb7f1752dc753bfb",
+                        "git_sha": "07dd9dfc534c54f77a2e4a427fe0c779f8f972da",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_ltrretriever_lai": {

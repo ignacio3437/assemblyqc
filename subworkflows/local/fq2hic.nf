@@ -78,10 +78,12 @@ workflow FQ2HIC {
     ch_versions                     = ch_versions.mix(HICQC.out.versions)
 
     // SUBWORKFLOW: BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE
+    val_use_index = false
     BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE (
         ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] },
         ch_sorted_ref,
-        hic_assembly_mode
+        hic_assembly_mode,
+        val_use_index
     )
 
     ch_hic                          = BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE.out.hic

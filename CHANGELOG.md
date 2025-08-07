@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [07-Aug-2025]
+## v3.0.0dev - [08-Aug-2025]
 
 ### `Added`
 
@@ -41,7 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 10. Fixed an issue where the pipeline crashed when the `hic_assembly_mode` was set to `true` [#258](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/258)
 11. Fixed an issue where assemblathon was crashing on MMC due to `xargs -I {} find {} -maxdepth 0 -print 2>/dev/null`
 12. Fixed an issue where `JUICERTOOLS_PRE` was not requesting the right ammount of memory [#268](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/268)
-13. Added `JUICER_INDEXBYCHR` to the HiC workflow so that `JUICERTOOLS_PRE` uses multiple threads [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273)
+13. ~~Added `JUICER_INDEXBYCHR` to the HiC workflow so that `JUICERTOOLS_PRE` uses multiple threads [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273)~~ This change lead to a broken HiC map and was, therefore, rolled back.
 
 ### `Deprecated`
 

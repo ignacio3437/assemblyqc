@@ -2,7 +2,7 @@
     "hic - HY - test - assembly": {
         "content": [
             {
-                "successful tasks": 21,
+                "successful tasks": 20,
                 "versions": {
                     "ASSEMBLATHON_STATS": {
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
@@ -41,9 +41,6 @@
                     },
                     "JUICERTOOLS_PRE": {
                         "juicertools": "2.20.00"
-                    },
-                    "JUICER_INDEXBYCHR": {
-                        "bioawk": 20110810
                     },
                     "SAMBLASTER": {
                         "samblaster": "0.1.26",
@@ -109,12 +106,12 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-07T16:41:51.488707"
+        "timestamp": "2025-07-23T09:52:54.621112"
     },
     "hic - HY - test": {
         "content": [
             {
-                "successful tasks": 21,
+                "successful tasks": 20,
                 "versions": {
                     "ASSEMBLATHON_STATS": {
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
@@ -153,9 +150,6 @@
                     },
                     "JUICERTOOLS_PRE": {
                         "juicertools": "2.20.00"
-                    },
-                    "JUICER_INDEXBYCHR": {
-                        "bioawk": 20110810
                     },
                     "SAMBLASTER": {
                         "samblaster": "0.1.26",
@@ -221,6 +215,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-07T16:41:25.503323"
+        "timestamp": "2025-07-23T09:52:27.47475"
     }
 }
