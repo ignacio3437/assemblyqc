@@ -182,17 +182,20 @@ Kraken 2 [assigns taxonomic labels](https://ccb.jhu.edu/software/kraken2/) to se
     - `*_1_fastqc.html/*_2_fastqc.html`: FastQC html report for the reads passed by FASTP.
     - `*_1_fastqc.zip/*_2_fastqc.zip`: FastQC stats for the reads passed by FASTP.
   - `hicqc`
-    - `*.on.*_qc_report.pdf`: HiC QC report for reads mapped to an assembly.
-  - `*.assembly`: Assembly file created when the 'assembly' mode is turned on.
-  - `*.assembly.agp`: Assembly AGP file created when the 'assembly' mode is turned on.
+    - `*_qc_report.pdf`: HiC QC report for reads mapped to an assembly.
+  - `*.hic`: The HiC contact map stored as a multi-resolution `.hic` file.
+  - `*.assembly`: Assembly file created when the `hic_assembly_mode` is `true`
+  - `*.bed`: The bed file listing the names of the contigs on the `assembly` super-scaffold when `hic_assembly_mode` is `true`
+  - `*.bedpe`: The bedpe file listing the names and 2D locations of the contigs on the `assembly` super-scaffold when `hic_assembly_mode` is `true`
+  - `*.scale`: The scale by which the HiC contact map has been shrunk by [`YaHS juicer pre`](https://github.com/c-zhou/yahs/tree/6c46061ea1665073068cccbed81c6707e3bd07bf?tab=readme-ov-file#manual-curation-with-juicebox-jbat) when `hic_assembly_mode` is `true`
   </details>
 
 Hi-C contact mapping experiments measure the frequency of physical contact between loci in the genome. The resulting dataset, called a “contact map,” is represented using a [two-dimensional heatmap](https://github.com/igvteam/juicebox.js) where the intensity of each pixel indicates the frequency of contact between a pair of loci.
 
 <div align="center">
 <img src="images/fastp.png" alt="AssemblyQC - fastp log for HiC reads" width="31%">
-<img src="images/hicqc.png" alt="AssemblyQC - HiC QC report" width="46.6%">
-<img src="images/hic_map.png" alt="AssemblyQC - HiC interactive contact map" width="50%">
+<img src="images/hicqc.png" alt="AssemblyQC - HiC QC report" width="49.3%">
+<img src="images/hic_map.jpg" alt="AssemblyQC - HiC interactive contact map" width="50%">
 <hr>
 <em>AssemblyQC - HiC results</em>
 </div>
