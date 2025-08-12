@@ -1,0 +1,29 @@
+Changes in component 'gallvp/custom/yahsjuicerpre2tracks'
+'modules/gallvp/custom/yahsjuicerpre2tracks/environment.yml' is unchanged
+'modules/gallvp/custom/yahsjuicerpre2tracks/meta.yml' is unchanged
+'modules/gallvp/custom/yahsjuicerpre2tracks/main.nf' is unchanged
+'modules/gallvp/custom/yahsjuicerpre2tracks/tests/main.nf.test.snap' is unchanged
+'modules/gallvp/custom/yahsjuicerpre2tracks/tests/main.nf.test' is unchanged
+Changes in 'custom/yahsjuicerpre2tracks/templates/yahsjuicerpre2tracks.py':
+--- modules/gallvp/custom/yahsjuicerpre2tracks/templates/yahsjuicerpre2tracks.py
++++ modules/gallvp/custom/yahsjuicerpre2tracks/templates/yahsjuicerpre2tracks.py
+@@ -66,7 +66,7 @@
+         for row in bed_pe_list:
+             scaffold_name = "assembly"
+             f.write(
+-                f"{scaffold_name}{TAB_TOKEN}{row['start_index']}{TAB_TOKEN}{row['end_index']}{TAB_TOKEN}{scaffold_name}{TAB_TOKEN}{row['start_index']}{TAB_TOKEN}{row['end_index']}{TAB_TOKEN}{row['name'][1:]}{TAB_TOKEN}.{TAB_TOKEN}.{TAB_TOKEN}.{TAB_TOKEN}0,0,255{NEWLINE_TOKEN}"
++                f"{scaffold_name}{TAB_TOKEN}{row['start_index']}{TAB_TOKEN}{row['end_index']}{TAB_TOKEN}{scaffold_name}{TAB_TOKEN}{row['start_index']}{TAB_TOKEN}{row['end_index']}{TAB_TOKEN}{row['name']}{TAB_TOKEN}.{TAB_TOKEN}.{TAB_TOKEN}.{TAB_TOKEN}0,0,255{NEWLINE_TOKEN}"
+             )
+ 
+ 
+@@ -76,7 +76,7 @@
+         for row in bed_pe_list:
+             scaffold_name = "assembly"
+             f.write(
+-                f"{scaffold_name}{TAB_TOKEN}{row['start_index']}{TAB_TOKEN}{row['end_index']}{TAB_TOKEN}{row['name'][1:]}{NEWLINE_TOKEN}"
++                f"{scaffold_name}{TAB_TOKEN}{row['start_index']}{TAB_TOKEN}{row['end_index']}{TAB_TOKEN}{row['name']}{NEWLINE_TOKEN}"
+             )
+ 
+ 
+
+************************************************************

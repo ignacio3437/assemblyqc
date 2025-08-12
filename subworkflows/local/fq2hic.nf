@@ -4,7 +4,7 @@ include { FASTQ_BWA_MEM_SAMBLASTER      } from '../gallvp/fastq_bwa_mem_samblast
 include { HICQC                         } from '../../modules/gallvp/hicqc'
 
 include { FASTA_SEQKIT_REFSORT          } from '../gallvp/fasta_seqkit_refsort/main'
-include { BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE } from '../gallvp/bam_fasta_yahs_juicer_pre_juicer_tools_pre/main'
+include { BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD } from '../gallvp/bam_fasta_yahs_juicer_pre_hictk_load/main'
 
 include { HIC2HTML                      } from '../../modules/local/hic2html'
 
@@ -77,17 +77,15 @@ workflow FQ2HIC {
     ch_hicqc_pdf                    = HICQC.out.pdf
     ch_versions                     = ch_versions.mix(HICQC.out.versions)
 
-    // SUBWORKFLOW: BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE
-    val_use_index = false
-    BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE (
+    // SUBWORKFLOW: BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD
+    BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD (
         ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] },
         ch_sorted_ref,
         hic_assembly_mode,
-        val_use_index
     )
 
-    ch_hic                          = BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE.out.hic
-    ch_versions                     = ch_versions.mix(BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE.out.versions)
+    ch_hic                          = BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD.out.hic
+    ch_versions                     = ch_versions.mix(BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD.out.versions)
 
     // MODULE: HIC2HTML
     HIC2HTML (
