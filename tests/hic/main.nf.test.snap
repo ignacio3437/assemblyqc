@@ -76,6 +76,7 @@
                     "HY.bedpe:md5,a4ec178eaaa2e96b724f927ce9678b5a",
                     "HY.hic:md5,1d0fb1030c2a2762a662ecd7d3f4e436",
                     "HY.html:md5,c9313067d4cbd656bcafef19f76741cc",
+                    "HY.scale:md5,b026324c6904b2a9cb4b88d6d61c81d1",
                     "HYh1h2_Chr01_6000000_6015000.R.fastp.json:md5,0f757d8f9e7b1fcf8cee5b18127ee02d"
                 ],
                 "stable names": [
@@ -87,6 +88,7 @@
                     "hic/HY.bedpe",
                     "hic/HY.hic",
                     "hic/HY.html",
+                    "hic/HY.scale",
                     "hic/fastp",
                     "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.html",
                     "hic/fastp/HYh1h2_Chr01_6000000_6015000.R.fastp.json",
@@ -105,12 +107,12 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-12T20:52:07.170737"
+        "timestamp": "2025-08-13T11:46:38.857432"
     },
     "hic - HY - test": {
         "content": [
             {
-                "successful tasks": 21,
+                "successful tasks": 20,
                 "versions": {
                     "ASSEMBLATHON_STATS": {
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
@@ -123,10 +125,6 @@
                         "samtools": 1.21
                     },
                     "CUSTOM_YAHSJUICERPRE2PAIRS": {
-                        "python": "3.8.13",
-                        "biopython": 1.75
-                    },
-                    "CUSTOM_YAHSJUICERPRE2TRACKS": {
                         "python": "3.8.13",
                         "biopython": 1.75
                     },
@@ -179,20 +177,14 @@
                 },
                 "stable paths": [
                     "HY_stats.csv:md5,fc61def49f669e7b3f885bf2555bcd46",
-                    "HY.assembly:md5,72dfdabd22760a91b81ed4241807a0e7",
-                    "HY.bed:md5,bc903fc7f717a627853e93ff6c2dfcb3",
-                    "HY.bedpe:md5,a4ec178eaaa2e96b724f927ce9678b5a",
-                    "HY.hic:md5,1d0fb1030c2a2762a662ecd7d3f4e436",
-                    "HY.html:md5,c9313067d4cbd656bcafef19f76741cc",
+                    "HY.hic:md5,db542df9502f1e77f9d685be34dd27bb",
+                    "HY.html:md5,008d1c814d3a97556c13b33481eff090",
                     "HYh1h2_Chr01_6000000_6015000.R.fastp.json:md5,0f757d8f9e7b1fcf8cee5b18127ee02d"
                 ],
                 "stable names": [
                     "assemblathon_stats",
                     "assemblathon_stats/HY_stats.csv",
                     "hic",
-                    "hic/HY.assembly",
-                    "hic/HY.bed",
-                    "hic/HY.bedpe",
                     "hic/HY.hic",
                     "hic/HY.html",
                     "hic/fastp",
@@ -213,6 +205,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-12T20:51:41.406291"
+        "timestamp": "2025-08-13T11:48:50.952877"
     }
 }
