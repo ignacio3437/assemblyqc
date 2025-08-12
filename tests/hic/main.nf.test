@@ -93,9 +93,6 @@ nextflow_pipeline {
 
             assertAll(
                 { assert workflow.success},
-                {
-                    assert workflow.stdout.toString().contains( "WARN: Parameter 'hic_assembly_mode' is set to 'true'. To avoid pipeline crash" )
-                },
                 { assert snapshot(
                     [
                         'successful tasks': workflow.trace.succeeded().size(),

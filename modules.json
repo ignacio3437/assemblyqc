@@ -47,9 +47,8 @@
                     },
                     "custom/yahsjuicerpre2tracks": {
                         "branch": "main",
-                        "git_sha": "c4658df0a54700f5ee0a2b1bd6f357d3f14f6f06",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"],
-                        "patch": "modules/gallvp/custom/yahsjuicerpre2tracks/custom-yahsjuicerpre2tracks.diff"
+                        "git_sha": "f38195e263bb57119ffc46a434c9ab01c29e074d",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "falint": {
                         "branch": "main",
@@ -167,7 +166,7 @@
                 "gallvp": {
                     "bam_fasta_yahs_juicer_pre_hictk_load": {
                         "branch": "main",
-                        "git_sha": "525a535602fe5d63320b3fd30dc19958cfc5a76b",
+                        "git_sha": "f38195e263bb57119ffc46a434c9ab01c29e074d",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_ltrretriever_lai": {

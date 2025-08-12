@@ -108,6 +108,10 @@
 
   > Chenxi Zhou, Shane A McCarthy, Richard Durbin, YaHS: yet another Hi-C scaffolding tool, Bioinformatics, Volume 39, Issue 1, January 2023, btac808, <https://doi.org/10.1093/bioinformatics/btac808>
 
+- hictk, [MIT](https://github.com/paulsengroup/hictk/blob/main/LICENSE)
+
+  > Roberto Rossini, Jonas Paulsen, hictk: blazing fast toolkit to work with .hic and .cool files Bioinformatics, Volume 40, Issue 7, July 2024, btae408, <https://doi.org/10.1093/bioinformatics/btae408>
+
 - samblaster, [MIT](https://github.com/GregoryFaust/samblaster/blob/master/LICENSE.txt)
 
   > Faust GG, Hall IM. 2014. SAMBLASTER: fast duplicate marking and structural variant read extraction, Bioinformatics, Volume 30, Issue 17, September 2014, Pages 2503–2505, <https://doi.org/10.1093/bioinformatics/btu314>
