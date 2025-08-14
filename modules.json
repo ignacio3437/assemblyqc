@@ -47,7 +47,7 @@
                     },
                     "custom/yahsjuicerpre2tracks": {
                         "branch": "main",
-                        "git_sha": "f38195e263bb57119ffc46a434c9ab01c29e074d",
+                        "git_sha": "bd9ef24fd851c81a9bc1c7ec24fcc3990e9d9b27",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "falint": {
@@ -87,12 +87,12 @@
                     },
                     "hictk/load": {
                         "branch": "main",
-                        "git_sha": "f18fc95b2720038effb4ef5088aef2194bce8c03",
+                        "git_sha": "aa39a38648711e4e1b23010ca57889dafc4f473a",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "hictk/zoomify": {
                         "branch": "main",
-                        "git_sha": "7dc3624ef13f8c6ff77af075ae34aa7af64a3d27",
+                        "git_sha": "aa39a38648711e4e1b23010ca57889dafc4f473a",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "juiceboxscripts/makeagpfromfasta": {
@@ -166,7 +166,7 @@
                 "gallvp": {
                     "bam_fasta_yahs_juicer_pre_hictk_load": {
                         "branch": "main",
-                        "git_sha": "f38195e263bb57119ffc46a434c9ab01c29e074d",
+                        "git_sha": "bd9ef24fd851c81a9bc1c7ec24fcc3990e9d9b27",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_ltrretriever_lai": {
