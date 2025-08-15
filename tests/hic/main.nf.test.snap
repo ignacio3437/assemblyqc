@@ -74,8 +74,8 @@
                     "HY.assembly:md5,72dfdabd22760a91b81ed4241807a0e7",
                     "HY.bed:md5,bc903fc7f717a627853e93ff6c2dfcb3",
                     "HY.bedpe:md5,a4ec178eaaa2e96b724f927ce9678b5a",
-                    "HY.hic:md5,29ad67f61cc3ba8b9bb2786f7260bae2",
-                    "HY.html:md5,1bd96314dec243855e9d43bc3fe07a39",
+                    "HY.hic:md5,0b91130180bffa7f1fc02ed41488d9a8",
+                    "HY.html:md5,740524f1f7418441c520b1f41aaf7961",
                     "HY.scale:md5,b026324c6904b2a9cb4b88d6d61c81d1",
                     "HYh1h2_Chr01_6000000_6015000.R.fastp.json:md5,0f757d8f9e7b1fcf8cee5b18127ee02d"
                 ],
@@ -107,7 +107,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-15T11:26:22.730433"
+        "timestamp": "2025-08-15T18:25:52.242702"
     },
     "hic - HY - test": {
         "content": [
@@ -177,8 +177,8 @@
                 },
                 "stable paths": [
                     "HY_stats.csv:md5,fc61def49f669e7b3f885bf2555bcd46",
-                    "HY.hic:md5,8b804a3fac9d006fa0f3bec2448b9b21",
-                    "HY.html:md5,0dbd823b4e1c4b514afbdd4a5d9f6242",
+                    "HY.hic:md5,5ef78f994aaf26112c80dd5610734b7b",
+                    "HY.html:md5,af19faee0793bb615a2830166743cb91",
                     "HYh1h2_Chr01_6000000_6015000.R.fastp.json:md5,0f757d8f9e7b1fcf8cee5b18127ee02d"
                 ],
                 "stable names": [
@@ -205,6 +205,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-15T11:25:55.869775"
+        "timestamp": "2025-08-15T18:25:25.561441"
     }
 }
