@@ -242,7 +242,7 @@
                     "FI1.bed:md5,d41d8cd98f00b204e9800998ecf8427e",
                     "FI1.bedpe:md5,d41d8cd98f00b204e9800998ecf8427e",
                     "FI1.hic:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "FI1.html:md5,c2547bf90b7aaed1a93279a962fa65f6",
+                    "FI1.html:md5,673c61a1b4e75be940328bf5cca1aabe",
                     "FI1.scale:md5,b026324c6904b2a9cb4b88d6d61c81d1",
                     "Dummy_hic.R.html:md5,d41d8cd98f00b204e9800998ecf8427e",
                     "Dummy_hic.R.zip:md5,d41d8cd98f00b204e9800998ecf8427e",
@@ -305,6 +305,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-13T11:51:16.653314"
+        "timestamp": "2025-08-15T14:50:46.94479"
     }
 }
