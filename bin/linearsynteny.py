@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import plotly.graph_objects as go
-import pandas as pd
 import argparse
+
+import pandas as pd
+import plotly.graph_objects as go
 
 
 def load_data(data_filename, karyotype_ref_file_name, karyotype_target_filename):
@@ -53,13 +54,13 @@ def insert_figure_data(
                 x=x_,
                 y=y_,
                 mode="lines",
-                line=dict(
-                    color=f"rgba{(row['color'].replace('color=', '').replace('0.5)', '1)'))}",
-                    width=2,
-                ),
+                line={
+                    "color": f"rgba{(row['color'].replace('color=', '').replace('0.5)', '1)'))}",
+                    "width": 2,
+                },
                 name=f"{index}: {row['target']}:{row['ref']}",
                 legendgroup=f"{row['target']}:{row['ref']}",
-                legendgrouptitle=dict(text=f"{row['target']}:{row['ref']}"),
+                legendgrouptitle={"text": f"{row['target']}:{row['ref']}"},
             )
         )
 
@@ -68,7 +69,7 @@ def insert_figure_data(
                 x=[midpoint_x],
                 y=[0],
                 xaxis="x2",
-                line=dict(color="#ffffff"),
+                line={"color": "#ffffff"},
                 showlegend=False,
             )
         )
@@ -77,7 +78,7 @@ def insert_figure_data(
                 x=[0],
                 y=[midpoint_y],
                 yaxis="y2",
-                line=dict(color="#ffffff"),
+                line={"color": "#ffffff"},
                 showlegend=False,
             )
         )
@@ -88,11 +89,8 @@ def format_figure(
     karyotype_target,
     offsets_ref,
     offsets_target,
-    midpoints_ref,
-    midpoints_target,
     fig,
 ):
-
     xaxis_range = [0, list(offsets_ref.values())[-1] + list(karyotype_ref["size"])[-1]]
     yaxis_range = [
         0,
@@ -100,30 +98,28 @@ def format_figure(
     ]
 
     fig.update_layout(
-        xaxis=dict(
-            range=xaxis_range,
-        ),
-        yaxis=dict(range=yaxis_range),
+        xaxis={"range": xaxis_range},
+        yaxis={"range": yaxis_range},
         hovermode="closest",
-        xaxis2=dict(
-            overlaying="x",
-            scaleanchor="x1",
-            range=xaxis_range,
-            tickmode="array",
-            tickvals=list(offsets_ref.values()),
-            ticktext=list(offsets_ref.keys()),
-            side="top",
-        ),
-        yaxis2=dict(
-            overlaying="y",
-            scaleanchor="y1",
-            range=yaxis_range,
-            tickmode="array",
-            tickvals=list(offsets_target.values()),
-            ticktext=list(offsets_target.keys()),
-            autoshift=True,
-            anchor="free",
-        ),
+        xaxis2={
+            "overlaying": "x",
+            "scaleanchor": "x1",
+            "range": xaxis_range,
+            "tickmode": "array",
+            "tickvals": list(offsets_ref.values()),
+            "ticktext": list(offsets_ref.keys()),
+            "side": "top",
+        },
+        yaxis2={
+            "overlaying": "y",
+            "scaleanchor": "y1",
+            "range": yaxis_range,
+            "tickmode": "array",
+            "tickvals": list(offsets_target.values()),
+            "ticktext": list(offsets_target.keys()),
+            "autoshift": True,
+            "anchor": "free",
+        },
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         showlegend=False,
@@ -146,7 +142,6 @@ def format_figure(
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(
         description="Create a linear synteny plot from `nucmer/dnadiff/circos bundlelinks` bundles",
         epilog="Author: Usman Rashid",
@@ -191,8 +186,6 @@ if __name__ == "__main__":
         karyotype_target,
         offsets_ref,
         offsets_target,
-        midpoints_ref,
-        midpoints_target,
         fig,
     )
 

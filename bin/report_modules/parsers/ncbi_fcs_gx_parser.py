@@ -1,9 +1,10 @@
+import json
 import os
+import re
 from pathlib import Path
+
 import pandas as pd
 from tabulate import tabulate
-import re
-import json
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -20,7 +21,7 @@ def parse_ncbi_fcs_gx_folder(folder_name="fcs_gx_reports"):
     data = {"NCBI_FCS_GX": []}
 
     for report_path in list_of_report_files:
-        with open(report_path, "r") as f:
+        with open(report_path) as f:
             meta_data = json.loads(f.readline()[2:-1])
 
         asserted_div = meta_data[1]["run-info"]["asserted-div"]

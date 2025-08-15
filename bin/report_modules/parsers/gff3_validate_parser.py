@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 import re
+from pathlib import Path
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -17,8 +17,8 @@ def parse_gff3_validate_folder(folder_name="gff3_validate_logs"):
     data = {"GFF3_VALIDATE": []}
 
     for log_path in list_of_log_files:
-        with open(log_path, "r") as f:
-            log_lines = [f"<p class='section-para' >{l}</p>" for l in f.readlines()]
+        with open(log_path) as f:
+            log_lines = [f"<p class='section-para' >{line}</p>" for line in f]
 
         file_tokens = re.findall(
             r"([\w]+).error.log",

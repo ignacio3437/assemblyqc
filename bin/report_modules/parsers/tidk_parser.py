@@ -1,7 +1,7 @@
-import os
-from pathlib import Path
 import base64
+import os
 import re
+from pathlib import Path
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -19,7 +19,7 @@ def parse_tidk_folder(folder_name="tidk_outputs"):
 
     # get the a_prior_sequence file
     a_priori_sequence_file_name = "a_priori.sequence"
-    with open(f"{dir}/{folder_name}/{a_priori_sequence_file_name}", "r") as file:
+    with open(f"{dir}/{folder_name}/{a_priori_sequence_file_name}") as file:
         lines = file.readlines()
         a_priori_sequence = lines[0].strip()
 
@@ -39,7 +39,7 @@ def parse_tidk_folder(folder_name="tidk_outputs"):
         if "aposteriori" in plot_type:
             sequence_file_name = f"{sample_tag}.top.sequence.txt"
 
-            with open(f"{dir}/{folder_name}/{sequence_file_name}", "r") as file:
+            with open(f"{dir}/{folder_name}/{sequence_file_name}") as file:
                 lines = file.readlines()
                 sequence = "" if len(lines) < 1 else lines[0].strip()
 

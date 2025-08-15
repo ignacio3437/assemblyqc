@@ -99,6 +99,7 @@ workflow FQ2HIC {
     fastp_log                       = ch_fastp_log
     hicqc_pdf                       = ch_hicqc_pdf
     hic                             = ch_hic
+    scale                           = BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD.out.scale
     html                            = HIC2HTML.out.html
     versions                        = ch_versions
 }

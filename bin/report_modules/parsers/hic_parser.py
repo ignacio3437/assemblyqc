@@ -1,9 +1,7 @@
-import os
-from pathlib import Path
-import pandas as pd
-from tabulate import tabulate
-import re
 import logging
+import os
+import re
+from pathlib import Path
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -94,10 +92,10 @@ def parse_hic_folder(folder_name="hic_outputs"):
             x
             for x in hic_folder_path.glob("*.pdf")
             if re.match(rf"{tag}_qc_report\.pdf", x.name)
-        ][0]
+        ]
 
         # Get FASTP log if it is there
-        fastp_log = [x for x in hic_folder_path.glob("*.log")]
+        fastp_log = list(hic_folder_path.glob("*.log"))
 
         if fastp_log != []:
             fastp_log = fastp_log[0]

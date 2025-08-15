@@ -607,6 +607,9 @@ workflow ASSEMBLYQC {
                                             | mix(
                                                 ch_hic_fastp_log.map { _meta, log -> log }
                                             )
+                                            | mix(
+                                                FQ2HIC.out.scale.map { _meta, scale -> scale }
+                                            )
     ch_versions                             = ch_versions.mix(FQ2HIC.out.versions)
 
     // SUBWORKFLOW: FASTA_SYNTENY

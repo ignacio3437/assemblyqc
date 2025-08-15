@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
+import os
 import sys
 from pathlib import Path
-import os
 
 ASSEMBLY_MODE_TRACKS = """
                 tracks: [
@@ -22,9 +22,9 @@ if __name__ == "__main__":
     hic_file_name = os.path.basename(sys.argv[1])
     assembly_mode = sys.argv[2] == "true"
 
-    projectDir = "/".join(__file__.split("/")[0:-1])
+    project_dir = "/".join(__file__.split("/")[0:-1])
     html_template_path = Path(
-        f"{projectDir}/report_modules/templates/hic/hic_html_template.html"
+        f"{project_dir}/report_modules/templates/hic/hic_html_template.html"
     )
 
     with open(html_template_path) as f:

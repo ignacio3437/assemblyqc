@@ -1,13 +1,13 @@
-import pandas as pd
 import base64
 import os
 import re
+from io import StringIO
+from pathlib import Path
 
 import matplotlib.pyplot as plt
-from tabulate import tabulate
-from pathlib import Path
-from io import StringIO
+import pandas as pd
 from Bio import Phylo
+from tabulate import tabulate
 
 
 def parse_orthofinder_folder(folder_name="orthofinder_outputs/assemblyqc"):

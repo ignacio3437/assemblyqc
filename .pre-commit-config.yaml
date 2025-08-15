@@ -29,6 +29,32 @@ repos:
               subworkflows/gallvp/.*|
               .*\.snap$
           )$
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.17.1"
+    hooks:
+      - id: mypy
+        files: bin/.*\.py
+        additional_dependencies:
+          - types-tabulate
+          - types-PyYAML
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.13
+    hooks:
+      - id: ruff
+        files: bin/.*\.py
+        args:
+          [
+            --fix,
+            --exit-non-zero-on-fix,
+            --config,
+            "lint.select=['I','E','F','UP','N','Q','RET','SLF','C4','YTT','T10','RSE','TID','INT','ARG','FLY','PERF','FURB','RUF','W']",
+            --config,
+            "line-length=160",
+            --config,
+            "target-version='py311'",
+          ]
+      - id: ruff-format
+        files: bin/.*\.py
   - repo: local
     hooks:
       - id: version_checks
