@@ -103,6 +103,17 @@ def parse_hic_folder(folder_name="hic_outputs"):
         else:
             fastp_log = None
 
+        # Extract scale
+        scale_path = Path(f"{hic_folder_path}/{tag}.scale")
+
+        scale = 1
+        if scale_path.exists():
+            scale = int(scale_path.read_text().strip())
+
+        scale_warning = None
+        if scale > 1:
+            scale_warning = f"The assembly has been scaled down by a factor of {scale} to keep the HiC map visualisation manageable."
+
         data["HIC"].append(
             {
                 "hap": tag,
@@ -117,6 +128,7 @@ def parse_hic_folder(folder_name="hic_outputs"):
                 # ),
                 "hicqc_report_pdf": os.path.basename(str(hicqc_report)),
                 "fastp_log": fastp_log,
+                "scale_warning": scale_warning,
             }
         )
 
