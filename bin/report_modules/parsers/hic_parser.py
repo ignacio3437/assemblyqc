@@ -88,11 +88,7 @@ def parse_hic_folder(folder_name="hic_outputs"):
         # labels_table.Length = labels_table.Length.astype(int)
 
         # Get the HiC QC report
-        hicqc_report = [
-            x
-            for x in hic_folder_path.glob("*.pdf")
-            if re.match(rf"{tag}_qc_report\.pdf", x.name)
-        ]
+        hicqc_report_basename = f"{tag}_qc_report.pdf"
 
         # Get FASTP log if it is there
         fastp_log = list(hic_folder_path.glob("*.log"))
@@ -126,7 +122,7 @@ def parse_hic_folder(folder_name="hic_outputs"):
                 #     numalign="left",
                 #     showindex=False,
                 # ),
-                "hicqc_report_pdf": os.path.basename(str(hicqc_report)),
+                "hicqc_report_pdf": hicqc_report_basename,
                 "fastp_log": fastp_log,
                 "scale_warning": scale_warning,
             }
