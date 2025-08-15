@@ -11,8 +11,7 @@ def log(verbose, message):
 def dir_sign(end, start):
     if abs(int(end) - int(start)) == 0:
         return 1
-    sign = (int(end) - int(start)) / abs(int(end) - int(start))
-    return sign
+    return (int(end) - int(start)) / abs(int(end) - int(start))
 
 
 def is_same_direction(link, bundle, verbose):
@@ -173,7 +172,7 @@ def bundle_links(input_file, output_file, max_gap, min_bundle_size, verbose):
     nlinks = {}
     current_bundle_num = 0
 
-    with open(input_file, "r") as f:
+    with open(input_file) as f:
         for line in f:
             link = line.strip().split("\t")
             ref, _, _, target, _, _ = link
@@ -207,7 +206,7 @@ def bundle_links(input_file, output_file, max_gap, min_bundle_size, verbose):
                 bundles[k] = updated_bundle
                 link_added = True
                 nlinks[k] += 1
-                log(verbose, f"Added link to bundle")
+                log(verbose, "Added link to bundle")
                 log(verbose, f"Updated bundle: {updated_bundle}")
                 break
 

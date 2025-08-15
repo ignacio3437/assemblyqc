@@ -1,9 +1,7 @@
-import os
-from pathlib import Path
-import pandas as pd
-from tabulate import tabulate
-import re
 import logging
+import os
+import re
+from pathlib import Path
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -90,20 +88,27 @@ def parse_hic_folder(folder_name="hic_outputs"):
         # labels_table.Length = labels_table.Length.astype(int)
 
         # Get the HiC QC report
-        hicqc_report = [
-            x
-            for x in hic_folder_path.glob("*.pdf")
-            if re.match(rf"{tag}_qc_report\.pdf", x.name)
-        ][0]
+        hicqc_report_basename = f"{tag}_qc_report.pdf"
 
         # Get FASTP log if it is there
-        fastp_log = [x for x in hic_folder_path.glob("*.log")]
+        fastp_log = list(hic_folder_path.glob("*.log"))
 
         if fastp_log != []:
             fastp_log = fastp_log[0]
             fastp_log = colorize_fastp_log(fastp_log)
         else:
             fastp_log = None
+
+        # Extract scale
+        scale_path = Path(f"{hic_folder_path}/{tag}.scale")
+
+        scale = 1
+        if scale_path.exists():
+            scale = int(scale_path.read_text().strip())
+
+        scale_warning = None
+        if scale > 1:
+            scale_warning = f"The assembly has been scaled down by a factor of {scale} to keep the HiC map visualisation manageable."
 
         data["HIC"].append(
             {
@@ -117,8 +122,9 @@ def parse_hic_folder(folder_name="hic_outputs"):
                 #     numalign="left",
                 #     showindex=False,
                 # ),
-                "hicqc_report_pdf": os.path.basename(str(hicqc_report)),
+                "hicqc_report_pdf": hicqc_report_basename,
                 "fastp_log": fastp_log,
+                "scale_warning": scale_warning,
             }
         )
 

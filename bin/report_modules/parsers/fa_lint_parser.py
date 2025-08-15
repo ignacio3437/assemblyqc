@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 import re
+from pathlib import Path
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -17,7 +17,6 @@ def parse_fa_lint_folder(folder_name="fa_lint_logs"):
     data = {"FA_LINT": []}
 
     for log_path in list_of_log_files:
-
         if str(log_path).endswith(".seqkit.rmdup.log"):
             data["FA_LINT"].append(
                 {
@@ -27,8 +26,8 @@ def parse_fa_lint_folder(folder_name="fa_lint_logs"):
             )
             continue
 
-        with open(log_path, "r") as f:
-            log_lines = [f"<p class='section-para' >{l}</p>" for l in f.readlines()]
+        with open(log_path) as f:
+            log_lines = [f"<p class='section-para' >{line}</p>" for line in f]
 
         file_tokens = re.findall(
             r"([\w]+).error.log",

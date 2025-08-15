@@ -39,7 +39,7 @@
     - [samblaster](https://github.com/GregoryFaust/samblaster): Duplicate marking
     - [hic_qc](https://github.com/phasegenomics/hic_qc): HiC read and alignment statistics
     - [YaHS juicer pre](https://github.com/c-zhou/yahs): BAM to juicer conversion
-    - [JuicerTools pre](https://github.com/aidenlab/Juicebox): `.hic` file creation
+    - [hictk load/zoomify](https://github.com/paulsengroup/hictk): `.hic` file creation
     - [juicebox.js](https://github.com/igvteam/juicebox.js): HiC contact map visualisation
   - `K-mer completeness, consensus quality and phasing assessment`
     - [sra-tools](https://github.com/ncbi/sra-tools): Assembly, maternal and paternal data download from SRA or use of local FASTQ files

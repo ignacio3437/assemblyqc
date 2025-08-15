@@ -20,11 +20,6 @@
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
-                    "custom/assembly2bedpe": {
-                        "branch": "main",
-                        "git_sha": "bbcbb7b7717998f84bc14d06f16214a85f0d7f0e",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
-                    },
                     "custom/interleavefasta": {
                         "branch": "main",
                         "git_sha": "6ce7bf4c7097a644610d3d6867551e629647839c",
@@ -44,6 +39,16 @@
                         "branch": "main",
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
                         "installed_by": ["fasta_ltrretriever_lai"]
+                    },
+                    "custom/yahsjuicerpre2pairs": {
+                        "branch": "main",
+                        "git_sha": "c4658df0a54700f5ee0a2b1bd6f357d3f14f6f06",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
+                    },
+                    "custom/yahsjuicerpre2tracks": {
+                        "branch": "main",
+                        "git_sha": "bd9ef24fd851c81a9bc1c7ec24fcc3990e9d9b27",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "falint": {
                         "branch": "main",
@@ -80,25 +85,20 @@
                         "git_sha": "16f95a965fb53636bc4e2d143332384c1879348e",
                         "installed_by": ["modules"]
                     },
-                    "juiceboxscripts/agp2assembly": {
+                    "hictk/load": {
                         "branch": "main",
-                        "git_sha": "234f2d1840a45fa839b41f05d1226c0a8fceb7f0",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
+                        "git_sha": "aa39a38648711e4e1b23010ca57889dafc4f473a",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
+                    },
+                    "hictk/zoomify": {
+                        "branch": "main",
+                        "git_sha": "aa39a38648711e4e1b23010ca57889dafc4f473a",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "juiceboxscripts/makeagpfromfasta": {
                         "branch": "main",
                         "git_sha": "96daa61199a35f7982cc839685f295775b42d161",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre", "fasta_seqkit_refsort"]
-                    },
-                    "juicer/indexbychr": {
-                        "branch": "main",
-                        "git_sha": "10f8e93ef5a86b4f3bcf01e29eb23f6bc70fe4b5",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
-                    },
-                    "juicertools/pre": {
-                        "branch": "main",
-                        "git_sha": "baafbe6d96c3b1078e0b7358ae56308d5c765943",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load", "fasta_seqkit_refsort"]
                     },
                     "ltrfinder": {
                         "branch": "main",
@@ -138,10 +138,7 @@
                     "samtools/faidx": {
                         "branch": "main",
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
-                        "installed_by": [
-                            "bam_fasta_yahs_juicer_pre_juicer_tools_pre",
-                            "gff3_gt_gff3_gff3validator_stat"
-                        ]
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load", "gff3_gt_gff3_gff3validator_stat"]
                     },
                     "seqkit/seq": {
                         "branch": "main",
@@ -153,11 +150,6 @@
                         "git_sha": "65726596906e57173136e918e30f8cffc6a0daf5",
                         "installed_by": ["fasta_seqkit_refsort"]
                     },
-                    "sort": {
-                        "branch": "main",
-                        "git_sha": "53e1a0852b837abdd3e73669c999e3defaa0c218",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"]
-                    },
                     "syri": {
                         "branch": "main",
                         "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
@@ -165,17 +157,16 @@
                     },
                     "yahs/juicerpre": {
                         "branch": "main",
-                        "git_sha": "f2854aef454e4ab129cce5a6b364f5834a3856f8",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_juicer_tools_pre"],
-                        "patch": "modules/gallvp/yahs/juicerpre/yahs-juicerpre.diff"
+                        "git_sha": "c4658df0a54700f5ee0a2b1bd6f357d3f14f6f06",
+                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     }
                 }
             },
             "subworkflows": {
                 "gallvp": {
-                    "bam_fasta_yahs_juicer_pre_juicer_tools_pre": {
+                    "bam_fasta_yahs_juicer_pre_hictk_load": {
                         "branch": "main",
-                        "git_sha": "07dd9dfc534c54f77a2e4a427fe0c779f8f972da",
+                        "git_sha": "bd9ef24fd851c81a9bc1c7ec24fcc3990e9d9b27",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_ltrretriever_lai": {

@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [08-Aug-2025]
+## v3.0.0dev - [15-Aug-2025]
 
 ### `Added`
 
@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 9. Updated Plant&Food Nextflow to `24.10.6` [#225](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/225)
 10. Added parameter `hic_mapq` and set the default to 1 for now [#218](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/218)
 11. Added parameter `hic_save_trimmed` and set its default to `false` [#222](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/222)
-12. Added parameter `hic_assembly_mode` and `hic_juicer_tools_pre_ext_args` to support assembly mode for HiC [#219](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/219)
+12. Added parameter `hic_assembly_mode` ~~and `hic_juicer_tools_pre_ext_args`~~ to support assembly mode for HiC [#219](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/219)
 13. Added parameter `hic_map_combinations` to allow creation of single and combined HiC maps in parallel [#220](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/220)
 14. Added parameter `hic_refsort` to make sorting by reference optional
 15. Added v3 of PFR test dataset [#240](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/240)
@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 17. Tags for nf-shard can now be added via the `--tags` parameter without nf-schema warnings [#254](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/254)
 18. `hic_assembly_mode` is now set to `true` by default [#263](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/263)
 19. Updated JuiceBox.js to 2.5.1
+20. Swapped out sub-workflow `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` and replaced it with `BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD` to fix JuicerTools memory usage issue [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273) and the HiC map scale issue [#266](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/266)
+21. Now the HiC map is loaded at 100 Kbp resolution to improve loading time [#284](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/284)
 
 ### `Fixed`
 

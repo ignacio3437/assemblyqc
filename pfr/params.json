@@ -33,7 +33,6 @@
     "hic_refsort": true,
     "hic_mapq": 1,
     "hic_assembly_mode": true,
-    "hic_juicer_tools_pre_ext_args": "",
     "merqury_skip": false,
     "merqury_kmer_length": 21,
     "synteny_skip": false,

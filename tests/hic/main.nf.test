@@ -7,9 +7,10 @@ nextflow_pipeline {
 
         when {
             params {
-                input   = "$baseDir/tests/hic/assemblysheet.csv"
-                hic     = "$baseDir/tests/hic/testdata/HYh1h2_Chr01_6000000_6015000.R{1,2}.fastq.gz"
-                outdir  = "$outputDir"
+                input               = "$baseDir/tests/hic/assemblysheet.csv"
+                hic                 = "$baseDir/tests/hic/testdata/HYh1h2_Chr01_6000000_6015000.R{1,2}.fastq.gz"
+                hic_assembly_mode   = false
+                outdir              = "$outputDir"
             }
         }
 
@@ -58,10 +59,10 @@ nextflow_pipeline {
 
         when {
             params {
-                input                           = "$baseDir/tests/hic/assemblysheet.csv"
-                hic                             = "$baseDir/tests/hic/testdata/HYh1h2_Chr01_6000000_6015000.R{1,2}.fastq.gz"
-                hic_assembly_mode               = true
-                outdir                          = "$outputDir"
+                input               = "$baseDir/tests/hic/assemblysheet.csv"
+                hic                 = "$baseDir/tests/hic/testdata/HYh1h2_Chr01_6000000_6015000.R{1,2}.fastq.gz"
+                hic_assembly_mode   = true
+                outdir              = "$outputDir"
             }
         }
 
@@ -93,9 +94,6 @@ nextflow_pipeline {
 
             assertAll(
                 { assert workflow.success},
-                {
-                    assert workflow.stdout.toString().contains( "WARN: Parameter 'hic_assembly_mode' is set to 'true'. To avoid pipeline crash" )
-                },
                 { assert snapshot(
                     [
                         'successful tasks': workflow.trace.succeeded().size(),

@@ -1,8 +1,9 @@
 import os
+import re
 from pathlib import Path
+
 import pandas as pd
 from tabulate import tabulate
-import re
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 

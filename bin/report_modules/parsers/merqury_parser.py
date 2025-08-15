@@ -1,14 +1,14 @@
 import base64
 import os
+from pathlib import Path
+
+import pandas as pd
+from tabulate import tabulate
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
-from tabulate import tabulate
-from pathlib import Path
-import pandas as pd
 
 
 def load_image_as_base64_str(file_name, optional=False):
-
     if optional and not os.path.exists(file_name):
         return None
 
@@ -28,19 +28,18 @@ def parse_merqury_folder(folder_name="merqury_outputs"):
 
     data = {"MERQURY": []}
 
-    completeness_stats_paths = [
-        item for item in merqury_folder_path.glob("*.completeness.stats")
-    ]
-
-    for completeness_stats_path in completeness_stats_paths:
-
+    for completeness_stats_path in merqury_folder_path.glob("*.completeness.stats"):
         individual_id = os.path.basename(str(completeness_stats_path)).split(
             ".completeness.stats"
         )[0]
         haplotypes = individual_id.split("-and-")
 
-        completeness_stats_table = pd.read_csv(completeness_stats_path, sep="\t", header=None)
-        qv_stats_table = pd.read_csv(f"{folder_name}/{individual_id}.qv", sep="\t", header=None)
+        completeness_stats_table = pd.read_csv(
+            completeness_stats_path, sep="\t", header=None
+        )
+        qv_stats_table = pd.read_csv(
+            f"{folder_name}/{individual_id}.qv", sep="\t", header=None
+        )
 
         data["MERQURY"].append(
             {

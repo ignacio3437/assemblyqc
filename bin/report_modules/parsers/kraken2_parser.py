@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 import re
+from pathlib import Path
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 

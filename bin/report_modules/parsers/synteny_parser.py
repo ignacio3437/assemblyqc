@@ -1,9 +1,10 @@
-from tabulate import tabulate
-from pathlib import Path
-import pandas as pd
 import base64
 import os
 import re
+from pathlib import Path
+
+import pandas as pd
+from tabulate import tabulate
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -15,11 +16,9 @@ def parse_synteny_circos(folder_name="synteny_outputs"):
     if not os.path.exists(circos_folder_path):
         return {}
 
-    list_of_plot_files = [item for item in circos_folder_path.glob("*.png")]
-
     data = {"SYNTENY_CIRCOS": []}
 
-    for plot_path in list_of_plot_files:
+    for plot_path in circos_folder_path.glob("*.png"):
         base_name = os.path.basename(str(plot_path))
 
         if base_name == "plotsr.png":
@@ -68,11 +67,9 @@ def parse_synteny_dotplot(folder_name="synteny_outputs"):
     if not os.path.exists(circos_folder_path):
         return {}
 
-    list_of_plot_files = [item for item in circos_folder_path.glob("*.html")]
-
     data = {"SYNTENY_DOTPLOT": []}
 
-    for plot_path in list_of_plot_files:
+    for plot_path in circos_folder_path.glob("*.html"):
         file_tokens = re.findall(
             r"([\w]+).on.([\w]+).([\w]+).html",
             os.path.basename(str(plot_path)),
@@ -115,13 +112,11 @@ def parse_synteny_plotsr(folder_name="synteny_outputs"):
     if not os.path.exists(plotsr_folder_path):
         return {}
 
-    list_of_error_files = [item for item in plotsr_folder_path.glob("*.error.log")]
-
     data = {"SYNTENY_PLOTSR": []}
 
     error_comparisons = []
 
-    for error_log_path in list_of_error_files:
+    for error_log_path in plotsr_folder_path.glob("*.error.log"):
         base_name = os.path.basename(str(error_log_path))
 
         file_tokens = re.findall(
@@ -139,7 +134,7 @@ def parse_synteny_plotsr(folder_name="synteny_outputs"):
         ext = str(plotsr_png_path).split(".")[-1]
         plot_url = f"data:image/{ext}+xml;base64,{base64_utf8_str}"
 
-    if error_comparisons == [] and plot_url == None:
+    if error_comparisons == [] and plot_url is None:
         return {}
 
     data["SYNTENY_PLOTSR"].append(
@@ -154,7 +149,9 @@ def parse_synteny_plotsr(folder_name="synteny_outputs"):
                         for (target, ref) in error_comparisons
                     ]
                 )
-                + '. This may be due to known Syri limitations. See: <a href="https://github.com/schneebergerlab/syri/tree/ebd0f832e0df33398306f1b65f86801090c1ed49#current-limitations" target="_blank">GitHub/Syri/Limitations</a>'
+                + ". This may be due to known Syri limitations."
+                + ' See: <a href="https://github.com/schneebergerlab/syri/tree/ebd0f832e0df33398306f1b65f86801090c1ed49#current-limitations"'
+                + ' target="_blank">GitHub/Syri/Limitations</a>'
             ),
             "plotsr_png": plot_url,
             "labels_table": None,
@@ -162,13 +159,12 @@ def parse_synteny_plotsr(folder_name="synteny_outputs"):
         }
     )
 
-    if plot_url == None:
+    if plot_url is None:
         return data
 
-    list_of_label_files = [item for item in plotsr_folder_path.glob("*.plotsr.csv")]
     labels_table = pd.DataFrame()
 
-    for labels_path in list_of_label_files:
+    for labels_path in plotsr_folder_path.glob("*.plotsr.csv"):
         base_name = os.path.basename(str(labels_path))
 
         file_token = re.findall(
