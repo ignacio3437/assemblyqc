@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 11. Fixed an issue where assemblathon was crashing on MMC due to `xargs -I {} find {} -maxdepth 0 -print 2>/dev/null`
 12. Fixed an issue where `JUICERTOOLS_PRE` was not requesting the right ammount of memory [#268](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/268)
 13. ~~Added `JUICER_INDEXBYCHR` to the HiC workflow so that `JUICERTOOLS_PRE` uses multiple threads [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273)~~ This change lead to a broken HiC map and was, therefore, rolled back.
+14. Fixed an issue where the HiC map did not load correctly on Firefox [#274](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/274)
 
 ### `Deprecated`
 
