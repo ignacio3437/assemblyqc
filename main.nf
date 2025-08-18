@@ -31,9 +31,10 @@ workflow PLANTFOODRESEARCHOPEN_ASSEMBLYQC {
     ch_input
     ch_hic_reads
     ch_xref_assembly
-    ch_reads
+    ch_merqury_reads
     ch_maternal_reads
     ch_paternal_reads
+    ch_mapback_reads
     ch_params_as_json
     ch_summary_params_as_json
 
@@ -45,9 +46,10 @@ workflow PLANTFOODRESEARCHOPEN_ASSEMBLYQC {
         ch_input,
         ch_hic_reads,
         ch_xref_assembly,
-        ch_reads,
+        ch_merqury_reads,
         ch_maternal_reads,
         ch_paternal_reads,
+        ch_mapback_reads,
         ch_params_as_json,
         ch_summary_params_as_json
     )
@@ -79,9 +81,10 @@ workflow {
         PIPELINE_INITIALISATION.out.input,
         PIPELINE_INITIALISATION.out.hic_reads,
         PIPELINE_INITIALISATION.out.xref_assembly,
-        PIPELINE_INITIALISATION.out.reads,
+        PIPELINE_INITIALISATION.out.merqury_reads,
         PIPELINE_INITIALISATION.out.maternal_reads,
         PIPELINE_INITIALISATION.out.paternal_reads,
+        PIPELINE_INITIALISATION.out.mapback_reads,
         PIPELINE_INITIALISATION.out.params_as_json,
         PIPELINE_INITIALISATION.out.summary_params_as_json
     )

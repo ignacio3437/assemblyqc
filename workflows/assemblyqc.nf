@@ -32,6 +32,7 @@ include { MERQURY_HAPMERS                   } from '../modules/nf-core/merqury/h
 include { MERQURY_MERQURY                   } from '../modules/nf-core/merqury/merqury/main'
 include { GFFREAD                           } from '../modules/nf-core/gffread/main'
 include { ORTHOFINDER                       } from '../modules/nf-core/orthofinder/main'
+include { FASTA_FASTQ_WINNOWMAP_COVERAGE    } from '../subworkflows/gallvp/fasta_fastq_winnowmap_coverage/main'
 include { CREATEREPORT                      } from '../modules/local/createreport'
 
 include { FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS as FETCHNGS  } from '../subworkflows/nf-core/fastq_download_prefetch_fasterqdump_sratools/main'
@@ -48,9 +49,10 @@ workflow ASSEMBLYQC {
     ch_input
     ch_hic_reads
     ch_xref_assembly
-    ch_reads
+    ch_merqury_reads
     ch_maternal_reads
     ch_paternal_reads
+    ch_mapback_reads
     ch_params_as_json
     ch_summary_params_as_json
 
@@ -321,13 +323,29 @@ workflow ASSEMBLYQC {
                                                 sra: meta.is_sra
                                                 rest: ! meta.is_sra
                                             }
-    // Reads
+
+    // Mapback reads
+    ch_mapback_input_assembly               = params.mapback_skip
+                                            ? Channel.empty()
+                                            : ch_clean_assembly
+                                            | map { tag, fa -> [ [ id: tag ], fa ] }
+
+    ch_mapback_reads_branch                 = ch_mapback_reads
+                                            | combine(ch_mapback_input_assembly.first())
+                                            // Wait till first clean assembly arrives
+                                            | map { meta, fq, _meta2, _fasta -> [ meta, fq ] }
+                                            | branch { meta, _fq ->
+                                                sra: meta.is_sra
+                                                rest: ! meta.is_sra
+                                            }
+
+    // Merqury reads
     ch_all_clean_assemblies                 = ch_clean_assembly_tagged
                                             | map { [ it ] }
                                             | collect
                                             | map { [ it ] }
 
-    ch_reads_assemblies                     = ch_reads
+    ch_reads_assemblies                     = ch_merqury_reads
                                             | combine(
                                                 ch_all_clean_assemblies
                                             )
@@ -405,25 +423,46 @@ workflow ASSEMBLYQC {
                                             }
 
     // MODULE: FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS as FETCHNGS
-    ch_fetchngs_inputs                      = ch_hic_reads_branch.sra
+    ch_fetchngs_inputs_all                  = ch_hic_reads_branch.sra
                                             | mix(ch_reads_branch.sra)
                                             | mix(ch_maternal_reads_branch.sra)
+                                            | mix(ch_paternal_reads_branch.sra)
+                                            | mix(ch_mapback_reads_branch.sra)
+                                            | map { meta, sra ->
+                                                [
+                                                    [
+                                                        id: sra,
+                                                        single_end: meta.single_end
+                                                    ],
+                                                    meta
+                                                ]
+                                            }
+
+    ch_fetchngs_inputs                      = ch_fetchngs_inputs_all
+                                            | map { meta_fetch, meta ->
+                                                [
+                                                    meta_fetch,
+                                                    meta.id // SRA ID
+                                                ]
+                                            }
+                                            | unique
     FETCHNGS(
-        ch_fetchngs_inputs.map { meta, sra -> [ [ id: meta.id, single_end: meta.single_end ], sra ] },
+        ch_fetchngs_inputs,
         []
     )
 
     ch_fetchngs                             = FETCHNGS.out.reads
-                                            | join(
-                                                ch_fetchngs_inputs
-                                                | map { meta, _sra -> [ [ id: meta.id, single_end: meta.single_end ], meta ] }
+                                            | combine(
+                                                ch_fetchngs_inputs_all,
+                                                by: 0
                                             )
-                                            | map { _meta, fq, meta2 -> [ meta2, fq ] }
+                                            | map { _meta_fetch, fq, meta -> [ meta, fq ] }
                                             | branch { meta, _fq ->
                                                 hic:        meta.type == 'hic'
                                                 reads:      meta.type == 'reads'
                                                 maternal:   meta.type == 'maternal'
                                                 paternal:   meta.type == 'paternal'
+                                                mapback:    meta.type == 'mapback'
                                             }
     ch_versions                             = ch_versions.mix(FETCHNGS.out.versions)
 
@@ -842,6 +881,15 @@ workflow ASSEMBLYQC {
     ch_orthofinder_outputs                  = ORTHOFINDER.out.orthofinder
                                             | map { _meta, dir -> dir }
     ch_versions                             = ch_versions.mix(ORTHOFINDER.out.versions)
+
+    // MAPBACK
+    FASTA_FASTQ_WINNOWMAP_COVERAGE (
+        ch_valid_target_assembly,
+        ch_fetchngs.mapback.mix(ch_mapback_reads_branch.rest),
+        15, // val_k
+        0.9998, // val_meryl_distinct
+        1024 // val_coverage_span
+    )
 
     // Collate and save software versions
     ch_versions                             = ch_versions

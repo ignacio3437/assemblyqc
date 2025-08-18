@@ -404,6 +404,20 @@
                 }
             }
         },
+        "mapback_profile_options": {
+            "title": "Mapback profile options",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "mapback_skip": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Skip creation of Mapback profiles",
+                    "fa_icon": "fas fa-forward"
+                }
+            }
+        },
         "institutional_config_options": {
             "title": "Institutional config options",
             "type": "object",
@@ -530,6 +544,9 @@
         },
         {
             "$ref": "#/$defs/orthofinder_options"
+        },
+        {
+            "$ref": "#/$defs/mapback_profile_options"
         },
         {
             "$ref": "#/$defs/institutional_config_options"
