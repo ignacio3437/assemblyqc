@@ -33,6 +33,7 @@ include { MERQURY_MERQURY                   } from '../modules/nf-core/merqury/m
 include { GFFREAD                           } from '../modules/nf-core/gffread/main'
 include { ORTHOFINDER                       } from '../modules/nf-core/orthofinder/main'
 include { FASTA_FASTQ_WINNOWMAP_COVERAGE    } from '../subworkflows/gallvp/fasta_fastq_winnowmap_coverage/main'
+include { FASTA_BEDTOOLS_MAKEWINDOWS_NUC    } from '../subworkflows/gallvp/fasta_bedtools_makewindows_nuc/main'
 include { CREATEREPORT                      } from '../modules/local/createreport'
 
 include { FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS as FETCHNGS  } from '../subworkflows/nf-core/fastq_download_prefetch_fasterqdump_sratools/main'
@@ -890,6 +891,16 @@ workflow ASSEMBLYQC {
         0.9998, // val_meryl_distinct
         1024 // val_coverage_span
     )
+
+    ch_versions                             = ch_versions.mix(FASTA_FASTQ_WINNOWMAP_COVERAGE.out.versions)
+
+    FASTA_BEDTOOLS_MAKEWINDOWS_NUC (
+        params.mapback_skip
+        ? Channel.empty()
+        : ch_valid_target_assembly
+    )
+
+    ch_versions                             = ch_versions.mix(FASTA_BEDTOOLS_MAKEWINDOWS_NUC.out.versions)
 
     // Collate and save software versions
     ch_versions                             = ch_versions
