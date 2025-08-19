@@ -157,7 +157,7 @@
                     },
                     "samtools/faidx": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": [
                             "bam_fasta_yahs_juicer_pre_hictk_load",
                             "fasta_bedtools_makewindows_nuc",
