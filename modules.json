@@ -5,6 +5,16 @@
         "https://github.com/GallVp/nxf-components.git": {
             "modules": {
                 "gallvp": {
+                    "bedtools/makewindows": {
+                        "branch": "main",
+                        "git_sha": "24e1e41036efe2bfec933c389021c7d9b3e9936a",
+                        "installed_by": ["fasta_bedtools_makewindows_nuc"]
+                    },
+                    "bedtools/nuc": {
+                        "branch": "main",
+                        "git_sha": "24e1e41036efe2bfec933c389021c7d9b3e9936a",
+                        "installed_by": ["fasta_bedtools_makewindows_nuc"]
+                    },
                     "bwa/index": {
                         "branch": "main",
                         "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
@@ -148,7 +158,11 @@
                     "samtools/faidx": {
                         "branch": "main",
                         "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
-                        "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load", "gff3_gt_gff3_gff3validator_stat"]
+                        "installed_by": [
+                            "bam_fasta_yahs_juicer_pre_hictk_load",
+                            "fasta_bedtools_makewindows_nuc",
+                            "gff3_gt_gff3_gff3validator_stat"
+                        ]
                     },
                     "seqkit/seq": {
                         "branch": "main",
@@ -187,6 +201,11 @@
                     "bam_fasta_yahs_juicer_pre_hictk_load": {
                         "branch": "main",
                         "git_sha": "bd9ef24fd851c81a9bc1c7ec24fcc3990e9d9b27",
+                        "installed_by": ["subworkflows"]
+                    },
+                    "fasta_bedtools_makewindows_nuc": {
+                        "branch": "main",
+                        "git_sha": "ab1b92607b6bf74f8858666397dc30cda7572a6e",
                         "installed_by": ["subworkflows"]
                     },
                     "fasta_fastq_winnowmap_coverage": {

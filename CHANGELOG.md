@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 20. Swapped out sub-workflow `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` and replaced it with `BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD` to fix JuicerTools memory usage issue [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273) and the HiC map scale issue [#266](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/266)
 21. Now the HiC map is loaded at 100 Kbp resolution to improve loading time [#284](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/284)
 22. Added sub-workflow `FASTA_FASTQ_WINNOWMAP_COVERAGE` [#272](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/272)
+23. Added sub-workflow `FASTA_BEDTOOLS_MAKEWINDOWS_NUC` [#289](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/289)
 
 ### `Fixed`
 
