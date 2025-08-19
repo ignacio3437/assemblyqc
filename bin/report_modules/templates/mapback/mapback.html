@@ -1,0 +1,22 @@
+<div id="MAPBACK" class="tabcontent" style="display: none">
+    <div class="section-para-wrapper">
+        <p class="section-para">
+            A mapback profile is created from long reads mapped to the genome with Winnowmap and from the GC content
+            computed with bedtools.
+        </p>
+        <p class="section-para"><b>Reference:</b></p>
+        <p class="section-para">
+            Chirag Jain, Arang Rhie, Nancy Hansen, Sergey Koren and Adam Phillippy. "Long-read mapping to repetitive
+            reference sequences using Winnowmap2". Nature Methods, 2022. doi: <a
+                href="https://doi.org/10.1038/s41592-022-01457-8" target="_blank">10.1038/s41592-022-01457-8</a>
+        </p>
+        <p class="section-para">
+            Aaron R. Quinlan, Ira M. Hall, BEDTools: a flexible suite of utilities for comparing genomic features,
+            Bioinformatics, Volume 26, Issue 6, March 2010, Pages 841-842, doi: <a
+                href="https://doi.org/10.1093/bioinformatics/btq033" target="_blank">10.1093/bioinformatics/btq033</a>
+        </p>
+        <p class="section-para"><b>Version: {{ all_stats_dicts['VERSIONS']['WINNOWMAP']['winnowmap'] }} (Winnowmap), {{
+                all_stats_dicts['VERSIONS']['BEDTOOLS_NUC']['bedtools'] }} (bedtools)</b></p>
+    </div>
+    {% include 'mapback/dropdown.html' %} {% include 'mapback/report_contents.html' %}
+</div>

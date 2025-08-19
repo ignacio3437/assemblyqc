@@ -41,6 +41,11 @@
     - [YaHS juicer pre](https://github.com/c-zhou/yahs): BAM to juicer conversion
     - [hictk load/zoomify](https://github.com/paulsengroup/hictk): `.hic` file creation
     - [juicebox.js](https://github.com/igvteam/juicebox.js): HiC contact map visualisation
+  - `Mapback profile from alignment of long-read data and GC content`
+    - [Winnowmap](https://github.com/marbl/Winnowmap): Align long-read data
+    - [paftools sam2paf](https://github.com/lh3/minimap2): Convert SAM to PAF
+    - [T2T-Polish pafToCovClippedWig](https://github.com/arangrhie/T2T-Polish): Convert PAF to coverage Wig
+    - [bedtools nuc](https://bedtools.readthedocs.io/en/latest/): Compute GC content
   - `K-mer completeness, consensus quality and phasing assessment`
     - [sra-tools](https://github.com/ncbi/sra-tools): Assembly, maternal and paternal data download from SRA or use of local FASTQ files
     - [Merqury hapmers](https://github.com/marbl/merqury/blob/master/trio/hapmers.sh): Hapmer generation if parental data is available

@@ -892,6 +892,7 @@ workflow ASSEMBLYQC {
         1024 // val_coverage_span
     )
 
+    ch_mapback_outputs                      = FASTA_FASTQ_WINNOWMAP_COVERAGE.out.wig.map { _meta, wig -> wig }
     ch_versions                             = ch_versions.mix(FASTA_FASTQ_WINNOWMAP_COVERAGE.out.versions)
 
     FASTA_BEDTOOLS_MAKEWINDOWS_NUC (
@@ -900,6 +901,11 @@ workflow ASSEMBLYQC {
         : ch_valid_target_assembly
     )
 
+    ch_mapback_outputs                      = ch_mapback_outputs
+                                            | mix(
+                                                FASTA_BEDTOOLS_MAKEWINDOWS_NUC.out.nuc
+                                                | map { _meta, nuc -> nuc }
+                                            )
     ch_versions                             = ch_versions.mix(FASTA_BEDTOOLS_MAKEWINDOWS_NUC.out.versions)
 
     // Collate and save software versions
@@ -936,6 +942,7 @@ workflow ASSEMBLYQC {
         ch_synteny_outputs                  .collect().ifEmpty([]),
         ch_merqury_outputs                  .collect().ifEmpty([]),
         ch_orthofinder_outputs              .collect().ifEmpty([]),
+        ch_mapback_outputs                  .collect().ifEmpty([]),
         ch_versions_yml,
         ch_params_as_json,
         ch_summary_params_as_json

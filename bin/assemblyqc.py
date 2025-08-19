@@ -19,6 +19,7 @@ from report_modules.parsers.gff3_validate_parser import parse_gff3_validate_fold
 from report_modules.parsers.hic_parser import parse_hic_folder
 from report_modules.parsers.kraken2_parser import parse_kraken2_folder
 from report_modules.parsers.lai_parser import parse_lai_folder
+from report_modules.parsers.mapback_parser import parse_mapback_folder
 from report_modules.parsers.merqury_parser import parse_merqury_folder
 from report_modules.parsers.ncbi_fcs_adaptor_parser import parse_ncbi_fcs_adaptor_folder
 from report_modules.parsers.ncbi_fcs_gx_parser import parse_ncbi_fcs_gx_folder
@@ -59,6 +60,7 @@ if __name__ == "__main__":
     data_from_tools = {**data_from_tools, **parse_synteny_folder()}
     data_from_tools = {**data_from_tools, **parse_merqury_folder()}
     data_from_tools = {**data_from_tools, **parse_orthofinder_folder()}
+    data_from_tools = {**data_from_tools, **parse_mapback_folder()}
 
     with open("software_versions.yml") as f:
         versions_from_ch_versions = yaml.safe_load(f)
