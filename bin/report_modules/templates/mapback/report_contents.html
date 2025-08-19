@@ -1,0 +1,16 @@
+{% set vars = {'is_first': True} %} {% for item in range(all_stats_dicts["MAPBACK"]|length) %} {% set
+active_text = 'display: block' if vars.is_first else 'display: none' %}
+<div id="tabcontent_MAPBACK_{{ all_stats_dicts['MAPBACK'][item]['hap'] }}" class="tabcontent-MAPBACK"
+    style="{{ active_text }}">
+    <div class="results-section">
+        <div class="section-heading-wrapper">
+            <div class="section-heading">{{ all_stats_dicts['MAPBACK'][item]['hap'] }}</div>
+        </div>
+    </div>
+    {% for plot in range(all_stats_dicts['MAPBACK'][item]['plots']|length) %}
+    <div class="image-wrapper">
+        <img src="{{ all_stats_dicts['MAPBACK'][item]['plots'][plot] }}" alt="" />
+    </div>
+    {% endfor %}
+</div>
+{% if vars.update({'is_first': False}) %} {% endif %} {% endfor %}

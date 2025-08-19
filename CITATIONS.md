@@ -144,6 +144,18 @@
 
   > Emms, D.M., Kelly, S. OrthoFinder: phylogenetic orthology inference for comparative genomics. Genome Biol 20, 238 (2019). doi: <a href="https://doi.org/10.1186/s13059-019-1832-y">10.1186/s13059-019-1832-y</a>
 
+- Winnowmap, [LicenseRef-Public-Domain](https://github.com/marbl/Winnowmap/blob/master/LICENSE)
+
+  > Chirag Jain, Arang Rhie, Nancy Hansen, Sergey Koren and Adam Phillippy. "Long-read mapping to repetitive reference sequences using Winnowmap2". Nature Methods, 2022. doi: <a href="https://doi.org/10.1038/s41592-022-01457-8">10.1038/s41592-022-01457-8</a>
+
+- T2T-Polish, [LicenseRef-Public-Domain](https://github.com/arangrhie/T2T-Polish/blob/master/LICENSE)
+
+  > Mc Cartney AM, Shafin K, Alonge M et al. Chasing perfection: validation and polishing strategies for telomere-to-telomere genome assemblies. Nat Methods (2022) doi: <a href="https://doi.org/10.1038/s41592-022-01440-3">10.1038/s41592-022-01440-3</a>
+
+- bedtools, [MIT](https://github.com/arq5x/bedtools2/blob/master/LICENSE)
+
+  > Aaron R. Quinlan, Ira M. Hall, BEDTools: a flexible suite of utilities for comparing genomic features, Bioinformatics, Volume 26, Issue 6, March 2010, Pages 841–842, doi: <a href="https://doi.org/10.1093/bioinformatics/btq033">10.1093/bioinformatics/btq033</a>
+
 ## Software packaging/containerisation tools
 
 - [Anaconda](https://anaconda.com)
