@@ -7,117 +7,117 @@
                 "gallvp": {
                     "bwa/index": {
                         "branch": "main",
-                        "git_sha": "546b0d4d1c911d871c67f33866761b68b09e93ce",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["fastq_bwa_mem_samblaster"]
                     },
                     "bwa/mem": {
                         "branch": "main",
-                        "git_sha": "546b0d4d1c911d871c67f33866761b68b09e93ce",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["fastq_bwa_mem_samblaster"]
                     },
                     "cat/cat": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "custom/interleavefasta": {
                         "branch": "main",
-                        "git_sha": "6ce7bf4c7097a644610d3d6867551e629647839c",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_seqkit_refsort"]
                     },
                     "custom/relabelfasta": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["modules"]
                     },
                     "custom/restoregffids": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "custom/shortenfastaids": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "custom/yahsjuicerpre2pairs": {
                         "branch": "main",
-                        "git_sha": "c4658df0a54700f5ee0a2b1bd6f357d3f14f6f06",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "custom/yahsjuicerpre2tracks": {
                         "branch": "main",
-                        "git_sha": "bd9ef24fd851c81a9bc1c7ec24fcc3990e9d9b27",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "falint": {
                         "branch": "main",
-                        "git_sha": "0a319b3cbff0a0bf6709b3a559424d04a5d40e25",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["modules"]
                     },
                     "gt/gff3": {
                         "branch": "main",
-                        "git_sha": "166406210bc5746b297fb1b6466f4408678abe26",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["gff3_gt_gff3_gff3validator_stat"]
                     },
                     "gt/gff3validator": {
                         "branch": "main",
-                        "git_sha": "166406210bc5746b297fb1b6466f4408678abe26",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["gff3_gt_gff3_gff3validator_stat"]
                     },
                     "gt/stat": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["gff3_gt_gff3_gff3validator_stat"]
                     },
                     "gunzip": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["modules"]
                     },
                     "haphic/refsort": {
                         "branch": "main",
-                        "git_sha": "b38eaa5b3364323e7cceb35184e00b5023ae1d68",
+                        "git_sha": "14a2fc882849b003502d196d5e8b8ae68535ceff",
                         "installed_by": ["fasta_seqkit_refsort"]
                     },
                     "hicqc": {
                         "branch": "main",
-                        "git_sha": "16f95a965fb53636bc4e2d143332384c1879348e",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["modules"]
                     },
                     "hictk/load": {
                         "branch": "main",
-                        "git_sha": "aa39a38648711e4e1b23010ca57889dafc4f473a",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "hictk/zoomify": {
                         "branch": "main",
-                        "git_sha": "aa39a38648711e4e1b23010ca57889dafc4f473a",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     },
                     "juiceboxscripts/makeagpfromfasta": {
                         "branch": "main",
-                        "git_sha": "96daa61199a35f7982cc839685f295775b42d161",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load", "fasta_seqkit_refsort"]
                     },
                     "ltrfinder": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "ltrharvest": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "ltrretriever/lai": {
                         "branch": "main",
-                        "git_sha": "166406210bc5746b297fb1b6466f4408678abe26",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "ltrretriever/ltrretriever": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "meryl/count": {
@@ -127,12 +127,12 @@
                     },
                     "minimap2/align": {
                         "branch": "main",
-                        "git_sha": "166406210bc5746b297fb1b6466f4408678abe26",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_seqkit_refsort", "modules"]
                     },
                     "paftools/sam2paf": {
                         "branch": "main",
-                        "git_sha": "5ac4be1ad0db62546c0495b105a075fcbdb32608",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["fasta_fastq_winnowmap_coverage"]
                     },
                     "plotsr": {
@@ -142,22 +142,22 @@
                     },
                     "samblaster": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["fastq_bwa_mem_samblaster"]
                     },
                     "samtools/faidx": {
                         "branch": "main",
-                        "git_sha": "2af875f77d318445f12125e1a8aefdada60ecf6b",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load", "gff3_gt_gff3_gff3validator_stat"]
                     },
                     "seqkit/seq": {
                         "branch": "main",
-                        "git_sha": "546b0d4d1c911d871c67f33866761b68b09e93ce",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_ltrretriever_lai"]
                     },
                     "seqkit/sort": {
                         "branch": "main",
-                        "git_sha": "65726596906e57173136e918e30f8cffc6a0daf5",
+                        "git_sha": "f0a8febe769ae3e58740973a5cb984e6a6cd89d7",
                         "installed_by": ["fasta_seqkit_refsort"]
                     },
                     "syri": {
@@ -167,7 +167,7 @@
                     },
                     "t2tpolish/paftocovclippedwig": {
                         "branch": "main",
-                        "git_sha": "987844dd8eca12b524a33fd4ff45a690b119d843",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["fasta_fastq_winnowmap_coverage"]
                     },
                     "winnowmap": {
@@ -177,7 +177,7 @@
                     },
                     "yahs/juicerpre": {
                         "branch": "main",
-                        "git_sha": "c4658df0a54700f5ee0a2b1bd6f357d3f14f6f06",
+                        "git_sha": "5d2d4b9090a66560be9aff2e2bb8219045b62d6c",
                         "installed_by": ["bam_fasta_yahs_juicer_pre_hictk_load"]
                     }
                 }
