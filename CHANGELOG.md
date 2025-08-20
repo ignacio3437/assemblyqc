@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [19-Aug-2025]
+## v3.0.0dev - [21-Aug-2025]
 
 ### `Added`
 
@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 12. Fixed an issue where `JUICERTOOLS_PRE` was not requesting the right ammount of memory [#268](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/268)
 13. ~~Added `JUICER_INDEXBYCHR` to the HiC workflow so that `JUICERTOOLS_PRE` uses multiple threads [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273)~~ This change lead to a broken HiC map and was, therefore, rolled back.
 14. Fixed an issue where the HiC map did not load correctly on Firefox [#274](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/274)
+15. Fixed an issue where the GC content was computed for all the assemblies instead of only those that had reads available for computing coverage [#294](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/294)
 
 ### `Deprecated`
 
