@@ -884,9 +884,33 @@ workflow ASSEMBLYQC {
     ch_versions                             = ch_versions.mix(ORTHOFINDER.out.versions)
 
     // MAPBACK
+    ch_mapback_reads_input                  = ch_fetchngs.mapback.mix(ch_mapback_reads_branch.rest)
+    ch_mapback_assembly_input               = ch_mapback_reads_input
+                                            | map { meta, reads ->
+                                                [
+                                                    meta.ref_id,
+                                                    meta,
+                                                    reads
+                                                ]
+                                            }
+                                            | join(
+                                                ch_valid_target_assembly
+                                                | map { meta, fasta ->
+                                                    [
+                                                        meta.id,
+                                                        meta,
+                                                        fasta
+                                                    ]
+                                                }
+                                            )
+                                            | map { _ref_id, _meta_r, _reads, meta_f, fasta ->
+                                                [
+                                                    meta_f, fasta
+                                                ]
+                                            }
     FASTA_FASTQ_WINNOWMAP_COVERAGE (
-        ch_valid_target_assembly,
-        ch_fetchngs.mapback.mix(ch_mapback_reads_branch.rest),
+        ch_mapback_assembly_input,
+        ch_mapback_reads_input,
         15, // val_k
         0.9998, // val_meryl_distinct
         1024 // val_coverage_span
@@ -898,7 +922,7 @@ workflow ASSEMBLYQC {
     FASTA_BEDTOOLS_MAKEWINDOWS_NUC (
         params.mapback_skip
         ? Channel.empty()
-        : ch_valid_target_assembly
+        : ch_mapback_assembly_input
     )
 
     ch_mapback_outputs                      = ch_mapback_outputs

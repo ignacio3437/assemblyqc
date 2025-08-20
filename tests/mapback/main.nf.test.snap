@@ -2,7 +2,7 @@
     "mapback": {
         "content": [
             {
-                "successful tasks": 27,
+                "successful tasks": 20,
                 "versions": {
                     "ASSEMBLATHON_STATS": {
                         "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
@@ -49,9 +49,7 @@
                     "bacteroides_fragilis_stats.csv:md5,081d707dd9fc92db7b4706b4a0d78ec0",
                     "sarscov2_stats.csv:md5,9ec4147b73cae550a38337520fc028dd",
                     "bacteroides_fragilis.bed:md5,b264a651b31ddf2b2ec326a8d209a10d",
-                    "bacteroides_fragilis.cov.wig:md5,1239e86511111eefab50440e17c778cb",
-                    "sarscov2.bed:md5,977c49e01f2c64deb42bb32398b0c3c9",
-                    "sarscov2.cov.wig:md5,19bcbd9726c8b40c3e117e0a59855643"
+                    "bacteroides_fragilis.cov.wig:md5,1239e86511111eefab50440e17c778cb"
                 ]
             }
         ],
@@ -59,6 +57,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-08-19T18:16:33.209133"
+        "timestamp": "2025-08-21T09:37:48.377459"
     }
 }
