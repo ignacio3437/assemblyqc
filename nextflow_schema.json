@@ -90,7 +90,7 @@
                 "ncbi_fcs_adaptor_empire": {
                     "type": "string",
                     "enum": ["euk", "prok"],
-                    "description": "Empire for NCBI FCS Adaptor checking: 'euk' for eukaryotes, or 'prok' for prokaryotes",
+                    "description": "Empire for NCBI FCS Adaptor checking",
                     "fa_icon": "fas fa-project-diagram"
                 },
                 "ncbi_fcs_gx_skip": {
@@ -164,7 +164,7 @@
                 "busco_mode": {
                     "type": "string",
                     "enum": ["genome", "transcriptome", "proteins"],
-                    "description": "BUSCO mode: 'genome', 'transcriptome', 'proteins'",
+                    "description": "BUSCO mode",
                     "fa_icon": "fas fa-cog"
                 },
                 "busco_lineage_datasets": {
@@ -252,7 +252,7 @@
                 "hic_map_combinations": {
                     "type": "string",
                     "fa_icon": "fas fa-object-group",
-                    "description": "Space separated tags denoting assemblies and assembly combinations for HiC map construction. For example, \"tag1 tag2:tag3\". In \"tag2:tag3\", \"tag2\" is treated as the query when applying refsort. Leaving as null results in each assembly getting a separate HiC map.",
+                    "description": "Space separated tags for HiC map construction, e.g. \"tag1 tag2:tag3\". In \"tag2:tag3\", \"tag2\" is the query in refsort. null implies separate map for each input assembly.",
                     "pattern": "^\\w(\\w+)*(\\s?\\w+(:\\w+)?)*$"
                 },
                 "hic_alphanumeric_sort": {
@@ -344,7 +344,7 @@
                 "synteny_mummer_plot_type": {
                     "type": "string",
                     "default": "both",
-                    "description": "Synteny plot type from Mummer alignments: 'dotplot', 'circos', or 'both'",
+                    "description": "Synteny plot type from Mummer alignments",
                     "enum": ["both", "dotplot", "circos"],
                     "fa_icon": "fas fa-chart-line"
                 },
