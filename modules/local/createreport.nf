@@ -25,6 +25,7 @@ process CREATEREPORT {
     path versions
     val params_json
     val params_summary_json
+    val mapback_filter_length_bp
 
     output:
     path 'report.html'              , emit: html
@@ -36,6 +37,10 @@ process CREATEREPORT {
 
     script:
     """
+    cat <<-END_QC_PARAMS > qc_params.yml
+        mapback_filter_length_bp: $mapback_filter_length_bp
+    END_QC_PARAMS
+
     echo \\
         -n \\
         '$params_json' \\

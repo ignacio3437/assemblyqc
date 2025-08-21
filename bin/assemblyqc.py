@@ -39,6 +39,9 @@ if __name__ == "__main__":
     )
     tools_dict, tools_table = parse_tools_yaml()
 
+    with open("qc_params.yml") as f:
+        qc_params: dict[str, str] = yaml.safe_load(f)
+
     data_from_tools: dict | dict[str, list] = {}
 
     data_from_tools = {**data_from_tools, **parse_gff3_validate_folder()}
@@ -60,7 +63,12 @@ if __name__ == "__main__":
     data_from_tools = {**data_from_tools, **parse_synteny_folder()}
     data_from_tools = {**data_from_tools, **parse_merqury_folder()}
     data_from_tools = {**data_from_tools, **parse_orthofinder_folder()}
-    data_from_tools = {**data_from_tools, **parse_mapback_folder()}
+    data_from_tools = {
+        **data_from_tools,
+        **parse_mapback_folder(
+            mapback_filter_length_bp=int(qc_params["mapback_filter_length_bp"])
+        ),
+    }
 
     with open("software_versions.yml") as f:
         versions_from_ch_versions = yaml.safe_load(f)

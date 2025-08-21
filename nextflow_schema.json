@@ -415,6 +415,12 @@
                     "default": true,
                     "description": "Skip creation of Mapback profiles",
                     "fa_icon": "fas fa-forward"
+                },
+                "mapback_filter_length_bp": {
+                    "type": "integer",
+                    "default": 100000,
+                    "description": "Length in bp for the moving median filter applied to GC content and coverage profile",
+                    "fa_icon": "fas fa-ruler-horizontal"
                 }
             }
         },
