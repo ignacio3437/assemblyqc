@@ -26,14 +26,14 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 
 ## NCBI FCS options
 
-| Parameter                      | Description                                                                           | Type      | Default | Required | Hidden |
-| ------------------------------ | ------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
-| `ncbi_fcs_adaptor_skip`        | Skip NCBI FCS Adaptor checking                                                        | `boolean` | True    |          |        |
-| `ncbi_fcs_adaptor_empire`      | Empire for NCBI FCS Adaptor checking: 'euk' for eukaryotes, or 'prok' for prokaryotes | `string`  |         |          |        |
-| `ncbi_fcs_gx_skip`             | Skip NCBI FCS external organism contamination checking                                | `boolean` | True    |          |        |
-| `ncbi_fcs_gx_tax_id`           | Tax ID for NCBI FCS GX. See: https://www.ncbi.nlm.nih.gov/taxonomy                    | `number`  |         |          |        |
-| `ncbi_fcs_gx_db_path`          | Path to NCBI FCS GX database. See: https://github.com/ncbi/fcs/wiki/FCS-GX            | `string`  |         |          |        |
-| `contamination_stops_pipeline` | Skip remaining QC steps for an assembly which has adaptor or GX contamination         | `boolean` | True    |          |        |
+| Parameter                      | Description                                                                   | Type      | Default | Required | Hidden |
+| ------------------------------ | ----------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
+| `ncbi_fcs_adaptor_skip`        | Skip NCBI FCS Adaptor checking                                                | `boolean` | True    |          |        |
+| `ncbi_fcs_adaptor_empire`      | Empire for NCBI FCS Adaptor checking (accepted: `euk`\|`prok`)                | `string`  |         |          |        |
+| `ncbi_fcs_gx_skip`             | Skip NCBI FCS external organism contamination checking                        | `boolean` | True    |          |        |
+| `ncbi_fcs_gx_tax_id`           | Tax ID for NCBI FCS GX. See: https://www.ncbi.nlm.nih.gov/taxonomy            | `number`  |         |          |        |
+| `ncbi_fcs_gx_db_path`          | Path to NCBI FCS GX database. See: https://github.com/ncbi/fcs/wiki/FCS-GX    | `string`  |         |          |        |
+| `contamination_stops_pipeline` | Skip remaining QC steps for an assembly which has adaptor or GX contamination | `boolean` | True    |          |        |
 
 ## tidk options
 
@@ -49,7 +49,7 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 | Parameter                | Description                                                                                                    | Type      | Default | Required | Hidden |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
 | `busco_skip`             | Skip BUSCO                                                                                                     | `boolean` | True    |          |        |
-| `busco_mode`             | BUSCO mode: 'genome', 'transcriptome', 'proteins'                                                              | `string`  |         |          |        |
+| `busco_mode`             | BUSCO mode (accepted: `genome`\|`transcriptome`\|`proteins`)                                                   | `string`  |         |          |        |
 | `busco_lineage_datasets` | BUSCO lineages. It should be provided as a space-separated list of lineages: 'fungi_odb10 microsporidia_odb10' | `string`  |         |          |        |
 | `busco_download_path`    | Download path for BUSCO                                                                                        | `string`  |         |          |        |
 
@@ -68,19 +68,18 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 
 ## HiC options
 
-| Parameter                                                 | Description                                                                                                                                                                                                  | Type      | Default                                           | Required | Hidden |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------- | -------- | ------ |
-| `hic`                                                     | HiC reads path provided as a SRA ID or as paired reads such as 'hic_reads{1,2}.fastq.gz'                                                                                                                     | `string`  |                                                   |          |        |
-| `hic_skip_fastp`                                          | Skip HiC read trimming                                                                                                                                                                                       | `boolean` |                                                   |          |        |
-| `hic_skip_fastqc`                                         | Skip HiC read QC                                                                                                                                                                                             | `boolean` | True                                              |          |        |
-| `hic_fastp_ext_args`                                      | Additional parameters for fastp trimming                                                                                                                                                                     | `string`  | --qualified_quality_phred 20 --length_required 50 |          |        |
-| `hic_save_trimmed`                                        | To save or not to save the trimmed FastQ files                                                                                                                                                               | `boolean` |                                                   |          |        |
-| `hic_map_combinations`                                    | Space separated tags denoting assemblies and assembly combinations for HiC map construction. For example, "tag1 tag2:tag3". In "tag2:tag3", "tag2" is treated as the query when applying refsort. Leaving as |
-| null results in each assembly getting a separate HiC map. | `string`                                                                                                                                                                                                     |           |                                                   |          |
-| `hic_alphanumeric_sort`                                   | Sort FASTA sequences by their labels for creating the HiC contact map?                                                                                                                                       | `boolean` | True                                              |          |        |
-| `hic_refsort`                                             | Apply HapHic refsort to query fasta in paired HiC map combinations                                                                                                                                           | `boolean` | True                                              |          |        |
-| `hic_mapq`                                                | HiC MAPQ threshold to apply at the YAHS juicer pre stage                                                                                                                                                     | `integer` | 1                                                 |          |        |
-| `hic_assembly_mode`                                       | To set or not to set the assembly mode for YAHS juicer pre stage                                                                                                                                             | `boolean` | True                                              |          |        |
+| Parameter               | Description                                                                                                                                                              | Type      | Default                                           | Required | Hidden |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------- | -------- | ------ |
+| `hic`                   | HiC reads path provided as a SRA ID or as paired reads such as 'hic_reads{1,2}.fastq.gz'                                                                                 | `string`  |                                                   |          |        |
+| `hic_skip_fastp`        | Skip HiC read trimming                                                                                                                                                   | `boolean` |                                                   |          |        |
+| `hic_skip_fastqc`       | Skip HiC read QC                                                                                                                                                         | `boolean` | True                                              |          |        |
+| `hic_fastp_ext_args`    | Additional parameters for fastp trimming                                                                                                                                 | `string`  | --qualified_quality_phred 20 --length_required 50 |          |        |
+| `hic_save_trimmed`      | To save or not to save the trimmed FastQ files                                                                                                                           | `boolean` |                                                   |          |        |
+| `hic_map_combinations`  | Space separated tags for HiC map construction, e.g. "tag1 tag2:tag3". In "tag2:tag3", "tag2" is the query in refsort. null implies separate map for each input assembly. | `string`  |                                                   |          |        |
+| `hic_alphanumeric_sort` | Sort FASTA sequences by their labels for creating the HiC contact map?                                                                                                   | `boolean` | True                                              |          |        |
+| `hic_refsort`           | Apply HapHic refsort to query fasta in paired HiC map combinations                                                                                                       | `boolean` | True                                              |          |        |
+| `hic_mapq`              | HiC MAPQ threshold to apply at the YAHS juicer pre stage                                                                                                                 | `integer` | 1                                                 |          |        |
+| `hic_assembly_mode`     | To set or not to set the assembly mode for YAHS juicer pre stage                                                                                                         | `boolean` | True                                              |          |        |
 
 ## Merqury options
 
@@ -98,7 +97,7 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 | `synteny_plotsr_skip`              | Skip plotsr-based synteny analysis                                                                                                                                         | `boolean` | True    |          |        |
 | `synteny_xref_assemblies`          | Reference assemblies for synteny analysis                                                                                                                                  | `string`  |         |          |        |
 | `synteny_between_input_assemblies` | Create syntenic plots between each pair of input assemblies                                                                                                                | `boolean` | True    |          |        |
-| `synteny_mummer_plot_type`         | Synteny plot type from Mummer alignments: 'dotplot', 'circos', or 'both'                                                                                                   | `string`  | both    |          |        |
+| `synteny_mummer_plot_type`         | Synteny plot type from Mummer alignments (accepted: `both`\|`dotplot`\|`circos`)                                                                                           | `string`  | both    |          |        |
 | `synteny_mummer_m2m_align`         | Include Mummer alignment blocks with many-to-many mappings                                                                                                                 | `boolean` |         |          |        |
 | `synteny_mummer_max_gap`           | Mummer alignments within this distance are bundled together                                                                                                                | `integer` | 1000000 |          |        |
 | `synteny_mummer_min_bundle_size`   | After bundling, any Mummer alignment bundle smaller than this size is filtered out                                                                                         | `integer` | 1000000 |          |        |
@@ -115,9 +114,10 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 
 ## Mapback profile options
 
-| Parameter      | Description                       | Type      | Default | Required | Hidden |
-| -------------- | --------------------------------- | --------- | ------- | -------- | ------ |
-| `mapback_skip` | Skip creation of Mapback profiles | `boolean` | True    |          |        |
+| Parameter                  | Description                                                                          | Type      | Default | Required | Hidden |
+| -------------------------- | ------------------------------------------------------------------------------------ | --------- | ------- | -------- | ------ |
+| `mapback_skip`             | Skip creation of Mapback profiles                                                    | `boolean` | True    |          |        |
+| `mapback_filter_length_bp` | Length in bp for the moving median filter applied to GC content and coverage profile | `integer` | 100000  |          |        |
 
 ## Institutional config options
 
@@ -134,12 +134,12 @@ Parameters used to describe centralised config profiles. These should not be edi
 
 Less common options for the pipeline, typically set in a config file.
 
-| Parameter             | Description                                                                                                 | Type      | Default | Required | Hidden |
-| --------------------- | ----------------------------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
-| `version`             | Display version and exit.                                                                                   | `boolean` |         |          | True   |
-| `publish_dir_mode`    | Method used to save pipeline results to output directory.                                                   | `string`  | copy    |          | True   |
-| `email_on_fail`       | Email address for completion summary, only when pipeline fails.                                             | `string`  |         |          | True   |
-| `plaintext_email`     | Send plain-text email instead of HTML.                                                                      | `boolean` |         |          | True   |
-| `monochrome_logs`     | Do not use coloured log outputs.                                                                            | `boolean` |         |          | True   |
-| `hook_url`            | Incoming hook URL for messaging service                                                                     | `string`  |         |          | True   |
-| `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string`  |         |          | True   |
+| Parameter             | Description                                                                                                                        | Type      | Default | Required | Hidden |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
+| `version`             | Display version and exit.                                                                                                          | `boolean` |         |          | True   |
+| `publish_dir_mode`    | Method used to save pipeline results to output directory. (accepted: `symlink`\|`rellink`\|`link`\|`copy`\|`copyNoFollow`\|`move`) | `string`  | copy    |          | True   |
+| `email_on_fail`       | Email address for completion summary, only when pipeline fails.                                                                    | `string`  |         |          | True   |
+| `plaintext_email`     | Send plain-text email instead of HTML.                                                                                             | `boolean` |         |          | True   |
+| `monochrome_logs`     | Do not use coloured log outputs.                                                                                                   | `boolean` |         |          | True   |
+| `hook_url`            | Incoming hook URL for messaging service                                                                                            | `string`  |         |          | True   |
+| `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss.                        | `string`  |         |          | True   |

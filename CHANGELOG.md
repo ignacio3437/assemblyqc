@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 22. Added sub-workflow `FASTA_FASTQ_WINNOWMAP_COVERAGE` [#272](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/272)
 23. Added sub-workflow `FASTA_BEDTOOLS_MAKEWINDOWS_NUC` [#289](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/289)
 24. Added a mapback profile module to the AssemblyQC report [#292](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/292)
+25. Added parameter `mapback_filter_length_bp` to take care of salt and pepper noise in the Mapback coverage profile [#296](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/296)
 
 ### `Fixed`
 

@@ -908,6 +908,9 @@ workflow ASSEMBLYQC {
                                                     meta_f, fasta
                                                 ]
                                             }
+    // WARN: If you change val_coverage_span parameter, the moving median filter in the
+    // AssemblyQC module for the Mapback profile plots will break
+    // See: bin/report_modules/parsers/mapback_parser.py:90
     FASTA_FASTQ_WINNOWMAP_COVERAGE (
         ch_mapback_assembly_input,
         ch_mapback_reads_input,
@@ -969,7 +972,8 @@ workflow ASSEMBLYQC {
         ch_mapback_outputs                  .collect().ifEmpty([]),
         ch_versions_yml,
         ch_params_as_json,
-        ch_summary_params_as_json
+        ch_summary_params_as_json,
+        params.mapback_filter_length_bp
     )
 }
 

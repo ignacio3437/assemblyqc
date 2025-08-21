@@ -1,6 +1,8 @@
 import base64
+import logging
 import os
 import re
+import sys
 from collections import OrderedDict
 from pathlib import Path
 
@@ -11,6 +13,8 @@ from matplotlib.ticker import MaxNLocator
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
+
+LOG = logging.getLogger(__name__)
 
 
 def parse_bed_gc(bed_file: str) -> OrderedDict[str, list[tuple[int, int, float]]]:
@@ -47,6 +51,7 @@ def parse_wig(wig_file: str) -> OrderedDict[str, list[tuple[int, float]]]:
             if line.startswith("fixedStep"):
                 contig = line.split("chrom=")[1].split()[0].strip()
                 span = int(line.split("span=")[1].split()[0].strip())
+                cursor = int(line.split("start=")[1].split()[0].strip())
                 coverage.setdefault(contig, [])
                 continue
 
@@ -64,6 +69,8 @@ def plot_contig_profile(
     gc_content: list[tuple[int, int, float]],
     seq_num: int,
     folder_name: str,
+    mapback_filter_length_bp: int,
+    delete_images: bool = True,
 ) -> str:
     """
     Plot coverage and GC content for a contig and save as PNG.
@@ -78,7 +85,21 @@ def plot_contig_profile(
     # Coverage plot
     positions: list[int] = [pos for pos, _ in coverage]
     coverages: list[float] = [cov for _, cov in coverage]
-    ax_cov.plot(positions, coverages, color="blue", label="Coverage")
+
+    # Assuming that the coverage has been computed with a span of 1024
+    cov_filter_len: int = 2 * int(mapback_filter_length_bp / 1024 / 2) + 1
+
+    LOG.info(
+        f"Apply filter of len {cov_filter_len} to coverage data from contig {contig}"
+    )
+
+    coverages_mm: list[float] = (
+        pd.Series(coverages)
+        .rolling(window=cov_filter_len, center=True, min_periods=1)
+        .median()
+        .to_list()
+    )
+    ax_cov.plot(positions, coverages_mm, color="blue", label="Coverage")
     ax_cov.set_ylabel("Coverage", color="blue")
     ax_cov.set_xlabel("Position (bp)")
     ax_cov.tick_params(axis="y", labelcolor="blue")
@@ -90,11 +111,25 @@ def plot_contig_profile(
 
     # GC content plot above
     gc_positions: list[int] = [start for start, _, _ in gc_content]
-    gc_values: list[float] = [gc for _, _, gc in gc_content]
-    ax_gc.plot(gc_positions, gc_values, color="green", label="GC Content")
-    ax_gc.set_ylabel("GC Content", color="green")
+    gc_values: list[float] = [gc * 100.0 for _, _, gc in gc_content]
+
+    # Assuming that the GC content has been computed with a window of size 10000
+    gc_filter_len = 2 * int(mapback_filter_length_bp / 10000 / 2) + 1
+
+    LOG.info(f"Apply filter of len {gc_filter_len} to GC data from contig {contig}")
+
+    gc_values_mm: list[float] = (
+        pd.Series(gc_values)
+        .rolling(window=gc_filter_len, center=True, min_periods=1)
+        .median()
+        .to_list()
+    )
+
+    ax_gc.plot(gc_positions, gc_values_mm, color="green", label="GC Content")
+    ax_gc.axhline(y=50, color="black", linestyle=":", linewidth=1)
+    ax_gc.set_ylabel("GC Content (%)", color="green")
     ax_gc.tick_params(axis="y", labelcolor="green")
-    ax_gc.set_ylim(0.0, 1.1)
+    # ax_gc.set_ylim(0.0, 1.1)
     ax_gc.get_xaxis().set_visible(False)
     ax_gc.spines["top"].set_visible(False)
     ax_gc.spines["right"].set_visible(False)
@@ -111,13 +146,18 @@ def plot_contig_profile(
         binary_fc = f.read()
 
     base64_utf8_str = base64.b64encode(binary_fc).decode("utf-8")
-    os.remove(file_name)
+    if delete_images:
+        os.remove(file_name)
 
     return f"data:image/png+xml;base64,{base64_utf8_str}"
 
 
 def plot_profile(
-    wig_file: str, bed_file: str, folder_name: str
+    wig_file: str,
+    bed_file: str,
+    folder_name: str,
+    mapback_filter_length_bp: int,
+    delete_images: bool = True,
 ) -> tuple[
     OrderedDict[str, list[tuple[int, int, float]]],
     OrderedDict[str, list[tuple[int, float]]],
@@ -131,13 +171,23 @@ def plot_profile(
         coverage: list[tuple[int, float]] = coverage_data[contig]
         gc_content: list[tuple[int, int, float]] = gc_data.get(contig, [])
         plots.append(
-            plot_contig_profile(contig, coverage, gc_content, seq_num, folder_name)
+            plot_contig_profile(
+                contig,
+                coverage,
+                gc_content,
+                seq_num,
+                folder_name,
+                mapback_filter_length_bp,
+                delete_images,
+            )
         )
 
     return (gc_data, coverage_data, plots)
 
 
-def parse_mapback_folder(folder_name: str = "mapback_outputs"):
+def parse_mapback_folder(
+    mapback_filter_length_bp: int, folder_name: str = "mapback_outputs"
+):
     dir = os.getcwdb().decode()
     reports_folder_path = Path(f"{dir}/{folder_name}")
 
@@ -156,7 +206,7 @@ def parse_mapback_folder(folder_name: str = "mapback_outputs"):
 
         con_wig_path = f"{folder_name}/{file_tag}.cov.wig"
         gc_data, coverage_data, plots = plot_profile(
-            con_wig_path, str(bed_path), folder_name
+            con_wig_path, str(bed_path), folder_name, mapback_filter_length_bp
         )
 
         data["MAPBACK"].append(
@@ -169,3 +219,13 @@ def parse_mapback_folder(folder_name: str = "mapback_outputs"):
         )
 
     return {"MAPBACK": sort_list_of_results(data["MAPBACK"], "hap")}
+
+
+if __name__ == "__main__":
+    cov_wig_file: str = sys.argv[1]
+    bed_file: str = sys.argv[2]
+    window_len: int = int(sys.argv[3])
+    output_path: str = "./"
+    delete_images: bool = False
+
+    plot_profile(cov_wig_file, bed_file, output_path, window_len, delete_images)
