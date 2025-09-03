@@ -23,9 +23,8 @@ process CREATEREPORT {
     path orthofinder_outputs        , stageAs: 'orthofinder_outputs/*'
     path mapback_outputs            , stageAs: 'mapback_outputs/*'
     path versions
-    val params_json
-    val params_summary_json
-    val mapback_filter_length_bp
+    path params_as_json_stored
+    path summary_params_as_json_stored
 
     output:
     path 'report.html'              , emit: html
@@ -37,20 +36,6 @@ process CREATEREPORT {
 
     script:
     """
-    cat <<-END_QC_PARAMS > qc_params.yml
-        mapback_filter_length_bp: $mapback_filter_length_bp
-    END_QC_PARAMS
-
-    echo \\
-        -n \\
-        '$params_json' \\
-        > params_json.json
-
-    echo \\
-        -n \\
-        '$params_summary_json' \\
-        > params_summary_json.json
-
     assemblyqc.py
 
     cat <<-END_VERSIONS > versions.yml

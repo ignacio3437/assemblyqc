@@ -1,8 +1,8 @@
 <div id="MAPBACK" class="tabcontent" style="display: none">
     <div class="section-para-wrapper">
         <p class="section-para">
-            A mapback profile is created from long reads mapped to the genome with Winnowmap and from the GC content
-            computed with bedtools.
+            A mapback profile is created from long reads mapped to the genome with Winnowmap, GC content computed with
+            bedtools, and 0/1 genotype calls made with Clair3.
         </p>
         <p class="section-para"><b>Reference:</b></p>
         <p class="section-para">
@@ -15,8 +15,15 @@
             Bioinformatics, Volume 26, Issue 6, March 2010, Pages 841-842, doi: <a
                 href="https://doi.org/10.1093/bioinformatics/btq033" target="_blank">10.1093/bioinformatics/btq033</a>
         </p>
+        <p class="section-para">
+            Zheng, Z., Li, S., Su, J., Leung, A. W. S., Lam, T. W., & Luo, R. (2022). Symphonizing pileup and
+            full-alignment for deep learning-based long-read variant calling. Nature Computational Science, 2(12),
+            797-803. doi: <a href="https://doi.org/10.1101/2021.12.29.474431"
+                target="_blank">10.1101/2021.12.29.474431</a>
+        </p>
         <p class="section-para"><b>Version: {{ all_stats_dicts['VERSIONS']['WINNOWMAP']['winnowmap'] }} (Winnowmap), {{
-                all_stats_dicts['VERSIONS']['BEDTOOLS_NUC']['bedtools'] }} (bedtools)</b></p>
+                all_stats_dicts['VERSIONS']['BEDTOOLS_NUC']['bedtools'] }} (bedtools), {{
+                all_stats_dicts['VERSIONS']['CLAIR3']['clair3'] }} (Clair3)</b></p>
     </div>
     {% include 'mapback/dropdown.html' %} {% include 'mapback/report_contents.html' %}
 </div>

@@ -49,5 +49,8 @@
     "synteny_plotsr_seq_label": "Chr",
     "synteny_plotsr_assembly_order": "gddh13_v1p1 m9_v1 m9_v1_h1 m9_v1_h2",
     "orthofinder_skip": false,
-    "mapback_skip": false
+    "mapback_skip": false,
+    "mapback_variants_skip": true,
+    "mapback_clair3_platform": "hifi",
+    "mapback_rolling_median_bp": 100000
 }

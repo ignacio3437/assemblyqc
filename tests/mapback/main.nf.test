@@ -7,9 +7,11 @@ nextflow_pipeline {
 
         when {
             params {
-                input           = "$baseDir/tests/mapback/assemblysheet.csv"
-                mapback_skip    = false
-                outdir          = "$outputDir"
+                input                   = "$baseDir/tests/mapback/assemblysheet.csv"
+                mapback_skip            = false
+                mapback_variants_skip   = false
+                mapback_clair3_platform = 'hifi'
+                outdir                  = "$outputDir"
             }
         }
 

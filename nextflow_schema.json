@@ -416,10 +416,22 @@
                     "description": "Skip creation of Mapback profiles",
                     "fa_icon": "fas fa-forward"
                 },
-                "mapback_filter_length_bp": {
+                "mapback_variants_skip": {
+                    "type": "boolean",
+                    "default": true,
+                    "fa_icon": "fas fa-forward",
+                    "description": "Skip the variants track when creating the mapback profile"
+                },
+                "mapback_clair3_platform": {
+                    "type": "string",
+                    "fa_icon": "fas fa-map-signs",
+                    "description": "Platform for Clair3 model selection",
+                    "enum": ["hifi", "ont"]
+                },
+                "mapback_rolling_median_bp": {
                     "type": "integer",
                     "default": 100000,
-                    "description": "Length in bp for the moving median filter applied to GC content and coverage profile",
+                    "description": "Length in bp for the rolling median filter applied to Mapback stats before plotting",
                     "fa_icon": "fas fa-ruler-horizontal"
                 }
             }

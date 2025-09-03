@@ -250,6 +250,11 @@
                         "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
                         "installed_by": ["fasta_gxf_busco_plot"]
                     },
+                    "clair3": {
+                        "branch": "master",
+                        "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
+                        "installed_by": ["modules"]
+                    },
                     "custom/sratoolsncbisettings": {
                         "branch": "master",
                         "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
@@ -315,6 +320,11 @@
                         "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/orthofinder/orthofinder.diff"
+                    },
+                    "samtools/sort": {
+                        "branch": "master",
+                        "git_sha": "e89ff68a46b848c4d8aabb8569767516d46db319",
+                        "installed_by": ["modules"]
                     },
                     "seqkit/rmdup": {
                         "branch": "master",

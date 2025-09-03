@@ -72,6 +72,7 @@ workflow FASTA_FASTQ_WINNOWMAP_COVERAGE {
 
 
     emit:
+    bam                                 = WINNOWMAP.out.bam                     // channel: [ val(meta), bam ]
     wig                                 = T2TPOLISH_PAFTOCOVCLIPPEDWIG.out.cov  // channel: [ val(meta), wig ]
     versions                            = ch_versions                           // channel: [ versions.yml ]
 }
