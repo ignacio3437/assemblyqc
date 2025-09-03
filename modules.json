@@ -255,7 +255,8 @@
                     "clair3": {
                         "branch": "master",
                         "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
-                        "installed_by": ["modules"]
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/clair3/clair3.diff"
                     },
                     "custom/sratoolsncbisettings": {
                         "branch": "master",
@@ -326,7 +327,8 @@
                     "samtools/sort": {
                         "branch": "master",
                         "git_sha": "e89ff68a46b848c4d8aabb8569767516d46db319",
-                        "installed_by": ["modules"]
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/samtools/sort/samtools-sort.diff"
                     },
                     "seqkit/rmdup": {
                         "branch": "master",
