@@ -41,7 +41,7 @@
     - [YaHS juicer pre](https://github.com/c-zhou/yahs): BAM to juicer conversion
     - [hictk load/zoomify](https://github.com/paulsengroup/hictk): `.hic` file creation
     - [juicebox.js](https://github.com/igvteam/juicebox.js): HiC contact map visualisation
-  - `Mapback profile from alignment of long-read data, GC content and Variant detection`
+  - `Mapback profile from alignment of long-read data, GC content and variant detection`
     - [Winnowmap](https://github.com/marbl/Winnowmap): Align long-read data
     - [paftools sam2paf](https://github.com/lh3/minimap2): Convert SAM to PAF
     - [T2T-Polish pafToCovClippedWig](https://github.com/arangrhie/T2T-Polish): Convert PAF to coverage Wig
