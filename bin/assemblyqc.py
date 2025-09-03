@@ -33,14 +33,9 @@ from report_modules.report_printer import ReportPrinter
 logging.basicConfig(level=logging.INFO, force=True)
 
 if __name__ == "__main__":
-    params_dict, params_table = parse_params_json("params_json.json")
-    params_summary_dict, params_summary_table = parse_params_json(
-        "params_summary_json.json"
-    )
+    params_dict, params_table = parse_params_json("params.json")
+    params_summary_dict, params_summary_table = parse_params_json("summary_params.json")
     tools_dict, tools_table = parse_tools_yaml()
-
-    with open("qc_params.yml") as f:
-        qc_params: dict[str, str] = yaml.safe_load(f)
 
     data_from_tools: dict | dict[str, list] = {}
 
@@ -66,7 +61,7 @@ if __name__ == "__main__":
     data_from_tools = {
         **data_from_tools,
         **parse_mapback_folder(
-            mapback_filter_length_bp=int(qc_params["mapback_filter_length_bp"])
+            mapback_rolling_median_bp=int(params_dict["mapback_rolling_median_bp"])
         ),
     }
 
@@ -91,7 +86,7 @@ if __name__ == "__main__":
     report_html = report_printer.print(data_from_tools)
 
     with open("report.json", "w") as fp:
-        json.dump(data_from_tools, fp)
+        json.dump(data_from_tools, fp, indent=4)
 
     with open("report.html", "w") as fp:
         fp.write(report_html)

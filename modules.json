@@ -206,12 +206,14 @@
                     "fasta_bedtools_makewindows_nuc": {
                         "branch": "main",
                         "git_sha": "ab1b92607b6bf74f8858666397dc30cda7572a6e",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": ["subworkflows"],
+                        "patch": "subworkflows/gallvp/fasta_bedtools_makewindows_nuc/fasta_bedtools_makewindows_nuc.diff"
                     },
                     "fasta_fastq_winnowmap_coverage": {
                         "branch": "main",
                         "git_sha": "5ac4be1ad0db62546c0495b105a075fcbdb32608",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": ["subworkflows"],
+                        "patch": "subworkflows/gallvp/fasta_fastq_winnowmap_coverage/fasta_fastq_winnowmap_coverage.diff"
                     },
                     "fasta_ltrretriever_lai": {
                         "branch": "main",
@@ -249,6 +251,12 @@
                         "branch": "master",
                         "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
                         "installed_by": ["fasta_gxf_busco_plot"]
+                    },
+                    "clair3": {
+                        "branch": "master",
+                        "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/clair3/clair3.diff"
                     },
                     "custom/sratoolsncbisettings": {
                         "branch": "master",
@@ -315,6 +323,12 @@
                         "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/orthofinder/orthofinder.diff"
+                    },
+                    "samtools/sort": {
+                        "branch": "master",
+                        "git_sha": "e89ff68a46b848c4d8aabb8569767516d46db319",
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/samtools/sort/samtools-sort.diff"
                     },
                     "seqkit/rmdup": {
                         "branch": "master",

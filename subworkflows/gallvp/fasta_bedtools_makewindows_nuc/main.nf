@@ -67,6 +67,8 @@ workflow FASTA_BEDTOOLS_MAKEWINDOWS_NUC {
     ch_versions                     = ch_versions.mix(BEDTOOLS_NUC.out.versions.first())
 
     emit:
-    nuc                             = BEDTOOLS_NUC.out.bed  // channel: [ val(meta2), bed ]
-    versions                        = ch_versions           // channel: [ versions.yml ]
+    fai                             = SAMTOOLS_FAIDX.out.fai    // channel: [ val(meta), fai ]
+    bed                             = ch_intervals_bed          // channel: [ val(meta), bed ]
+    nuc                             = BEDTOOLS_NUC.out.bed      // channel: [ val(meta2), bed ]
+    versions                        = ch_versions               // channel: [ versions.yml ]
 }

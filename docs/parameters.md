@@ -68,18 +68,18 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 
 ## HiC options
 
-| Parameter               | Description                                                                                                                                                              | Type      | Default                                           | Required | Hidden |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------- | -------- | ------ |
-| `hic`                   | HiC reads path provided as a SRA ID or as paired reads such as 'hic_reads{1,2}.fastq.gz'                                                                                 | `string`  |                                                   |          |        |
-| `hic_skip_fastp`        | Skip HiC read trimming                                                                                                                                                   | `boolean` |                                                   |          |        |
-| `hic_skip_fastqc`       | Skip HiC read QC                                                                                                                                                         | `boolean` | True                                              |          |        |
-| `hic_fastp_ext_args`    | Additional parameters for fastp trimming                                                                                                                                 | `string`  | --qualified_quality_phred 20 --length_required 50 |          |        |
-| `hic_save_trimmed`      | To save or not to save the trimmed FastQ files                                                                                                                           | `boolean` |                                                   |          |        |
-| `hic_map_combinations`  | Space separated tags for HiC map construction, e.g. "tag1 tag2:tag3". In "tag2:tag3", "tag2" is the query in refsort. null implies separate map for each input assembly. | `string`  |                                                   |          |        |
-| `hic_alphanumeric_sort` | Sort FASTA sequences by their labels for creating the HiC contact map?                                                                                                   | `boolean` | True                                              |          |        |
-| `hic_refsort`           | Apply HapHic refsort to query fasta in paired HiC map combinations                                                                                                       | `boolean` | True                                              |          |        |
-| `hic_mapq`              | HiC MAPQ threshold to apply at the YAHS juicer pre stage                                                                                                                 | `integer` | 1                                                 |          |        |
-| `hic_assembly_mode`     | To set or not to set the assembly mode for YAHS juicer pre stage                                                                                                         | `boolean` | True                                              |          |        |
+| Parameter               | Description                                                                                                                                     | Type      | Default                                           | Required | Hidden |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------- | -------- | ------ |
+| `hic`                   | HiC reads path provided as a SRA ID or as paired reads such as 'hic_reads{1,2}.fastq.gz'                                                        | `string`  |                                                   |          |        |
+| `hic_skip_fastp`        | Skip HiC read trimming                                                                                                                          | `boolean` |                                                   |          |        |
+| `hic_skip_fastqc`       | Skip HiC read QC                                                                                                                                | `boolean` | True                                              |          |        |
+| `hic_fastp_ext_args`    | Additional parameters for fastp trimming                                                                                                        | `string`  | --qualified_quality_phred 20 --length_required 50 |          |        |
+| `hic_save_trimmed`      | To save or not to save the trimmed FastQ files                                                                                                  | `boolean` |                                                   |          |        |
+| `hic_map_combinations`  | Space separated tags, e.g. "tag1 tag2:tag3". In "tag2:tag3", "tag2" is the query in refsort. null implies separate map for each input assembly. | `string`  |                                                   |          |        |
+| `hic_alphanumeric_sort` | Sort FASTA sequences by their labels for creating the HiC contact map?                                                                          | `boolean` | True                                              |          |        |
+| `hic_refsort`           | Apply HapHic refsort to query fasta in paired HiC map combinations                                                                              | `boolean` | True                                              |          |        |
+| `hic_mapq`              | HiC MAPQ threshold to apply at the YAHS juicer pre stage                                                                                        | `integer` | 1                                                 |          |        |
+| `hic_assembly_mode`     | To set or not to set the assembly mode for YAHS juicer pre stage                                                                                | `boolean` | True                                              |          |        |
 
 ## Merqury options
 
@@ -90,21 +90,22 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 
 ## Synteny options
 
-| Parameter                          | Description                                                                                                                                                                | Type      | Default | Required | Hidden |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
-| `synteny_skip`                     | Skip synteny analysis                                                                                                                                                      | `boolean` | True    |          |        |
-| `synteny_mummer_skip`              | Skip Mummer-based synteny analysis                                                                                                                                         | `boolean` | True    |          |        |
-| `synteny_plotsr_skip`              | Skip plotsr-based synteny analysis                                                                                                                                         | `boolean` | True    |          |        |
-| `synteny_xref_assemblies`          | Reference assemblies for synteny analysis                                                                                                                                  | `string`  |         |          |        |
-| `synteny_between_input_assemblies` | Create syntenic plots between each pair of input assemblies                                                                                                                | `boolean` | True    |          |        |
-| `synteny_mummer_plot_type`         | Synteny plot type from Mummer alignments (accepted: `both`\|`dotplot`\|`circos`)                                                                                           | `string`  | both    |          |        |
-| `synteny_mummer_m2m_align`         | Include Mummer alignment blocks with many-to-many mappings                                                                                                                 | `boolean` |         |          |        |
-| `synteny_mummer_max_gap`           | Mummer alignments within this distance are bundled together                                                                                                                | `integer` | 1000000 |          |        |
-| `synteny_mummer_min_bundle_size`   | After bundling, any Mummer alignment bundle smaller than this size is filtered out                                                                                         | `integer` | 1000000 |          |        |
-| `synteny_plot_1_vs_all`            | Create a separate synteny plot for each contig of the target assembly versus all contigs of the reference assembly. This only applies to Mummer plots                      | `boolean` |         |          |        |
-| `synteny_color_by_contig`          | Mummer synteny plots are colored by contig. Otherwise, they are colored by bundle size                                                                                     | `boolean` | True    |          |        |
-| `synteny_plotsr_seq_label`         | Sequence label prefix for plotsr synteny                                                                                                                                   | `string`  | Chr     |          |        |
-| `synteny_plotsr_assembly_order`    | The order in which the assemblies should be compared, provided as space separated string of assembly tags. If absent, assemblies are ordered by their tags alphabetically. | `string`  |         |          |        |
+| Parameter                          | Description                                                                                                                                           | Type      | Default | Required | Hidden |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
+| `synteny_skip`                     | Skip synteny analysis                                                                                                                                 | `boolean` | True    |          |        |
+| `synteny_mummer_skip`              | Skip Mummer-based synteny analysis                                                                                                                    | `boolean` | True    |          |        |
+| `synteny_plotsr_skip`              | Skip plotsr-based synteny analysis                                                                                                                    | `boolean` | True    |          |        |
+| `synteny_xref_assemblies`          | Reference assemblies for synteny analysis                                                                                                             | `string`  |         |          |        |
+| `synteny_between_input_assemblies` | Create syntenic plots between each pair of input assemblies                                                                                           | `boolean` | True    |          |        |
+| `synteny_mummer_plot_type`         | Synteny plot type from Mummer alignments (accepted: `both`\|`dotplot`\|`circos`)                                                                      | `string`  | both    |          |        |
+| `synteny_mummer_m2m_align`         | Include Mummer alignment blocks with many-to-many mappings                                                                                            | `boolean` |         |          |        |
+| `synteny_mummer_max_gap`           | Mummer alignments within this distance are bundled together                                                                                           | `integer` | 1000000 |          |        |
+| `synteny_mummer_min_bundle_size`   | After bundling, any Mummer alignment bundle smaller than this size is filtered out                                                                    | `integer` | 1000000 |          |        |
+| `synteny_plot_1_vs_all`            | Create a separate synteny plot for each contig of the target assembly versus all contigs of the reference assembly. This only applies to Mummer plots | `boolean` |
+|                                    |                                                                                                                                                       |
+| `synteny_color_by_contig`          | Mummer synteny plots are colored by contig. Otherwise, they are colored by bundle size                                                                | `boolean` | True    |          |        |
+| `synteny_plotsr_seq_label`         | Sequence label prefix for plotsr synteny                                                                                                              | `string`  | Chr     |          |        |
+| `synteny_plotsr_assembly_order`    | The order of comparison as space separated string of assembly tags. If absent, assemblies are ordered by their tags alphabetically.                   | `string`  |         |          |        |
 
 ## OrthoFinder options
 
@@ -114,10 +115,12 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 
 ## Mapback profile options
 
-| Parameter                  | Description                                                                          | Type      | Default | Required | Hidden |
-| -------------------------- | ------------------------------------------------------------------------------------ | --------- | ------- | -------- | ------ |
-| `mapback_skip`             | Skip creation of Mapback profiles                                                    | `boolean` | True    |          |        |
-| `mapback_filter_length_bp` | Length in bp for the moving median filter applied to GC content and coverage profile | `integer` | 100000  |          |        |
+| Parameter                   | Description                                                                         | Type      | Default | Required | Hidden |
+| --------------------------- | ----------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
+| `mapback_skip`              | Skip creation of Mapback profiles                                                   | `boolean` | True    |          |        |
+| `mapback_variants_skip`     | Skip the variants track when creating the mapback profile                           | `boolean` | True    |          |        |
+| `mapback_clair3_platform`   | Platform for Clair3 model selection (accepted: `hifi`\|`ont`)                       | `string`  |         |          |        |
+| `mapback_rolling_median_bp` | Length in bp for the rolling median filter applied to Mapback stats before plotting | `integer` | 100000  |          |        |
 
 ## Institutional config options
 

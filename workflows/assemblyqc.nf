@@ -34,6 +34,9 @@ include { GFFREAD                           } from '../modules/nf-core/gffread/m
 include { ORTHOFINDER                       } from '../modules/nf-core/orthofinder/main'
 include { FASTA_FASTQ_WINNOWMAP_COVERAGE    } from '../subworkflows/gallvp/fasta_fastq_winnowmap_coverage/main'
 include { FASTA_BEDTOOLS_MAKEWINDOWS_NUC    } from '../subworkflows/gallvp/fasta_bedtools_makewindows_nuc/main'
+include { SAMTOOLS_SORT                     } from '../modules/nf-core/samtools/sort/main'
+include { CLAIR3                            } from '../modules/nf-core/clair3/main'
+include { EXTRACTHETSTATS                   } from '../modules/local/extracthetstats'
 include { CREATEREPORT                      } from '../modules/local/createreport'
 
 include { FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS as FETCHNGS  } from '../subworkflows/nf-core/fastq_download_prefetch_fasterqdump_sratools/main'
@@ -910,7 +913,7 @@ workflow ASSEMBLYQC {
                                             }
     // WARN: If you change val_coverage_span parameter, the moving median filter in the
     // AssemblyQC module for the Mapback profile plots will break
-    // See: bin/report_modules/parsers/mapback_parser.py:90
+    // See: bin/report_modules/parsers/mapback_parser.py:16
     FASTA_FASTQ_WINNOWMAP_COVERAGE (
         ch_mapback_assembly_input,
         ch_mapback_reads_input,
@@ -935,6 +938,96 @@ workflow ASSEMBLYQC {
                                             )
     ch_versions                             = ch_versions.mix(FASTA_BEDTOOLS_MAKEWINDOWS_NUC.out.versions)
 
+    // MODULE: SAMTOOLS_SORT | CLAIR3
+    ch_clair3_input                         = params.mapback_variants_skip
+                                            ? Channel.empty()
+                                            : FASTA_FASTQ_WINNOWMAP_COVERAGE.out.bam
+                                            | join(
+                                                ch_mapback_assembly_input
+                                            )
+                                            | combine(
+                                                ch_mapback_reads_input
+                                            )
+                                            | filter { meta, _bam, _fasta, meta_r, _reads ->
+                                                meta.id == meta_r.ref_id
+                                            }
+                                            | map { meta, bam, fasta, meta_r, _reads ->
+                                                [
+                                                    meta_r.id,
+                                                    meta,
+                                                    bam,
+                                                    fasta
+                                                ]
+                                            }
+                                            | groupTuple()
+                                            | map { _reads_id, metas, bams, fastas ->
+
+                                                def hap_ids = metas.collect { it.id }
+                                                def idx = hap_ids.indexOf ( hap_ids.toSorted().first() )
+
+                                                [
+                                                    metas[idx],
+                                                    bams[idx],
+                                                    fastas[idx]
+                                                ]
+                                            }
+
+    SAMTOOLS_SORT (
+        ch_clair3_input.map { meta, bam, _fasta -> [ meta, bam ] },
+        [ [], []],
+        'bai', // index_format
+    )
+
+    ch_clair3_sorted_input                  = ch_clair3_input
+                                            | join(
+                                                SAMTOOLS_SORT.out.bam
+                                            )
+                                            | join(
+                                                SAMTOOLS_SORT.out.bai
+                                            )
+                                            | join(
+                                                FASTA_BEDTOOLS_MAKEWINDOWS_NUC.out.fai
+                                            )
+                                            | multiMap { meta, _bam, fasta, sorted, bai, fai ->
+
+                                                def packaged_model = params.mapback_clair3_platform == 'hifi' ? 'hifi_revio' : 'r941_prom_sup_g5014'
+
+                                                bam: [ meta, sorted, bai, packaged_model, [], params.mapback_clair3_platform ]
+                                                fasta: [ [], fasta ]
+                                                fai: [ [], fai ]
+                                            }
+
+    CLAIR3 (
+        ch_clair3_sorted_input.bam,
+        ch_clair3_sorted_input.fasta,
+        ch_clair3_sorted_input.fai
+    )
+
+    ch_versions                             = ch_versions
+                                            | mix(SAMTOOLS_SORT.out.versions.first())
+                                            | mix(CLAIR3.out.versions.first())
+
+    // MODULE: EXTRACTHETSTATS
+    ch_extracthetstats_inputs               = CLAIR3.out.pileup_vcf
+                                            | join(
+                                                FASTA_BEDTOOLS_MAKEWINDOWS_NUC.out.bed
+                                            )
+                                            | multiMap { meta, vcf, bed ->
+                                                vcf: [ meta, vcf ]
+                                                bed: bed
+                                            }
+    EXTRACTHETSTATS (
+        ch_extracthetstats_inputs.vcf,
+        ch_extracthetstats_inputs.bed
+    )
+
+    ch_mapback_outputs                      = ch_mapback_outputs
+                                            | mix(
+                                                EXTRACTHETSTATS.out.het_stats
+                                                | map { _meta, stats -> stats }
+                                            )
+    ch_versions                             = ch_versions.mix(EXTRACTHETSTATS.out.versions)
+
     // Collate and save software versions
     ch_versions                             = ch_versions
                                             | unique
@@ -946,6 +1039,22 @@ workflow ASSEMBLYQC {
                                             | collectFile(
                                                 storeDir: "${params.outdir}/pipeline_info",
                                                 name: 'software_versions.yml',
+                                                sort: true,
+                                                newLine: true,
+                                                cache: false
+                                            )
+
+    ch_params_as_json_stored                = ch_params_as_json
+                                            | collectFile(
+                                                name: 'params.json',
+                                                sort: true,
+                                                newLine: true,
+                                                cache: false
+                                            )
+
+    ch_summary_params_as_json_stored        = ch_summary_params_as_json
+                                            | collectFile(
+                                                name: 'summary_params.json',
                                                 sort: true,
                                                 newLine: true,
                                                 cache: false
@@ -971,9 +1080,8 @@ workflow ASSEMBLYQC {
         ch_orthofinder_outputs              .collect().ifEmpty([]),
         ch_mapback_outputs                  .collect().ifEmpty([]),
         ch_versions_yml,
-        ch_params_as_json,
-        ch_summary_params_as_json,
-        params.mapback_filter_length_bp
+        ch_params_as_json_stored,
+        ch_summary_params_as_json_stored
     )
 }
 

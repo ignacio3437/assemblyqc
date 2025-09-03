@@ -156,6 +156,10 @@
 
   > Aaron R. Quinlan, Ira M. Hall, BEDTools: a flexible suite of utilities for comparing genomic features, Bioinformatics, Volume 26, Issue 6, March 2010, Pages 841–842, doi: <a href="https://doi.org/10.1093/bioinformatics/btq033">10.1093/bioinformatics/btq033</a>
 
+- Clair3, [Custom Permissive](https://github.com/HKU-BAL/Clair3/blob/main/LICENSE.md)
+
+  > Zheng, Z., Li, S., Su, J., Leung, A. W. S., Lam, T. W., & Luo, R. (2022). Symphonizing pileup and full-alignment for deep learning-based long-read variant calling. Nature Computational Science, 2(12), 797-803. doi: <a href="https://doi.org/10.1101/2021.12.29.474431">10.1101/2021.12.29.474431</a>
+
 ## Software packaging/containerisation tools
 
 - [Anaconda](https://anaconda.com)

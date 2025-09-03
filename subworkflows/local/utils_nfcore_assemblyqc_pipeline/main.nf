@@ -170,6 +170,22 @@ workflow PIPELINE_INITIALISATION {
                                                 ? extractReadsTuple ( tag, reads_1, reads_2 )
                                                 : null
                                             }
+                                            | groupTuple()
+                                            | flatMap { fid, metas, reads_list ->
+                                                def haps = metas.collect { it.id }
+
+                                                if ( ! params.mapback_variants_skip && metas.size() > 2 ) {
+                                                    error "Only expected 2 haplotypes in each group of reads. Found ${haps} in group ${fid.fid}"
+                                                }
+
+                                                metas.withIndex().collect { meta, idx ->
+                                                    [
+                                                        fid,
+                                                        meta,
+                                                        reads_list[idx]
+                                                    ]
+                                                }
+                                            }
                                             | map { fid, meta, reads ->
 
                                                 if ( meta.is_sra ) {
@@ -185,6 +201,7 @@ workflow PIPELINE_INITIALISATION {
                                                     reads
                                                 ]
                                             }
+
 
     // Initialise parameter channels
     ch_params_as_json                       = Channel.of ( jsonifyParams ( params ) )
