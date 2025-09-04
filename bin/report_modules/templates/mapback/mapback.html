@@ -21,9 +21,13 @@
             797-803. doi: <a href="https://doi.org/10.1101/2021.12.29.474431"
                 target="_blank">10.1101/2021.12.29.474431</a>
         </p>
-        <p class="section-para"><b>Version: {{ all_stats_dicts['VERSIONS']['WINNOWMAP']['winnowmap'] }} (Winnowmap), {{
-                all_stats_dicts['VERSIONS']['BEDTOOLS_NUC']['bedtools'] }} (bedtools), {{
-                all_stats_dicts['VERSIONS']['CLAIR3']['clair3'] }} (Clair3)</b></p>
+        <p class="section-para">
+            <b>Version: {{ all_stats_dicts['VERSIONS']['WINNOWMAP']['winnowmap'] }} (Winnowmap), {{
+                all_stats_dicts['VERSIONS']['BEDTOOLS_NUC']['bedtools'] }} (bedtools){% if 'CLAIR3' in
+                all_stats_dicts['VERSIONS'] %}, {{ all_stats_dicts['VERSIONS']['CLAIR3']['clair3'] }} (Clair3){% endif
+                %}
+            </b>
+        </p>
     </div>
     {% include 'mapback/dropdown.html' %} {% include 'mapback/report_contents.html' %}
 </div>

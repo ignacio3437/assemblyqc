@@ -114,7 +114,7 @@ def plot_contig_profile(
         ax_gc, ax_cov, ax_het, ax_ab = axs
     else:
         fig, axs = plt.subplots(
-            2, 1, figsize=(8, 6), sharex=True, gridspec_kw={"height_ratios": [1, 1]}
+            2, 1, figsize=(8, 4), sharex=True, gridspec_kw={"height_ratios": [1, 1]}
         )
         ax_gc, ax_cov = axs
         ax_het, ax_ab = None, None
