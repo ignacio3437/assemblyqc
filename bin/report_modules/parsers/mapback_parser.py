@@ -12,9 +12,6 @@ from matplotlib.ticker import MaxNLocator
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
 LOG = logging.getLogger(__name__)
-HET_STATS_WINDOW_LEN: int = 10_000
-COVERAGE_SPAN_LEN = 1024
-GC_WINDOW_LEN: int = 10_000
 
 
 def parse_bed_gc(bed_file: str) -> OrderedDict[str, list[tuple[int, int, float]]]:
@@ -88,13 +85,15 @@ def parse_het_stats(
 
 
 def plot_contig_profile(
+    folder_name: str,
     contig: str,
+    seq_num: int,
     coverage: list[tuple[int, float]],
     gc_content: list[tuple[int, int, float]],
-    seq_num: int,
-    folder_name: str,
+    het_stats: list[tuple[int, int, int, float]] | None,
+    mapback_coverage_span_bp: int,
+    mapback_gc_het_window_bp: int,
     mapback_rolling_median_bp: int,
-    het_stats: list[tuple[int, int, int, float]] | None = None,
     delete_images: bool = True,
 ) -> str:
     """
@@ -120,9 +119,13 @@ def plot_contig_profile(
         ax_het, ax_ab = None, None
 
     # GC content plot (top)
-    gc_positions: list[int] = [start + GC_WINDOW_LEN // 2 for start, _, _ in gc_content]
+    gc_positions: list[int] = [
+        start + mapback_gc_het_window_bp // 2 for start, _, _ in gc_content
+    ]
     gc_values: list[float] = [gc * 100.0 for _, _, gc in gc_content]
-    gc_filter_len = 2 * int(mapback_rolling_median_bp / GC_WINDOW_LEN / 2) + 1
+    gc_filter_len = (
+        2 * int(mapback_rolling_median_bp / mapback_gc_het_window_bp / 2) + 1
+    )
     gc_values_mm: list[float] = (
         pd.Series(gc_values)
         .rolling(window=gc_filter_len, center=True, min_periods=1)
@@ -140,7 +143,9 @@ def plot_contig_profile(
     # Coverage plot
     positions: list[int] = [pos for pos, _ in coverage]
     coverages: list[float] = [cov for _, cov in coverage]
-    cov_filter_len: int = 2 * int(mapback_rolling_median_bp / COVERAGE_SPAN_LEN / 2) + 1
+    cov_filter_len: int = (
+        2 * int(mapback_rolling_median_bp / mapback_coverage_span_bp / 2) + 1
+    )
     coverages_mm: list[float] = (
         pd.Series(coverages)
         .rolling(window=cov_filter_len, center=True, min_periods=1)
@@ -158,7 +163,7 @@ def plot_contig_profile(
     # 0/1 GT Count plot
     if het_stats:
         het_positions: list[int] = [
-            start + HET_STATS_WINDOW_LEN // 2 for start, _, _, _ in het_stats
+            start + mapback_gc_het_window_bp // 2 for start, _, _, _ in het_stats
         ]
         het_counts: list[int] = [count for _, _, count, _ in het_stats]
 
@@ -178,7 +183,7 @@ def plot_contig_profile(
 
         # Mean allele balance plot
         ab_positions: list[int] = [
-            start + HET_STATS_WINDOW_LEN // 2 for start, _, _, _ in het_stats
+            start + mapback_gc_het_window_bp // 2 for start, _, _, _ in het_stats
         ]
         ab_means: list[float] = [ab * 100.0 for _, _, _, ab in het_stats]
 
@@ -211,11 +216,13 @@ def plot_contig_profile(
 
 
 def plot_profile(
+    folder_name: str,
     wig_file: str,
     bed_file: str,
-    folder_name: str,
-    mapback_rolling_median_bp: int,
     het_stats_file: str,
+    mapback_coverage_span_bp: int,
+    mapback_gc_het_window_bp: int,
+    mapback_rolling_median_bp: int,
     delete_images: bool = True,
 ) -> tuple[
     OrderedDict[str, list[tuple[int, int, float]]],
@@ -237,13 +244,15 @@ def plot_profile(
         het_stats: list[tuple[int, int, int, float]] | None = het_data.get(contig, None)
         plots.append(
             plot_contig_profile(
+                folder_name,
                 contig,
+                seq_num,
                 coverage,
                 gc_content,
-                seq_num,
-                folder_name,
-                mapback_rolling_median_bp,
                 het_stats,
+                mapback_coverage_span_bp,
+                mapback_gc_het_window_bp,
+                mapback_rolling_median_bp,
                 delete_images,
             )
         )
@@ -252,7 +261,10 @@ def plot_profile(
 
 
 def parse_mapback_folder(
-    mapback_rolling_median_bp: int, folder_name: str = "mapback_outputs"
+    mapback_coverage_span_bp: int,
+    mapback_gc_het_window_bp: int,
+    mapback_rolling_median_bp: int,
+    folder_name: str = "mapback_outputs",
 ):
     dir = os.getcwdb().decode()
     reports_folder_path = Path(f"{dir}/{folder_name}")
@@ -273,11 +285,13 @@ def parse_mapback_folder(
         con_wig_path = f"{folder_name}/{file_tag}.cov.wig"
         het_stats_path = f"{folder_name}/{file_tag}.het.stats"
         gc_data, coverage_data, het_data, plots = plot_profile(
+            folder_name,
             con_wig_path,
             str(bed_path),
-            folder_name,
-            mapback_rolling_median_bp,
             het_stats_path,
+            mapback_coverage_span_bp,
+            mapback_gc_het_window_bp,
+            mapback_rolling_median_bp,
         )
 
         data["MAPBACK"].append(
