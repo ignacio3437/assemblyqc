@@ -101,8 +101,7 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 | `synteny_mummer_m2m_align`         | Include Mummer alignment blocks with many-to-many mappings                                                                                            | `boolean` |         |          |        |
 | `synteny_mummer_max_gap`           | Mummer alignments within this distance are bundled together                                                                                           | `integer` | 1000000 |          |        |
 | `synteny_mummer_min_bundle_size`   | After bundling, any Mummer alignment bundle smaller than this size is filtered out                                                                    | `integer` | 1000000 |          |        |
-| `synteny_plot_1_vs_all`            | Create a separate synteny plot for each contig of the target assembly versus all contigs of the reference assembly. This only applies to Mummer plots | `boolean` |
-|                                    |                                                                                                                                                       |
+| `synteny_plot_1_vs_all`            | Create a separate synteny plot for each contig of the target assembly versus all contigs of the reference assembly. This only applies to Mummer plots | `boolean` |         |          |        |
 | `synteny_color_by_contig`          | Mummer synteny plots are colored by contig. Otherwise, they are colored by bundle size                                                                | `boolean` | True    |          |        |
 | `synteny_plotsr_seq_label`         | Sequence label prefix for plotsr synteny                                                                                                              | `string`  | Chr     |          |        |
 | `synteny_plotsr_assembly_order`    | The order of comparison as space separated string of assembly tags. If absent, assemblies are ordered by their tags alphabetically.                   | `string`  |         |          |        |
@@ -115,12 +114,14 @@ A Nextflow pipeline which evaluates assembly quality with multiple QC tools and 
 
 ## Mapback profile options
 
-| Parameter                   | Description                                                                         | Type      | Default | Required | Hidden |
-| --------------------------- | ----------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
-| `mapback_skip`              | Skip creation of Mapback profiles                                                   | `boolean` | True    |          |        |
-| `mapback_variants_skip`     | Skip the variants track when creating the mapback profile                           | `boolean` | True    |          |        |
-| `mapback_clair3_platform`   | Platform for Clair3 model selection (accepted: `hifi`\|`ont`)                       | `string`  |         |          |        |
-| `mapback_rolling_median_bp` | Length in bp for the rolling median filter applied to Mapback stats before plotting | `integer` | 100000  |          |        |
+| Parameter                   | Description                                                                            | Type      | Default | Required | Hidden |
+| --------------------------- | -------------------------------------------------------------------------------------- | --------- | ------- | -------- | ------ |
+| `mapback_skip`              | Skip creation of Mapback profiles                                                      | `boolean` | True    |          |        |
+| `mapback_variants_skip`     | Skip the variants track when creating the mapback profile                              | `boolean` | True    |          |        |
+| `mapback_clair3_platform`   | Platform for Clair3 model selection (accepted: `hifi`\|`ont`)                          | `string`  |         |          |        |
+| `mapback_coverage_span_bp`  | Span in bp for T2T-Polish/pafToCovClippedWig tool                                      | `integer` | 1024    |          |        |
+| `mapback_gc_het_window_bp`  | Window length in bp for summarising % GC content, 0/1 GT count and mean allele balance | `integer` | 10000   |          |        |
+| `mapback_rolling_median_bp` | Length in bp for the rolling median filter applied to Mapback stats for plotting       | `integer` | 100000  |          |        |
 
 ## Institutional config options
 

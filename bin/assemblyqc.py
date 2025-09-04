@@ -61,7 +61,9 @@ if __name__ == "__main__":
     data_from_tools = {
         **data_from_tools,
         **parse_mapback_folder(
-            mapback_rolling_median_bp=int(params_dict["mapback_rolling_median_bp"])
+            mapback_coverage_span_bp=int(params_dict["mapback_coverage_span_bp"]),
+            mapback_gc_het_window_bp=int(params_dict["mapback_gc_het_window_bp"]),
+            mapback_rolling_median_bp=int(params_dict["mapback_rolling_median_bp"]),
         ),
     }
 

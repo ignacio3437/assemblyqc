@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [04-Sep-2025]
+## v3.0.0dev - [05-Sep-2025]
 
 ### `Added`
 
@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 24. Added a mapback profile module to the AssemblyQC report [#292](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/292)
 25. Added parameter ~~`mapback_filter_length_bp`~~ `mapback_rolling_median_bp` to take care of salt and pepper noise in the Mapback coverage profile [#296](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/296)
 26. Added module `CLAIR3` for variant calling [#300](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/300)
+27. Added parameters `mapback_coverage_span_bp` and `mapback_gc_het_window_bp` to provide more control over Mapback stats generation and plotting [#304](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/304)
 
 ### `Fixed`
 

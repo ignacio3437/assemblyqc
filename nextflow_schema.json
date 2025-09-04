@@ -428,10 +428,22 @@
                     "description": "Platform for Clair3 model selection",
                     "enum": ["hifi", "ont"]
                 },
+                "mapback_coverage_span_bp": {
+                    "type": "integer",
+                    "default": 1024,
+                    "fa_icon": "fas fa-ruler-horizontal",
+                    "description": "Span in bp for T2T-Polish/pafToCovClippedWig tool"
+                },
+                "mapback_gc_het_window_bp": {
+                    "type": "integer",
+                    "default": 10000,
+                    "fa_icon": "fas fa-ruler-horizontal",
+                    "description": "Window length in bp for summarising % GC content, 0/1 GT count and mean allele balance"
+                },
                 "mapback_rolling_median_bp": {
                     "type": "integer",
                     "default": 100000,
-                    "description": "Length in bp for the rolling median filter applied to Mapback stats before plotting",
+                    "description": "Length in bp for the rolling median filter applied to Mapback stats for plotting",
                     "fa_icon": "fas fa-ruler-horizontal"
                 }
             }
