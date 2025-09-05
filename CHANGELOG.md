@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 25. Added parameter ~~`mapback_filter_length_bp`~~ `mapback_rolling_median_bp` to take care of salt and pepper noise in the Mapback coverage profile [#296](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/296)
 26. Added module `CLAIR3` for variant calling [#300](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/300)
 27. Added parameters `mapback_coverage_span_bp` and `mapback_gc_het_window_bp` to provide more control over Mapback stats generation and plotting [#304](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/304)
+28. Fixed the Mapback scales to 2x/3x mean of data [#299](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/299)
 
 ### `Fixed`
 

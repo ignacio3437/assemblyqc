@@ -6,6 +6,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 from matplotlib.ticker import MaxNLocator
 
@@ -84,6 +85,25 @@ def parse_het_stats(
     return het_data
 
 
+def compute_scale_max(
+    cov_or_het_data: OrderedDict[str, list[tuple[int, float]]]
+    | OrderedDict[str, list[tuple[int, int, int, float]]],
+    mul: float,
+    value_index: int = 1,
+) -> float:
+    all_vals = []
+    for values in cov_or_het_data.values():
+        if not values:
+            continue
+        vals = [v[value_index] for v in values]
+        all_vals.extend([v for v in vals if v > 0.0])
+
+    if len(all_vals) < 1:
+        return 0.0
+
+    return mul * float(np.mean(all_vals))
+
+
 def plot_contig_profile(
     folder_name: str,
     contig: str,
@@ -94,6 +114,8 @@ def plot_contig_profile(
     mapback_coverage_span_bp: int,
     mapback_gc_het_window_bp: int,
     mapback_rolling_median_bp: int,
+    coverage_max: float,
+    het_count_max: float,
     delete_images: bool = True,
 ) -> str:
     """
@@ -136,6 +158,7 @@ def plot_contig_profile(
     ax_gc.axhline(y=50, color="black", linestyle=":", linewidth=1)
     ax_gc.set_ylabel("GC Content (%)", color="green")
     ax_gc.tick_params(axis="y", labelcolor="green")
+    ax_gc.set_ylim(0, 80)
     ax_gc.get_xaxis().set_visible(False)
     ax_gc.spines["top"].set_visible(False)
     ax_gc.spines["right"].set_visible(False)
@@ -155,6 +178,7 @@ def plot_contig_profile(
     ax_cov.plot(positions, coverages_mm, color="blue", label="Coverage")
     ax_cov.set_ylabel("Coverage", color="blue")
     ax_cov.tick_params(axis="y", labelcolor="blue")
+    ax_cov.set_ylim(0, coverage_max)
     ax_cov.spines["top"].set_visible(False)
     ax_cov.spines["right"].set_visible(False)
     ax_cov.xaxis.set_major_locator(MaxNLocator(nbins=15))
@@ -177,6 +201,7 @@ def plot_contig_profile(
         ax_het.plot(het_positions, het_counts_mm, color="purple", label="0/1 GT Count")
         ax_het.set_ylabel("0/1 GT Count", color="purple")
         ax_het.tick_params(axis="y", labelcolor="purple")
+        ax_het.set_ylim(0, het_count_max)
         ax_het.spines["top"].set_visible(False)
         ax_het.spines["right"].set_visible(False)
         ax_het.get_xaxis().set_visible(False)
@@ -195,8 +220,10 @@ def plot_contig_profile(
         )
 
         ax_ab.plot(ab_positions, ab_means_mm, color="orange", label="Allele Balance")
+        ax_ab.axhline(y=50, color="black", linestyle=":", linewidth=1)
         ax_ab.set_ylabel("Allele Balance", color="orange")
         ax_ab.tick_params(axis="y", labelcolor="orange")
+        ax_ab.set_ylim(0, 80)
         ax_ab.spines["top"].set_visible(False)
         ax_ab.spines["right"].set_visible(False)
         ax_ab.set_xlabel("Position (bp)")
@@ -237,6 +264,12 @@ def plot_profile(
         het_stats_file
     )
 
+    coverage_max: float = compute_scale_max(coverage_data, mul=2.0, value_index=1)
+    het_count_max: float = compute_scale_max(het_data, mul=3.0, value_index=2)
+
+    LOG.info(f"For Coverage plots, using scale range: [0, {coverage_max}]")
+    LOG.info(f"For Het. plots, using scale range: [0, {het_count_max}]")
+
     plots: list[str] = []
     for seq_num, contig in enumerate(coverage_data.keys(), 1):
         coverage: list[tuple[int, float]] = coverage_data[contig]
@@ -253,6 +286,8 @@ def plot_profile(
                 mapback_coverage_span_bp,
                 mapback_gc_het_window_bp,
                 mapback_rolling_median_bp,
+                coverage_max,
+                het_count_max,
                 delete_images,
             )
         )

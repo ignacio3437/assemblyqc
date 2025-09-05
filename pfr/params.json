@@ -52,7 +52,7 @@
     "mapback_skip": false,
     "mapback_variants_skip": false,
     "mapback_clair3_platform": "hifi",
-    "mapback_coverage_span_bp": 100000,
-    "mapback_gc_het_window_bp": 100000,
-    "mapback_rolling_median_bp": 500000
+    "mapback_coverage_span_bp": 1024,
+    "mapback_gc_het_window_bp": 10000,
+    "mapback_rolling_median_bp": 100000
 }
