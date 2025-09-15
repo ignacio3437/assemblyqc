@@ -169,20 +169,24 @@ def plot_contig_profile(
     cov_filter_len: int = (
         2 * int(mapback_rolling_median_bp / mapback_coverage_span_bp / 2) + 1
     )
-    coverages_mm: list[float] = (
+    coverages_mm = (
         pd.Series(coverages)
         .rolling(window=cov_filter_len, center=True, min_periods=1)
         .median()
-        .to_list()
     )
-    ax_cov.plot(positions, coverages_mm, color="blue", label="Coverage")
+    coverages_mm_mean: float = coverages_mm.where(coverages_mm > 0).dropna().mean()
+    coverages_mm_mean_half = coverages_mm_mean * 0.5
+
+    ax_cov.plot(positions, coverages_mm.tolist(), color="blue", label="Coverage")
+    ax_cov.axhline(y=coverages_mm_mean, color="black", linestyle=":", linewidth=1)
+    ax_cov.axhline(y=coverages_mm_mean_half, color="black", linestyle=":", linewidth=1)
     ax_cov.set_ylabel("Coverage", color="blue")
     ax_cov.tick_params(axis="y", labelcolor="blue")
     ax_cov.set_ylim(0, coverage_max)
     ax_cov.spines["top"].set_visible(False)
     ax_cov.spines["right"].set_visible(False)
     ax_cov.xaxis.set_major_locator(MaxNLocator(nbins=15))
-    ax_cov.get_xaxis().set_visible(False)
+    ax_cov.get_xaxis().set_visible(False if het_stats else True)
 
     # 0/1 GT Count plot
     if het_stats:

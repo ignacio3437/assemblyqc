@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [05-Sep-2025]
+## v3.0.0dev - [15-Sep-2025]
 
 ### `Added`
 
@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 26. Added module `CLAIR3` for variant calling [#300](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/300)
 27. Added parameters `mapback_coverage_span_bp` and `mapback_gc_het_window_bp` to provide more control over Mapback stats generation and plotting [#304](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/304)
 28. Fixed the Mapback scales to 2x/3x mean of data [#299](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/299)
+29. Added mean and 1/2 mean guides for the coverage plot [#307](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/307)
 
 ### `Fixed`
 
@@ -54,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 14. Fixed an issue where the HiC map did not load correctly on Firefox [#274](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/274)
 15. Fixed an issue where the GC content was computed for all the assemblies instead of only those that had reads available for computing coverage [#294](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/294)
 16. Fixed an issue where Mapback report module failed when variant calling was skipped [#302](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/302)
+17. Fixed an issue where the x-axis ticks were not displayed for the coverage plot [#307](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/307)
 
 ### `Deprecated`
 
