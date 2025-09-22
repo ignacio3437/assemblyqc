@@ -41,12 +41,6 @@
     - [YaHS juicer pre](https://github.com/c-zhou/yahs): BAM to juicer conversion
     - [hictk load/zoomify](https://github.com/paulsengroup/hictk): `.hic` file creation
     - [juicebox.js](https://github.com/igvteam/juicebox.js): HiC contact map visualisation
-  - `Mapback profile from alignment of long-read data, GC content and variant detection`
-    - [Winnowmap](https://github.com/marbl/Winnowmap): Align long-read data
-    - [paftools sam2paf](https://github.com/lh3/minimap2): Convert SAM to PAF
-    - [T2T-Polish pafToCovClippedWig](https://github.com/arangrhie/T2T-Polish): Convert PAF to coverage Wig
-    - [bedtools nuc](https://bedtools.readthedocs.io/en/latest/): Compute GC content
-    - [Clair3](https://github.com/HKU-BAL/Clair3): Variant detection
   - `K-mer completeness, consensus quality and phasing assessment`
     - [sra-tools](https://github.com/ncbi/sra-tools): Assembly, maternal and paternal data download from SRA or use of local FASTQ files
     - [Merqury hapmers](https://github.com/marbl/merqury/blob/master/trio/hapmers.sh): Hapmer generation if parental data is available
@@ -54,6 +48,12 @@
   - `Synteny analysis`
     - [MUMmer](https://github.com/mummer4/mummer) → [Circos](http://circos.ca/documentation/) + [dotplot](https://plotly.com): One-to-all and all-to-all synteny analysis at the contig level
     - [Minimap2](https://github.com/lh3/minimap2) → [Syri](https://github.com/schneebergerlab/syri)/[Plotsr](https://github.com/schneebergerlab/plotsr): One-to-one synteny analysis at the chromosome level
+  - `Mapback profile from alignment of long-read data, GC content and variant detection`
+    - [Winnowmap](https://github.com/marbl/Winnowmap): Align long-read data
+    - [paftools sam2paf](https://github.com/lh3/minimap2): Convert SAM to PAF
+    - [T2T-Polish pafToCovClippedWig](https://github.com/arangrhie/T2T-Polish): Convert PAF to coverage Wig
+    - [bedtools nuc](https://bedtools.readthedocs.io/en/latest/): Compute GC content
+    - [Clair3](https://github.com/HKU-BAL/Clair3): Variant detection
 - `Annotation`
   - [GenomeTools gt gff3validator](https://genometools.org/tools/gt_gff3validator.html) + [FASTA/GFF correspondence](subworkflows/gallvp/gff3_gt_gff3_gff3validator_stat/main.nf): GFF3 validation
   - [GenomeTools gt stat](https://genometools.org/tools/gt_stat.html): Annotation statistics
@@ -117,30 +117,33 @@ The pipeline uses nf-core modules contributed by following authors:
 <a href="https://github.com/mahesh-panchal"><img src="https://github.com/mahesh-panchal.png" width="50" height="50"></a>
 <a href="https://github.com/jfy133"><img src="https://github.com/jfy133.png" width="50" height="50"></a>
 <a href="https://github.com/midnighter"><img src="https://github.com/midnighter.png" width="50" height="50"></a>
+<a href="https://github.com/matthdsm"><img src="https://github.com/matthdsm.png" width="50" height="50"></a>
 <a href="https://github.com/joseespinosa"><img src="https://github.com/joseespinosa.png" width="50" height="50"></a>
-<a href="https://github.com/maxulysse"><img src="https://github.com/maxulysse.png" width="50" height="50"></a>
 <a href="https://github.com/sofstam"><img src="https://github.com/sofstam.png" width="50" height="50"></a>
 <a href="https://github.com/sateeshperi"><img src="https://github.com/sateeshperi.png" width="50" height="50"></a>
-<a href="https://github.com/matthdsm"><img src="https://github.com/matthdsm.png" width="50" height="50"></a>
+<a href="https://github.com/maxulysse"><img src="https://github.com/maxulysse.png" width="50" height="50"></a>
 <a href="https://github.com/heuermh"><img src="https://github.com/heuermh.png" width="50" height="50"></a>
-<a href="https://github.com/grst"><img src="https://github.com/grst.png" width="50" height="50"></a>
 <a href="https://github.com/fellen31"><img src="https://github.com/fellen31.png" width="50" height="50"></a>
-<a href="https://github.com/adamrtalbot"><img src="https://github.com/adamrtalbot.png" width="50" height="50"></a>
 <a href="https://github.com/ewels"><img src="https://github.com/ewels.png" width="50" height="50"></a>
+<a href="https://github.com/nvnieuwk"><img src="https://github.com/nvnieuwk.png" width="50" height="50"></a>
+<a href="https://github.com/grst"><img src="https://github.com/grst.png" width="50" height="50"></a>
+<a href="https://github.com/adamrtalbot"><img src="https://github.com/adamrtalbot.png" width="50" height="50"></a>
 <a href="https://github.com/robsyme"><img src="https://github.com/robsyme.png" width="50" height="50"></a>
+<a href="https://github.com/robert-a-forsyth"><img src="https://github.com/robert-a-forsyth.png" width="50" height="50"></a>
 <a href="https://github.com/priyanka-surana"><img src="https://github.com/priyanka-surana.png" width="50" height="50"></a>
 <a href="https://github.com/phue"><img src="https://github.com/phue.png" width="50" height="50"></a>
-<a href="https://github.com/nvnieuwk"><img src="https://github.com/nvnieuwk.png" width="50" height="50"></a>
 <a href="https://github.com/muffato"><img src="https://github.com/muffato.png" width="50" height="50"></a>
+<a href="https://github.com/lmfaber"><img src="https://github.com/lmfaber.png" width="50" height="50"></a>
 <a href="https://github.com/lescai"><img src="https://github.com/lescai.png" width="50" height="50"></a>
 <a href="https://github.com/kevinmenden"><img src="https://github.com/kevinmenden.png" width="50" height="50"></a>
+<a href="https://github.com/kevbrick"><img src="https://github.com/kevbrick.png" width="50" height="50"></a>
 <a href="https://github.com/jvhagey"><img src="https://github.com/jvhagey.png" width="50" height="50"></a>
 <a href="https://github.com/jeremy1805"><img src="https://github.com/jeremy1805.png" width="50" height="50"></a>
-<a href="https://github.com/ignacio3437"><img src="https://github.com/ignacio3437.png" width="50" height="50"></a>
 <a href="https://github.com/friederikehanssen"><img src="https://github.com/friederikehanssen.png" width="50" height="50"></a>
 <a href="https://github.com/felixkrueger"><img src="https://github.com/felixkrueger.png" width="50" height="50"></a>
 <a href="https://github.com/erikrikarddaniel"><img src="https://github.com/erikrikarddaniel.png" width="50" height="50"></a>
 <a href="https://github.com/edmundmiller"><img src="https://github.com/edmundmiller.png" width="50" height="50"></a>
+<a href="https://github.com/dlbpointon"><img src="https://github.com/dlbpointon.png" width="50" height="50"></a>
 <a href="https://github.com/d4straub"><img src="https://github.com/d4straub.png" width="50" height="50"></a>
 <a href="https://github.com/charles-plessy"><img src="https://github.com/charles-plessy.png" width="50" height="50"></a>
 <a href="https://github.com/fernandoduartef"><img src="https://github.com/fernandoduartef.png" width="50" height="50"></a>

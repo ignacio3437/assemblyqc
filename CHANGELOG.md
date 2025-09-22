@@ -3,7 +3,7 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.0.0dev - [15-Sep-2025]
+## v3.0.0dev - [22-Sep-2025]
 
 ### `Added`
 
@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 27. Added parameters `mapback_coverage_span_bp` and `mapback_gc_het_window_bp` to provide more control over Mapback stats generation and plotting [#304](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/304)
 28. Fixed the Mapback scales to 2x/3x mean of data [#299](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/299)
 29. Added mean and 1/2 mean guides for the coverage plot [#307](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/307)
+30. Updated docs and flowchart to match the Mapback profile development [#287](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/287)
 
 ### `Fixed`
 
@@ -69,14 +70,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tool        | Old Version | New Version |
 | ----------- | ----------- | ----------- |
-| busco       | 5.7.1       | 5.8.2       |
-| hic_qc      | 6881c33_ps  | v1.3        |
+| busco       | 5.7.1       | 5.8.3       |
+| htslib      | 1.20        | 1.21        |
+| minimap2    | 2.28        | 2.29        |
+| samtools    | 1.20        | 1.21        |
 | seqkit      | 2.8.1       | 2.9.0       |
 | ncbi-fcs-gx | 0.5.4       | 0.5.5       |
 | fastp       | 0.23.4      | 0.24.0      |
 | gfastats    | 1.3.6       | 1.3.10      |
-| minimap2    | 2.28        | 2.29        |
-| samtools    | 1.20        | 1.21        |
 
 ### `Dependencies`
 

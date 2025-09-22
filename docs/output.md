@@ -1,4 +1,4 @@
-# plant-food-research-open/assemblyqc: Output
+# plant-food-research-open/assemblyqc: Output<!-- omit in toc -->
 
 ## Introduction<!-- omit in toc -->
 
@@ -24,6 +24,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 - [HiC contact map](#hic-contact-map)
 - [Merqury](#merqury)
 - [Synteny](#synteny)
+- [Mapback](#mapback)
 - [GenomeTools gt stat](#genometools-gt-stat)
 - [OrthoFinder](#orthofinder)
 - [Pipeline information](#pipeline-information)
@@ -249,6 +250,25 @@ Hi-C contact mapping experiments measure the frequency of physical contact betwe
 <img src="images/dotplot.png" alt="AssemblyQC - dotplot synteny plot" width="50%">
 <hr>
 <em>AssemblyQC - Synteny plots</em>
+</div>
+
+### Mapback
+
+A mapback profile consisting of coverage, number of heterozygous alleles, allele balance and GC content is obtained by alignment of raw long-read data back to the assemblies.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `mapback/`
+  - `*.bed`: GC content
+  - `*.cov.wig`: Alignment coverage
+  - `*.het.stats`: Count of heterozygous alleles and allele balance ratio over successive windows
+  </details>
+
+<div align="center">
+<img src="images/mapback.png" alt="AssemblyQC - Mapback plot" width="50%">
+<hr>
+<em>AssemblyQC - Mapback</em>
 </div>
 
 ### GenomeTools gt stat
