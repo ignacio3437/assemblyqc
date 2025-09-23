@@ -1,10 +1,13 @@
 # plant-food-research-open/assemblyqc
 
-[![GitHub Actions CI Status](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/ci.yml/badge.svg)](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/ci.yml)
-[![GitHub Actions Linting Status](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/linting.yml/badge.svg)](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/linting.yml)[![Cite Article](http://img.shields.io/badge/DOI-10.1093/bioinformatics/btae477-1073c8?labelColor=000000)](https://doi.org/10.1093/bioinformatics/btae477)
-[![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
+[![GitHub Actions CI Status](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/nf-test.yml/badge.svg)](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/nf-test.yml)
+[![GitHub Actions Linting Status](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/linting.yml/badge.svg)](https://github.com/plant-food-research-open/assemblyqc/actions/workflows/linting.yml)
+[![Cite Article](http://img.shields.io/badge/DOI-10.1093/bioinformatics/btae477-1073c8?labelColor=000000)](https://doi.org/10.1093/bioinformatics/btae477)
 
-[![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A524.04.2-23aa62.svg)](https://www.nextflow.io/)
+[![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
+[![Nextflow](https://img.shields.io/badge/version-%E2%89%A524.10.5-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
+[![nf-core template version](https://img.shields.io/badge/nf--core_template-3.3.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.3.2)
+
 [![run with conda ❌](http://img.shields.io/badge/run%20with-conda%20❌-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
@@ -19,7 +22,7 @@
 <p align="center"><img src="docs/images/assemblyqc.png"></p>
 
 - `Assembly`
-  - [fasta_validator](https://github.com/linsalrob/fasta_validator) + [SeqKit rmdup](https://github.com/shenwei356/seqkit): FASTA validation
+  - [fa-lint](https://github.com/GallVp/fa-lint) + [SeqKit rmdup](https://github.com/shenwei356/seqkit): FASTA validation
   - [assemblathon_stats](https://github.com/PlantandFoodResearch/assemblathon2-analysis/blob/a93cba25d847434f7eadc04e63b58c567c46a56d/assemblathon_stats.pl), [gfastats](https://github.com/vgl-hub/gfastats): Assembly statistics
   - [NCBI FCS-adaptor](https://github.com/ncbi/fcs): Adaptor contamination pass/fail
   - [NCBI FCS-GX](https://github.com/ncbi/fcs): Foreign organism contamination pass/fail
@@ -31,11 +34,12 @@
     - [sra-tools](https://github.com/ncbi/sra-tools): HiC data download from SRA or use of local FASTQ files
     - [fastp](https://github.com/OpenGene/fastp), [FastQC](https://github.com/s-andrews/FastQC): Read QC and trimming
     - [SeqKit sort](https://github.com/shenwei356/seqkit): Alphanumeric sorting of FASTA by sequence ID
+    - [HapHiC refsort](https://github.com/zengxiaofei/HapHiC): Reference-based sorting of FASTA
     - [bwa-mem](https://github.com/lh3/bwa): HiC read alignment
     - [samblaster](https://github.com/GregoryFaust/samblaster): Duplicate marking
     - [hic_qc](https://github.com/phasegenomics/hic_qc): HiC read and alignment statistics
-    - [Matlock](https://github.com/phasegenomics/matlock): BAM to juicer conversion
-    - [3d-dna/visualize](https://github.com/aidenlab/3d-dna/tree/master/visualize): `.hic` file creation
+    - [YaHS juicer pre](https://github.com/c-zhou/yahs): BAM to juicer conversion
+    - [hictk load/zoomify](https://github.com/paulsengroup/hictk): `.hic` file creation
     - [juicebox.js](https://github.com/igvteam/juicebox.js): HiC contact map visualisation
   - `K-mer completeness, consensus quality and phasing assessment`
     - [sra-tools](https://github.com/ncbi/sra-tools): Assembly, maternal and paternal data download from SRA or use of local FASTQ files
@@ -44,6 +48,12 @@
   - `Synteny analysis`
     - [MUMmer](https://github.com/mummer4/mummer) → [Circos](http://circos.ca/documentation/) + [dotplot](https://plotly.com): One-to-all and all-to-all synteny analysis at the contig level
     - [Minimap2](https://github.com/lh3/minimap2) → [Syri](https://github.com/schneebergerlab/syri)/[Plotsr](https://github.com/schneebergerlab/plotsr): One-to-one synteny analysis at the chromosome level
+  - `Mapback profile from alignment of long-read data, GC content and variant detection`
+    - [Winnowmap](https://github.com/marbl/Winnowmap): Align long-read data
+    - [paftools sam2paf](https://github.com/lh3/minimap2): Convert SAM to PAF
+    - [T2T-Polish pafToCovClippedWig](https://github.com/arangrhie/T2T-Polish): Convert PAF to coverage Wig
+    - [bedtools nuc](https://bedtools.readthedocs.io/en/latest/): Compute GC content
+    - [Clair3](https://github.com/HKU-BAL/Clair3): Variant detection
 - `Annotation`
   - [GenomeTools gt gff3validator](https://genometools.org/tools/gt_gff3validator.html) + [FASTA/GFF correspondence](subworkflows/gallvp/gff3_gt_gff3_gff3validator_stat/main.nf): GFF3 validation
   - [GenomeTools gt stat](https://genometools.org/tools/gt_stat.html): Annotation statistics
@@ -107,31 +117,36 @@ The pipeline uses nf-core modules contributed by following authors:
 <a href="https://github.com/mahesh-panchal"><img src="https://github.com/mahesh-panchal.png" width="50" height="50"></a>
 <a href="https://github.com/jfy133"><img src="https://github.com/jfy133.png" width="50" height="50"></a>
 <a href="https://github.com/midnighter"><img src="https://github.com/midnighter.png" width="50" height="50"></a>
+<a href="https://github.com/matthdsm"><img src="https://github.com/matthdsm.png" width="50" height="50"></a>
 <a href="https://github.com/joseespinosa"><img src="https://github.com/joseespinosa.png" width="50" height="50"></a>
 <a href="https://github.com/sofstam"><img src="https://github.com/sofstam.png" width="50" height="50"></a>
 <a href="https://github.com/sateeshperi"><img src="https://github.com/sateeshperi.png" width="50" height="50"></a>
 <a href="https://github.com/maxulysse"><img src="https://github.com/maxulysse.png" width="50" height="50"></a>
-<a href="https://github.com/matthdsm"><img src="https://github.com/matthdsm.png" width="50" height="50"></a>
 <a href="https://github.com/heuermh"><img src="https://github.com/heuermh.png" width="50" height="50"></a>
-<a href="https://github.com/grst"><img src="https://github.com/grst.png" width="50" height="50"></a>
 <a href="https://github.com/fellen31"><img src="https://github.com/fellen31.png" width="50" height="50"></a>
 <a href="https://github.com/ewels"><img src="https://github.com/ewels.png" width="50" height="50"></a>
-<a href="https://github.com/edmundmiller"><img src="https://github.com/edmundmiller.png" width="50" height="50"></a>
+<a href="https://github.com/nvnieuwk"><img src="https://github.com/nvnieuwk.png" width="50" height="50"></a>
+<a href="https://github.com/grst"><img src="https://github.com/grst.png" width="50" height="50"></a>
 <a href="https://github.com/adamrtalbot"><img src="https://github.com/adamrtalbot.png" width="50" height="50"></a>
 <a href="https://github.com/robsyme"><img src="https://github.com/robsyme.png" width="50" height="50"></a>
+<a href="https://github.com/robert-a-forsyth"><img src="https://github.com/robert-a-forsyth.png" width="50" height="50"></a>
 <a href="https://github.com/priyanka-surana"><img src="https://github.com/priyanka-surana.png" width="50" height="50"></a>
 <a href="https://github.com/phue"><img src="https://github.com/phue.png" width="50" height="50"></a>
-<a href="https://github.com/nvnieuwk"><img src="https://github.com/nvnieuwk.png" width="50" height="50"></a>
 <a href="https://github.com/muffato"><img src="https://github.com/muffato.png" width="50" height="50"></a>
+<a href="https://github.com/lmfaber"><img src="https://github.com/lmfaber.png" width="50" height="50"></a>
 <a href="https://github.com/lescai"><img src="https://github.com/lescai.png" width="50" height="50"></a>
 <a href="https://github.com/kevinmenden"><img src="https://github.com/kevinmenden.png" width="50" height="50"></a>
+<a href="https://github.com/kevbrick"><img src="https://github.com/kevbrick.png" width="50" height="50"></a>
 <a href="https://github.com/jvhagey"><img src="https://github.com/jvhagey.png" width="50" height="50"></a>
 <a href="https://github.com/jeremy1805"><img src="https://github.com/jeremy1805.png" width="50" height="50"></a>
 <a href="https://github.com/friederikehanssen"><img src="https://github.com/friederikehanssen.png" width="50" height="50"></a>
 <a href="https://github.com/felixkrueger"><img src="https://github.com/felixkrueger.png" width="50" height="50"></a>
 <a href="https://github.com/erikrikarddaniel"><img src="https://github.com/erikrikarddaniel.png" width="50" height="50"></a>
+<a href="https://github.com/edmundmiller"><img src="https://github.com/edmundmiller.png" width="50" height="50"></a>
+<a href="https://github.com/dlbpointon"><img src="https://github.com/dlbpointon.png" width="50" height="50"></a>
 <a href="https://github.com/d4straub"><img src="https://github.com/d4straub.png" width="50" height="50"></a>
 <a href="https://github.com/charles-plessy"><img src="https://github.com/charles-plessy.png" width="50" height="50"></a>
+<a href="https://github.com/fernandoduartef"><img src="https://github.com/fernandoduartef.png" width="50" height="50"></a>
 
 ## Contributions and Support
 

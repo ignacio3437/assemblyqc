@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-import sys
 import re
+import sys
 
 bundled_links_file_name = sys.argv[1]
 
@@ -52,15 +52,13 @@ def generate_colors(num_colors):
 
 
 def read_file_lines(file_path):
-    with open(file_path, "r") as f:
+    with open(file_path) as f:
         return f.readlines()
 
 
 def generate_colors_by_ids(bundle_file_lines):
     """Create a dictionary to map unique target ids to colors"""
-    unique_ids = set(
-        line.split()[3] for line in bundle_file_lines
-    )  # index 3: Target ids
+    unique_ids = {line.split()[3] for line in bundle_file_lines}  # index 3: Target ids
     num_unique_ids = len(unique_ids)
     colors = generate_colors(num_unique_ids)
     return dict(zip(sorted(unique_ids, key=natural_key), colors))

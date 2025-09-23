@@ -1,0 +1,35 @@
+nextflow_pipeline {
+
+    name "Test mapback"
+    script "main.nf"
+
+    test("mapback") {
+
+        when {
+            params {
+                input                   = "$baseDir/tests/mapback/assemblysheet.csv"
+                mapback_skip            = false
+                mapback_variants_skip   = false
+                mapback_clair3_platform = 'hifi'
+                outdir                  = "$outputDir"
+            }
+        }
+
+        then {
+            def stable_path = getAllFilesFromDir(params.outdir, false, ['pipeline_info/*.{html,json,txt,yml}', 'report.{html,json}'], null, ['**'])
+
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(
+                    [
+                        'successful tasks': workflow.trace.succeeded().size(),
+                        'versions': removeNextflowVersion("$outputDir/pipeline_info/software_versions.yml"),
+                        'stable paths': stable_path
+                    ]
+                ).match() }
+            )
+        }
+
+    }
+
+}

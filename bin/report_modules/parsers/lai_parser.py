@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 import re
+from pathlib import Path
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -15,7 +15,7 @@ class LAIParser:
         self.stats_dict["version"] = self.get_lai_version()
         lai_errors = self.get_lai_errors()
 
-        if lai_errors != None:
+        if lai_errors is not None:
             self.stats_dict["result"] = lai_errors
             return self.stats_dict
 
@@ -25,9 +25,8 @@ class LAIParser:
         return self.stats_dict
 
     def get_lai_version(self):
-        p = re.compile("### LTR Assembly Index \(LAI\) (.*) ###")
-        result = p.search(self.log_file_data).group(1).strip()
-        return result
+        p = re.compile(r"### LTR Assembly Index \(LAI\) (.*) ###")
+        return p.search(self.log_file_data).group(1).strip()
 
     def get_lai_errors(self):
         p = re.compile("【Error】(.*)")
@@ -48,9 +47,7 @@ class LAIParser:
         if len(raw_stats) != 6:
             return "Error parsing the LAI.out file"
 
-        stats_str = f"Intact: {raw_stats[2]}, Total: {raw_stats[3]}, Raw LAI: {raw_stats[4]}, LAI: {raw_stats[5]}"
-
-        return stats_str
+        return f"Intact: {raw_stats[2]}, Total: {raw_stats[3]}, Raw LAI: {raw_stats[4]}, LAI: {raw_stats[5]}"
 
 
 def parse_lai_folder(folder_name="lai_outputs"):
@@ -66,7 +63,7 @@ def parse_lai_folder(folder_name="lai_outputs"):
 
     for file in list_of_log_files:
         log_file_data = ""
-        with open(file, "r") as file:
+        with open(file) as file:
             lines = file.readlines()
             for line in lines:
                 log_file_data += line
@@ -80,7 +77,7 @@ def parse_lai_folder(folder_name="lai_outputs"):
         out_file_path = Path(f"{dir}/{folder_name}/{hap_name}.LAI.out")
         out_file_data = ""
         if os.path.exists(out_file_path):
-            with open(out_file_path, "r") as out_file:
+            with open(out_file_path) as out_file:
                 lines = out_file.readlines()
                 for line in lines:
                     out_file_data += line

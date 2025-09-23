@@ -77,7 +77,7 @@ workflow PIPELINE_INITIALISATION {
     ch_input_validated                      = ch_input
                                             | map { row -> row[0] }
                                             | collect
-                                            | map { tags -> validateInputTags( tags ) }
+                                            | map { tags -> validateInputTags( tags, params.hic_map_combinations ) }
                                             | combine ( ch_input.map { row -> [ row ] } )
                                             | map { _result, row -> row }
 
@@ -108,7 +108,7 @@ workflow PIPELINE_INITIALISATION {
                                                 [ tag, file(fa, checkIfExists: true), file(labels, checkIfExists: true) ]
                                             }
 
-    ch_reads                                = params.merqury_skip
+    ch_merqury_reads                        = params.merqury_skip
                                             ? Channel.empty()
                                             : ch_input_validated
                                             | map { input_data ->
@@ -158,6 +158,50 @@ workflow PIPELINE_INITIALISATION {
                                             | map { fid, metas, m_reads ->
                                                 validateAndNormaliseReadsTuple ( fid, metas, m_reads, 'paternal' )
                                             }
+    ch_mapback_reads                        = params.mapback_skip
+                                            ? Channel.empty()
+                                            : ch_input_validated
+                                            | map { input_data ->
+                                                def tag     = input_data[0]
+                                                def reads_1 = input_data[5]
+                                                def reads_2 = input_data[6]
+
+                                                reads_1
+                                                ? extractReadsTuple ( tag, reads_1, reads_2 )
+                                                : null
+                                            }
+                                            | groupTuple()
+                                            | flatMap { fid, metas, reads_list ->
+                                                def haps = metas.collect { it.id }
+
+                                                if ( ! params.mapback_variants_skip && metas.size() > 2 ) {
+                                                    error "Only expected 2 haplotypes in each group of reads. Found ${haps} in group ${fid.fid}"
+                                                }
+
+                                                metas.withIndex().collect { meta, idx ->
+                                                    [
+                                                        fid,
+                                                        meta,
+                                                        reads_list[idx]
+                                                    ]
+                                                }
+                                            }
+                                            | map { fid, meta, reads ->
+
+                                                if ( meta.is_sra ) {
+                                                    error "SRA reads are not supported for Mapback profile creation. Please check reads_1 for assembly ${meta.id}"
+                                                }
+
+                                                if ( ! meta.single_end ) {
+                                                    error "Only single-end reads are supported for Mapback profile creation. Please check reads_1/reads_2 for assembly ${meta.id}"
+                                                }
+
+                                                [
+                                                    meta + [ id: fid.fid, ref_id: meta.id, type: 'mapback' ],
+                                                    reads
+                                                ]
+                                            }
+
 
     // Initialise parameter channels
     ch_params_as_json                       = Channel.of ( jsonifyParams ( params ) )
@@ -167,9 +211,10 @@ workflow PIPELINE_INITIALISATION {
     input                                   = ch_input_validated
     hic_reads                               = ch_hic_reads
     xref_assembly                           = ch_xref_assembly_validated
-    reads                                   = ch_reads
+    merqury_reads                           = ch_merqury_reads
     maternal_reads                          = ch_maternal_reads
     paternal_reads                          = ch_paternal_reads
+    mapback_reads                           = ch_mapback_reads
     params_as_json                          = ch_params_as_json
     summary_params_as_json                  = ch_summary_params_as_json
     versions                                = ch_versions
@@ -186,11 +231,10 @@ workflow PIPELINE_COMPLETION {
     take:
     email           //  string: email address
     email_on_fail   //  string: email address sent on pipeline failure
-    plaintext_email //  boolean: Send plain-text email instead of HTML
-    outdir          //  path: Path to output directory where results will be published
-    monochrome_logs //  boolean: Disable ANSI colour codes in log output
+    plaintext_email // boolean: Send plain-text email instead of HTML
+    outdir          //    path: Path to output directory where results will be published
+    monochrome_logs // boolean: Disable ANSI colour codes in log output
     hook_url        //  string: hook URL for notifications
-
 
     main:
     summary_params = paramsSummaryMap(workflow, parameters_schema: "nextflow_schema.json")
@@ -267,7 +311,7 @@ def validateInputParameters() {
     }
 }
 
-def validateInputTags(assemblyTags) {
+def validateInputTags(assemblyTags, hicCombinations) {
 
     def tagCounts = [:]
     assemblyTags.each { tag ->
@@ -277,6 +321,14 @@ def validateInputTags(assemblyTags) {
 
     if (repeatedTags.size() > 0) {
         error("Please check input assemblysheet -> Multiple assemblies have the same tags!: ${repeatedTags}")
+    }
+
+    def hicTags = hicCombinations != null ? hicCombinations.tokenize(' ').collect { it.tokenize(':') }.flatten() : []
+
+    hicTags.each {
+        if ( it !in assemblyTags ) {
+            error("Please check input hic_map_combinations -> $it was not found in the assemblysheet!")
+        }
     }
 
     return true
@@ -303,12 +355,13 @@ def jsonifyParams(params) {
 
 def jsonifySummaryParams(params) {
 
-    def summary = [:]
-    for (group in params.keySet()) {
-        for (subgroup in params[group].keySet()) {
-            if ( params[group][subgroup] ) { summary << [ "$subgroup": "${params[group][subgroup]}" ] }
-        }
-    }
+    def summary = params.keySet().collectEntries { group ->
+        [
+            "$group": params[group].keySet().collectEntries { param ->
+                [ "$param": "${params[group][param]}" ]
+            }
+        ]
+    }.findAll { it.value.size() > 0 }
 
     return groovy.json.JsonOutput.toJson(summary).toString()
 }

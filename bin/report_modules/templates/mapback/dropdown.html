@@ -1,0 +1,10 @@
+<div class="dropdown">
+    <div class="dropdown_content">
+        <select id="selector_MAPBACK" onchange="showContent('MAPBACK')">
+            {% set str_hap = 'hap' %} {% for item in range(all_stats_dicts["MAPBACK"]|length) %}
+            <option value="tabcontent_MAPBACK_{{all_stats_dicts['MAPBACK'][item]['hap']}}">
+                {{ all_stats_dicts['MAPBACK'][item][str_hap] }} {% endfor %}
+            </option>
+        </select>
+    </div>
+</div>

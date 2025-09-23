@@ -18,7 +18,7 @@ workflow FASTA_KRAKEN2 {
     UNTAR ( ch_tar_db.map { tar -> [ [ id: "kraken2_db" ], tar ] } )
 
     ch_kraken2_inputs           = UNTAR.out.untar
-                                | map { meta, untar -> untar }
+                                | map { _meta, untar -> untar }
                                 | mix(
                                     ch_untar_db
                                 )
@@ -26,8 +26,8 @@ workflow FASTA_KRAKEN2 {
 
     // MODULE: KRAKEN2
     KRAKEN2(
-        ch_kraken2_inputs.map { db, tag, fasta -> [ tag, fasta ] },
-        ch_kraken2_inputs.map { db, tag, fasta -> db }
+        ch_kraken2_inputs.map { _db, tag, fasta -> [ tag, fasta ] },
+        ch_kraken2_inputs.map { db, _tag, _fasta -> db }
     )
 
     // MODULE: KRAKEN2_KRONA_PLOT

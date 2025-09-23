@@ -1,12 +1,12 @@
-# plant-food-research-open/assemblyqc: Output
+# plant-food-research-open/assemblyqc: Output<!-- omit in toc -->
 
-## Introduction
+## Introduction<!-- omit in toc -->
 
 This document describes the output produced by the pipeline. Most of the plots are taken from the AssemblyQC report which summarises results at the end of the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-## Pipeline overview
+## Pipeline overview<!-- omit in toc -->
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data to produce following outputs:
 
@@ -24,6 +24,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 - [HiC contact map](#hic-contact-map)
 - [Merqury](#merqury)
 - [Synteny](#synteny)
+- [Mapback](#mapback)
 - [GenomeTools gt stat](#genometools-gt-stat)
 - [OrthoFinder](#orthofinder)
 - [Pipeline information](#pipeline-information)
@@ -182,18 +183,20 @@ Kraken 2 [assigns taxonomic labels](https://ccb.jhu.edu/software/kraken2/) to se
     - `*_1_fastqc.html/*_2_fastqc.html`: FastQC html report for the reads passed by FASTP.
     - `*_1_fastqc.zip/*_2_fastqc.zip`: FastQC stats for the reads passed by FASTP.
   - `hicqc`
-    - `*.on.*_qc_report.pdf`: HiC QC report for reads mapped to an assembly.
-  - `assembly/`
-    - `*.agp.assembly`: AGP assembly file listing the length of each contig in the assembly.
-  - `bedpe/` - `*.assembly.bedpe`: `*.agp.assembly` file converted to BEDPE to highlight the contigs on the HiC contact map.
+    - `*_qc_report.pdf`: HiC QC report for reads mapped to an assembly.
+  - `*.hic`: The HiC contact map stored as a multi-resolution `.hic` file.
+  - `*.assembly`: Assembly file created when the `hic_assembly_mode` is `true`
+  - `*.bed`: The bed file listing the names of the contigs on the `assembly` super-scaffold when `hic_assembly_mode` is `true`
+  - `*.bedpe`: The bedpe file listing the names and 2D locations of the contigs on the `assembly` super-scaffold when `hic_assembly_mode` is `true`
+  - `*.scale`: The scale by which the HiC contact map has been shrunk by [`YaHS juicer pre`](https://github.com/c-zhou/yahs/tree/6c46061ea1665073068cccbed81c6707e3bd07bf?tab=readme-ov-file#manual-curation-with-juicebox-jbat) when `hic_assembly_mode` is `true`
   </details>
 
 Hi-C contact mapping experiments measure the frequency of physical contact between loci in the genome. The resulting dataset, called a “contact map,” is represented using a [two-dimensional heatmap](https://github.com/igvteam/juicebox.js) where the intensity of each pixel indicates the frequency of contact between a pair of loci.
 
 <div align="center">
 <img src="images/fastp.png" alt="AssemblyQC - fastp log for HiC reads" width="31%">
-<img src="images/hicqc.png" alt="AssemblyQC - HiC QC report" width="46.6%">
-<img src="images/hic_map.png" alt="AssemblyQC - HiC interactive contact map" width="50%">
+<img src="images/hicqc.png" alt="AssemblyQC - HiC QC report" width="49.3%">
+<img src="images/hic_map.jpg" alt="AssemblyQC - HiC interactive contact map" width="50%">
 <hr>
 <em>AssemblyQC - HiC results</em>
 </div>
@@ -247,6 +250,25 @@ Hi-C contact mapping experiments measure the frequency of physical contact betwe
 <img src="images/dotplot.png" alt="AssemblyQC - dotplot synteny plot" width="50%">
 <hr>
 <em>AssemblyQC - Synteny plots</em>
+</div>
+
+### Mapback
+
+A mapback profile consisting of coverage, number of heterozygous alleles, allele balance and GC content is obtained by alignment of raw long-read data back to the assemblies.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `mapback/`
+  - `*.bed`: GC content
+  - `*.cov.wig`: Alignment coverage
+  - `*.het.stats`: Count of heterozygous alleles and allele balance ratio over successive windows
+  </details>
+
+<div align="center">
+<img src="images/mapback.png" alt="AssemblyQC - Mapback plot" width="50%">
+<hr>
+<em>AssemblyQC - Mapback</em>
 </div>
 
 ### GenomeTools gt stat

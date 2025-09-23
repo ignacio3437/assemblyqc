@@ -1,8 +1,7 @@
-bump_version: null
 lint:
-  actions_ci: false
   multiqc_config: false
   template_strings: false
+  actions_nf_test: false
   included_configs: false
   files_exist:
     - conf/igenomes.config
@@ -15,6 +14,7 @@ lint:
     - .github/ISSUE_TEMPLATE/config.yml
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
+    - tests/default.nf.test
   files_unchanged:
     - LICENSE
     - .gitignore
@@ -30,8 +30,10 @@ lint:
     - validation.help.afterText
     - validation.summary.beforeText
     - validation.summary.afterText
-nf_core_version: 3.0.2
-org_path: null
+  nf_test_content:
+    - tests/default.nf.test
+    - tests/nextflow.config
+nf_core_version: 3.3.2
 repository_type: pipeline
 template:
   author: Usman Rashid, Ken Smith, Ross Crowhurst, Chen Wu, Marcus Davy
@@ -46,5 +48,4 @@ template:
     - igenomes
     - multiqc
     - fastqc
-  version: 2.2.1
-update: null
+  version: 3.0.0

@@ -3,6 +3,87 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v3.0.0 - [22-Sep-2025]
+
+### `Added`
+
+1. Updated nf-core pipeline template to 3.3.2, modules and subworkflows [#191](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/191)
+2. The minimum required Nextflow version is now 24.10.5
+3. Now the pipeline parameters are presented in separate sections on the PARAMS summary page in the report
+4. Added parameter `hic_alphanumeric_sort` to allow disabling of FASTA sorting by sequence labels [#188](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/188)
+5. Now FastQC is skipped by default [#199](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/199)
+6. Updated NCBI FCS GX to 0.5.5 [#195](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/195)
+7. Added [fa-lint](https://github.com/GallVp/fa-lint) to detect all N's in fasta sequences [#173](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/173)[#224](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/224)
+8. Added sub-workflow `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` [#211](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/211)
+9. Updated Plant&Food Nextflow to `24.10.6` [#225](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/225)
+10. Added parameter `hic_mapq` and set the default to 1 for now [#218](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/218)
+11. Added parameter `hic_save_trimmed` and set its default to `false` [#222](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/222)
+12. Added parameter `hic_assembly_mode` ~~and `hic_juicer_tools_pre_ext_args`~~ to support assembly mode for HiC [#219](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/219)
+13. Added parameter `hic_map_combinations` to allow creation of single and combined HiC maps in parallel [#220](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/220)
+14. Added parameter `hic_refsort` to make sorting by reference optional
+15. Added v3 of PFR test dataset [#240](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/240)
+16. Sub-workflow `FASTA_SEQKIT_REFSORT` now works for n-genome combinations [#247](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/247)
+17. Tags for nf-shard can now be added via the `--tags` parameter without nf-schema warnings [#254](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/254)
+18. `hic_assembly_mode` is now set to `true` by default [#263](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/263)
+19. Updated JuiceBox.js to 2.5.1
+20. Swapped out sub-workflow `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` and replaced it with `BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD` to fix JuicerTools memory usage issue [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273) and the HiC map scale issue [#266](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/266)
+21. Now the HiC map is loaded at 100 Kbp resolution to improve loading time [#284](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/284)
+22. Added sub-workflow `FASTA_FASTQ_WINNOWMAP_COVERAGE` [#272](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/272)
+23. Added sub-workflow `FASTA_BEDTOOLS_MAKEWINDOWS_NUC` [#289](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/289)
+24. Added a mapback profile module to the AssemblyQC report [#292](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/292)
+25. Added parameter ~~`mapback_filter_length_bp`~~ `mapback_rolling_median_bp` to take care of salt and pepper noise in the Mapback coverage profile [#296](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/296)
+26. Added module `CLAIR3` for variant calling [#300](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/300)
+27. Added parameters `mapback_coverage_span_bp` and `mapback_gc_het_window_bp` to provide more control over Mapback stats generation and plotting [#304](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/304)
+28. Fixed the Mapback scales to 2x/3x mean of data [#299](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/299)
+29. Added mean and 1/2 mean guides for the coverage plot [#307](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/307)
+30. Updated docs and flowchart to match the Mapback profile development [#287](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/287)
+
+### `Fixed`
+
+1. Fixed Nextflow language server errors
+2. HiC QC report is now generated before excluding unmapped and duplicate RPs [#197](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/197)
+3. ~~Bumped default memory for `RUNASSEMBLYVISUALIZER` to 16.GBs [#186](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/186)~~
+4. Fixed an issue where NCBI FCS Adaptor failed with error `permanentFail` due to unconventional fasta headers [#168](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/168)
+5. Fixed an issue where `hic_qc` was not able to detect forward/reverse reads and the samblaster command [#161](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/161)
+6. Now sorting HiC BAM by query name before passing to `YAHS_JUICERPRE` so that `-q` flag is not ignored [#216](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/216)
+7. Fixed an issue where `hic_map_combinations` parameter did not allow `tag1:tag2` [#236](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/236)
+8. Fixed an issue where the HiC map did not correctly load the track annotations [#238](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/238)
+9. Fixed an issue where the Nextflow head job was consuming more than 4.GB due to an fasta interleaving workflow being run on `exec:` [#239](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/239)
+10. Fixed an issue where the pipeline crashed when the `hic_assembly_mode` was set to `true` [#258](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/258)
+11. Fixed an issue where assemblathon was crashing on MMC due to `xargs -I {} find {} -maxdepth 0 -print 2>/dev/null`
+12. Fixed an issue where `JUICERTOOLS_PRE` was not requesting the right ammount of memory [#268](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/268)
+13. ~~Added `JUICER_INDEXBYCHR` to the HiC workflow so that `JUICERTOOLS_PRE` uses multiple threads [#273](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/273)~~ This change lead to a broken HiC map and was, therefore, rolled back.
+14. Fixed an issue where the HiC map did not load correctly on Firefox [#274](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/274)
+15. Fixed an issue where the GC content was computed for all the assemblies instead of only those that had reads available for computing coverage [#294](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/294)
+16. Fixed an issue where Mapback report module failed when variant calling was skipped [#302](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/302)
+17. Fixed an issue where the x-axis ticks were not displayed for the coverage plot [#307](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/307)
+
+### `Deprecated`
+
+1. Removed the `resourceLimits` section from `nextflow.config`. The user must specify the `resourceLimits` for their environment if needed.
+2. Removed parameter `hic_samtools_ext_args` as filtering is now down by `YAHS_JUICERPRE` which is equivalent to samtools flag `-F 3844` [#127](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/127)
+3. Removed modules: `JUICER_SORT`, `MATLOCK_BAM2_JUICER`, `RUNASSEMBLYVISUALIZER` as these have been superseded by the addition of the `BAM_FASTA_YAHS_JUICER_PRE_JUICER_TOOLS_PRE` sub-workflow
+4. Removed local modules `AGP2ASSEMBLY`, `ASSEMBLY2BEDPE` and `MAKEAGPFROMFASTA` as the assembly mode for HiC file is not supported anymore
+5. Now the OrthoFinder module only publishes: `Comparative_Genomics_Statistics`, `Gene_Duplication_Events`, `Orthogroups`, `Phylogenetic_Hierarchical_Orthogroups`, and `Species_Tree` to the results directory [#243](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/243)
+
+### `Tool Updates`
+
+| Tool        | Old Version | New Version |
+| ----------- | ----------- | ----------- |
+| busco       | 5.7.1       | 5.8.3       |
+| htslib      | 1.20        | 1.21        |
+| minimap2    | 2.28        | 2.29        |
+| samtools    | 1.20        | 1.21        |
+| seqkit      | 2.8.1       | 2.9.0       |
+| ncbi-fcs-gx | 0.5.4       | 0.5.5       |
+| fastp       | 0.23.4      | 0.24.0      |
+| gfastats    | 1.3.6       | 1.3.10      |
+
+### `Dependencies`
+
+1. Nextflow!>=24.10.5
+2. nf-schema@2.2.0
+
 ## v2.2.1 - [11-Dec-2024]
 
 ### `Added`
@@ -19,8 +100,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 1. Nextflow!>=24.04.2
 2. nf-schema@2.1.1
-
-### `Deprecated`
 
 ## v2.2.0 - [05-Nov-2024]
 

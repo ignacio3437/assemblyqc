@@ -1,0 +1,220 @@
+nextflow_function {
+
+    name "checkHiCParam"
+    script "./hicparam.nf"
+    function "checkHiCParam"
+
+    test("Dummy_hic.R{1,2}.fq.gz") {
+        when {
+            function {
+                """
+                input[0] = "Dummy_hic.R{1,2}.fq.gz"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test("Dummy_hic.{1,2}.fq.gz") {
+        when {
+            function {
+                """
+                input[0] = "Dummy_hic.{1,2}.fq.gz"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test("Dummy_hic{1,2}.fastq.gz") {
+        when {
+            function {
+                """
+                input[0] = "Dummy_hic{1,2}.fastq.gz"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test("Dummy_hic.R{1,2}.merged.fq.gz") {
+        when {
+            function {
+                """
+                input[0] = "Dummy_hic.R{1,2}.merged.fq.gz"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test("Dummy_hic{1,2}_merged.samtools._check.fq.gz") {
+        when {
+            function {
+                """
+                input[0] = "Dummy_hic{1,2}_merged.samtools._check.fq.gz"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test("CK13_02_hic_R{1,2}.merged.fastq.gz") {
+        when {
+            function {
+                """
+                input[0] = "CK13_02_hic_R{1,2}.merged.fastq.gz"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test("CK13_02_hic_1.merged.fastq.gz -- fail") {
+        when {
+            function {
+                """
+                input[0] = "CK13_02_hic_1.merged.fastq.gz"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert ! function.result
+        }
+    }
+}
+
+nextflow_function {
+    name "checkHiCCombinationsParam"
+    script "./hicparam.nf"
+    function "checkHiCCombinationsParam"
+
+    test(" '' -- fail ") {
+        when {
+            function {
+                """
+                input[0] = ""
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert ! function.result
+        }
+    }
+
+    test(" 'tag.1' -- fail ") {
+        when {
+            function {
+                """
+                input[0] = "tag.1"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert ! function.result
+        }
+    }
+
+    test(" 'tag1' -- pass ") {
+        when {
+            function {
+                """
+                input[0] = "tag1"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test(" 'tag1 tag2' -- pass ") {
+        when {
+            function {
+                """
+                input[0] = "tag1 tag2"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test(" 'tag2:tag3' -- pass ") {
+        when {
+            function {
+                """
+                input[0] = "tag2:tag3"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+
+    test(" 'tag1 tag2:tag3' -- pass ") {
+        when {
+            function {
+                """
+                input[0] = "tag1 tag2:tag3"
+                input[1] = "$baseDir/nextflow_schema.json"
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+        }
+    }
+}

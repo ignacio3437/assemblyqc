@@ -1,0 +1,44 @@
+import os
+import re
+from pathlib import Path
+
+from report_modules.parsers.parsing_commons import sort_list_of_results
+
+
+def parse_fa_lint_folder(folder_name="fa_lint_logs"):
+    dir = os.getcwdb().decode()
+    logs_folder_path = Path(f"{dir}/{folder_name}")
+
+    if not os.path.exists(logs_folder_path):
+        return {}
+
+    list_of_log_files = logs_folder_path.glob("*.log")
+
+    data = {"FA_LINT": []}
+
+    for log_path in list_of_log_files:
+        if str(log_path).endswith(".seqkit.rmdup.log"):
+            data["FA_LINT"].append(
+                {
+                    "hap": os.path.basename(log_path).replace(".seqkit.rmdup.log", ""),
+                    "validation_log": "FASTA validation failed due to presence of duplicate sequences",
+                }
+            )
+            continue
+
+        with open(log_path) as f:
+            log_lines = [f"<p class='section-para' >{line}</p>" for line in f]
+
+        file_tokens = re.findall(
+            r"([\w]+).error.log",
+            os.path.basename(str(log_path)),
+        )[0]
+
+        data["FA_LINT"].append(
+            {
+                "hap": file_tokens,
+                "validation_log": "".join(log_lines),
+            }
+        )
+
+    return {"FA_LINT": sort_list_of_results(data["FA_LINT"], "hap")}

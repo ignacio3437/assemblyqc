@@ -1,47 +1,46 @@
 #!/usr/bin/env python3
 
 import json
+import logging
+
 import yaml
-
-from report_modules.report_printer import ReportPrinter
-
-from report_modules.parsers.params_parser import parse_params_json
-from report_modules.parsers.tools_parser import parse_tools_yaml
-
-from report_modules.parsers.gff3_validate_parser import parse_gff3_validate_folder
-from report_modules.parsers.fasta_validate_parser import parse_fasta_validate_folder
-
-from report_modules.parsers.ncbi_fcs_adaptor_parser import parse_ncbi_fcs_adaptor_folder
-from report_modules.parsers.ncbi_fcs_gx_parser import parse_ncbi_fcs_gx_folder
 from report_modules.parsers.assemblathon_stats_parser import (
     parse_assemblathon_stats_folder,
+)
+from report_modules.parsers.busco_parser import parse_busco_folder
+from report_modules.parsers.fa_lint_parser import parse_fa_lint_folder
+from report_modules.parsers.genometools_gt_stat_parser import (
+    parse_genometools_gt_stat_folder,
 )
 from report_modules.parsers.gfastats_parser import (
     parse_gfastats_folder,
 )
-from report_modules.parsers.genometools_gt_stat_parser import (
-    parse_genometools_gt_stat_folder,
-)
-from report_modules.parsers.busco_parser import parse_busco_folder
-from report_modules.parsers.tidk_parser import parse_tidk_folder
-from report_modules.parsers.lai_parser import parse_lai_folder
-from report_modules.parsers.kraken2_parser import parse_kraken2_folder
+from report_modules.parsers.gff3_validate_parser import parse_gff3_validate_folder
 from report_modules.parsers.hic_parser import parse_hic_folder
-from report_modules.parsers.synteny_parser import parse_synteny_folder
+from report_modules.parsers.kraken2_parser import parse_kraken2_folder
+from report_modules.parsers.lai_parser import parse_lai_folder
+from report_modules.parsers.mapback_parser import parse_mapback_folder
 from report_modules.parsers.merqury_parser import parse_merqury_folder
+from report_modules.parsers.ncbi_fcs_adaptor_parser import parse_ncbi_fcs_adaptor_folder
+from report_modules.parsers.ncbi_fcs_gx_parser import parse_ncbi_fcs_gx_folder
 from report_modules.parsers.orthofinder_parser import parse_orthofinder_folder
+from report_modules.parsers.params_parser import parse_params_json
+from report_modules.parsers.synteny_parser import parse_synteny_folder
+from report_modules.parsers.tidk_parser import parse_tidk_folder
+from report_modules.parsers.tools_parser import parse_tools_yaml
+from report_modules.report_printer import ReportPrinter
+
+logging.basicConfig(level=logging.INFO, force=True)
 
 if __name__ == "__main__":
-    params_dict, params_table = parse_params_json("params_json.json")
-    params_summary_dict, params_summary_table = parse_params_json(
-        "params_summary_json.json"
-    )
+    params_dict, params_table = parse_params_json("params.json")
+    params_summary_dict, params_summary_table = parse_params_json("summary_params.json")
     tools_dict, tools_table = parse_tools_yaml()
 
-    data_from_tools = {}
+    data_from_tools: dict | dict[str, list] = {}
 
     data_from_tools = {**data_from_tools, **parse_gff3_validate_folder()}
-    data_from_tools = {**data_from_tools, **parse_fasta_validate_folder()}
+    data_from_tools = {**data_from_tools, **parse_fa_lint_folder()}
     data_from_tools = {**data_from_tools, **parse_ncbi_fcs_adaptor_folder()}
     data_from_tools = {**data_from_tools, **parse_ncbi_fcs_gx_folder()}
     data_from_tools = {**data_from_tools, **parse_assemblathon_stats_folder()}
@@ -59,8 +58,16 @@ if __name__ == "__main__":
     data_from_tools = {**data_from_tools, **parse_synteny_folder()}
     data_from_tools = {**data_from_tools, **parse_merqury_folder()}
     data_from_tools = {**data_from_tools, **parse_orthofinder_folder()}
+    data_from_tools = {
+        **data_from_tools,
+        **parse_mapback_folder(
+            mapback_coverage_span_bp=int(params_dict["mapback_coverage_span_bp"]),
+            mapback_gc_het_window_bp=int(params_dict["mapback_gc_het_window_bp"]),
+            mapback_rolling_median_bp=int(params_dict["mapback_rolling_median_bp"]),
+        ),
+    }
 
-    with open("software_versions.yml", "r") as f:
+    with open("software_versions.yml") as f:
         versions_from_ch_versions = yaml.safe_load(f)
 
     data_from_tools = {
@@ -78,7 +85,10 @@ if __name__ == "__main__":
     }
 
     report_printer = ReportPrinter()
-    report_template = report_printer.print_template(data_from_tools)
+    report_html = report_printer.print(data_from_tools)
 
     with open("report.json", "w") as fp:
-        json.dump(data_from_tools, fp)
+        json.dump(data_from_tools, fp, indent=4)
+
+    with open("report.html", "w") as fp:
+        fp.write(report_html)

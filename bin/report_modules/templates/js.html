@@ -26,6 +26,10 @@
 
         document.getElementById(toolName).style.display = "block";
         evt.currentTarget.className += " active";
+
+        if (toolName == "HIC") {
+            registerFrameLoader();
+        }
     }
 
     function openToolManually(target, toolName) {
@@ -43,9 +47,16 @@
 
         document.getElementById(toolName).style.display = "block";
         target.classList.add("active");
+
+        if (toolName == "HIC") {
+            registerFrameLoader();
+        }
     }
 
     window.addEventListener("DOMContentLoaded", (event) => {
+
+        registerFrameLoader();
+
         const topNavBarButtons = document.getElementById("topNavBarButtons");
 
         if (topNavBarButtons.children.length < 1) {
@@ -55,4 +66,15 @@
         const firstChild = topNavBarButtons.children[0];
         openToolManually(firstChild, firstChild.innerHTML.replaceAll(" ", "_"));
     });
+
+    function registerFrameLoader() {
+        setTimeout(() => {
+            const iframes = document.querySelectorAll('.iframe-wrapper-hic iframe');
+            iframes.forEach(iframe => {
+                const src = iframe.src;
+                iframe.src = '';
+                iframe.src = src;
+            });
+        }, 250);
+    }
 </script>

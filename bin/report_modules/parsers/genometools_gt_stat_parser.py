@@ -1,11 +1,12 @@
+import base64
 import os
-from pathlib import Path
-import pandas as pd
-from tabulate import tabulate
 import re
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import numpy as np
-import base64
+import pandas as pd
+from tabulate import tabulate
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -22,7 +23,7 @@ def parse_genometools_gt_stat_folder(folder_name="genometools_gt_stat"):
     data = {"GENOMETOOLS_GT_STAT": []}
 
     for report_path in list_of_report_files:
-        NUM_GROUPS = -1
+        num_groups = -1
         (
             report_table_dict,
             gene_length_distribution,
@@ -31,7 +32,7 @@ def parse_genometools_gt_stat_folder(folder_name="genometools_gt_stat"):
             exon_number_distribution,
             intron_length_distribution,
             cds_length_distribution,
-        ) = extract_report_data(report_path, NUM_GROUPS)
+        ) = extract_report_data(report_path, num_groups)
 
         gene_length_distribution_graph = ""
         if len(gene_length_distribution) > 1:
@@ -122,7 +123,7 @@ def parse_genometools_gt_stat_folder(folder_name="genometools_gt_stat"):
 def extract_report_data(report_path, num_groups):
     yaml_data = {}
     parent_key = ""
-    with open(report_path, "r") as stream:
+    with open(report_path) as stream:
         for line in stream:
             key, value = line.strip().split(":", 1)
 
@@ -206,9 +207,9 @@ def create_frequency_groups(data, num_groups):
             for x, freq in sorted_data
         ]
 
-    assert (
-        num_groups >= 1
-    ), f"num_groups should be larger than or equal to 1. It is {num_groups}"
+    assert num_groups >= 1, (
+        f"num_groups should be larger than or equal to 1. It is {num_groups}"
+    )
 
     if data == []:
         return []
@@ -304,7 +305,7 @@ def create_dist_graph(groups_dict, x_label, title, file_name):
             f"(<={min_x}, {round(min_y, 2)}%)",
             xy=(min_x, min_y),
             xytext=(min_x + x_anno_step, min_y + 10),
-            arrowprops=dict(color="red", arrowstyle="->, head_width=.15"),
+            arrowprops={"color": "red", "arrowstyle": "->, head_width=.15"},
         )
 
         near_50 = min([y for y in y_list if y >= 50.0])
@@ -313,7 +314,7 @@ def create_dist_graph(groups_dict, x_label, title, file_name):
             f"(<={min_x}, {round(min_y, 2)}%)",
             xy=(min_x, min_y),
             xytext=(min_x + x_anno_step, min_y),
-            arrowprops=dict(color="red", arrowstyle="->, head_width=.15"),
+            arrowprops={"color": "red", "arrowstyle": "->, head_width=.15"},
         )
 
         near_90 = min([y for y in y_list if y >= 90.0])
@@ -322,7 +323,7 @@ def create_dist_graph(groups_dict, x_label, title, file_name):
             f"(<={min_x}, {round(min_y, 2)}%)",
             xy=(min_x, min_y),
             xytext=(min_x + x_anno_step, min_y - 10),
-            arrowprops=dict(color="red", arrowstyle="->, head_width=.15"),
+            arrowprops={"color": "red", "arrowstyle": "->, head_width=.15"},
         )
 
         near_3_sigma = min([y for y in y_list if y >= 99.7])
@@ -334,7 +335,7 @@ def create_dist_graph(groups_dict, x_label, title, file_name):
             f"(<={min_x}, {round(min_y, 2)}%)",
             xy=(min_x, min_y),
             xytext=(min_x + x_anno_step_updated, min_y - 10),
-            arrowprops=dict(color="red", arrowstyle="->, head_width=.15"),
+            arrowprops={"color": "red", "arrowstyle": "->, head_width=.15"},
         )
 
     plt.savefig(file_name, dpi=300)

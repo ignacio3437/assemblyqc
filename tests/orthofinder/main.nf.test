@@ -3,7 +3,7 @@ nextflow_pipeline {
     name "Test orthofinder"
     script "main.nf"
 
-    test("invalid") {
+    test("orthofinder") {
 
         when {
             params {

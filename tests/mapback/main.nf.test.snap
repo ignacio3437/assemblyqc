@@ -1,0 +1,75 @@
+{
+    "mapback": {
+        "content": [
+            {
+                "successful tasks": 36,
+                "versions": {
+                    "ASSEMBLATHON_STATS": {
+                        "assemblathon_stats": "github/PlantandFoodResearch/assemblathon2-analysis/a93cba2"
+                    },
+                    "BEDTOOLS_MAKEWINDOWS": {
+                        "bedtools": "2.31.1"
+                    },
+                    "BEDTOOLS_NUC": {
+                        "bedtools": "2.31.1"
+                    },
+                    "CLAIR3": {
+                        "clair3": "1.2.0"
+                    },
+                    "EXTRACTHETSTATS": {
+                        "python": "3.11.3"
+                    },
+                    "FALINT": {
+                        "fa-lint": "1.2.0"
+                    },
+                    "GUNZIP_FASTA": {
+                        "gunzip": 1.13
+                    },
+                    "MERYL_COUNT": {
+                        "meryl": "5f3f1eb8c2392656d591a47a872c2efd3706e3ac"
+                    },
+                    "PAFTOOLS_SAM2PAF": {
+                        "paftools.js": null
+                    },
+                    "SAMTOOLS_FAIDX": {
+                        "samtools": 1.21
+                    },
+                    "SAMTOOLS_SORT": {
+                        "samtools": 1.21
+                    },
+                    "SEQKIT_RMDUP": {
+                        "seqkit": "v2.9.0"
+                    },
+                    "T2TPOLISH_PAFTOCOVCLIPPEDWIG": {
+                        "t2tpolish": "f780afa"
+                    },
+                    "TAG_ASSEMBLY": {
+                        "pigz": "2.3.4"
+                    },
+                    "WINNOWMAP": {
+                        "winnowmap": 2.03,
+                        "samtools": "1.16.1"
+                    },
+                    "Workflow": {
+                        "plant-food-research-open/assemblyqc": "v3.0.0"
+                    }
+                },
+                "stable paths": [
+                    "bacteroides_fragilis2_stats.csv:md5,081d707dd9fc92db7b4706b4a0d78ec0",
+                    "bacteroides_fragilis_stats.csv:md5,081d707dd9fc92db7b4706b4a0d78ec0",
+                    "sarscov2_stats.csv:md5,9ec4147b73cae550a38337520fc028dd",
+                    "bacteroides_fragilis.bed:md5,b264a651b31ddf2b2ec326a8d209a10d",
+                    "bacteroides_fragilis.cov.wig:md5,1239e86511111eefab50440e17c778cb",
+                    "bacteroides_fragilis.het.stats:md5,fa67b5b368bfbdd8324d68b152d43fd1",
+                    "bacteroides_fragilis2.bed:md5,b264a651b31ddf2b2ec326a8d209a10d",
+                    "bacteroides_fragilis2.cov.wig:md5,5e49d782e0e6de72e993d404a8666c3c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-09-03T20:10:07.879079"
+    }
+}

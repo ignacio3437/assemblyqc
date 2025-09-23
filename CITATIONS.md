@@ -10,9 +10,9 @@
 
 ## Pipeline tools
 
-- py_fasta_validator, [MIT](https://github.com/linsalrob/py_fasta_validator/blob/master/LICENSE)
+- fa-lint, [MIT](https://github.com/GallVp/fa-lint/blob/master/LICENSE)
 
-  > Edwards, R.A. 2019. fasta_validate: a fast and efficient fasta validator written in pure C. doi: <https://doi.org/10.5281/zenodo.2532044>
+  > <https://github.com/GallVp/fa-lint>
 
 - GenomeTools, [ISC](http://genometools.org/license.html)
 
@@ -88,9 +88,9 @@
 
   > <https://github.com/s-andrews/FastQC>
 
-- run-assembly-visualizer.sh, [MIT](https://github.com/aidenlab/3d-dna/blob/master/LICENSE)
+- HapHiC, [BSD-3-Clause](https://github.com/zengxiaofei/HapHiC/blob/main/LICENSE)
 
-  > Dudchenko O, Batra SS, Omer AD, Nyquist SK, Hoeger M, Durand NC, Shamim MS, Machol I, Lander, Aiden AP, Aiden EL 2017. De novo assembly of the Aedes aegypti genome using Hi-C yields chromosome-length scaffolds.Science356, 92-95(2017). doi: <https://doi.org/10.1126/science.aal3327>. Available at: <https://github.com/aidenlab/3d-dna/commit/63029aa3bc5ba9bbdad9dd9771ace583cc95e273>
+  > Xingtan Zhang, Shengcheng Zhang, Qian Zhao, Ray Ming, Haibao Tang. (2019) Assembly of allele-aware, chromosomal-scale autopolyploid genomes based on Hi-C data. Nature Plants, 5:833-845. doi: <https://doi.org/10.1038/s41477-019-0487-8>
 
 - hic_qc, [AGPL v3](https://github.com/phasegenomics/hic_qc/blob/master/LICENSE)
 
@@ -104,9 +104,13 @@
 
   > Li H. 2013. Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. <https://doi.org/10.48550/arXiv.1303.3997>
 
-- Matlock, [AGPL v3](https://github.com/phasegenomics/matlock/blob/master/LICENSE)
+- YaHS, [MIT](https://github.com/c-zhou/yahs/blob/main/LICENSE)
 
-  > <https://github.com/phasegenomics/matlock>; <https://quay.io/biocontainers/matlock:20181227--h4b03ef3_3>
+  > Chenxi Zhou, Shane A McCarthy, Richard Durbin, YaHS: yet another Hi-C scaffolding tool, Bioinformatics, Volume 39, Issue 1, January 2023, btac808, <https://doi.org/10.1093/bioinformatics/btac808>
+
+- hictk, [MIT](https://github.com/paulsengroup/hictk/blob/main/LICENSE)
+
+  > Roberto Rossini, Jonas Paulsen, hictk: blazing fast toolkit to work with .hic and .cool files Bioinformatics, Volume 40, Issue 7, July 2024, btae408, <https://doi.org/10.1093/bioinformatics/btae408>
 
 - samblaster, [MIT](https://github.com/GregoryFaust/samblaster/blob/master/LICENSE.txt)
 
@@ -139,6 +143,22 @@
 - OrthoFinder, [GPL v3](https://github.com/davidemms/OrthoFinder/blob/master/License.md)
 
   > Emms, D.M., Kelly, S. OrthoFinder: phylogenetic orthology inference for comparative genomics. Genome Biol 20, 238 (2019). doi: <a href="https://doi.org/10.1186/s13059-019-1832-y">10.1186/s13059-019-1832-y</a>
+
+- Winnowmap, [LicenseRef-Public-Domain](https://github.com/marbl/Winnowmap/blob/master/LICENSE)
+
+  > Chirag Jain, Arang Rhie, Nancy Hansen, Sergey Koren and Adam Phillippy. "Long-read mapping to repetitive reference sequences using Winnowmap2". Nature Methods, 2022. doi: <a href="https://doi.org/10.1038/s41592-022-01457-8">10.1038/s41592-022-01457-8</a>
+
+- T2T-Polish, [LicenseRef-Public-Domain](https://github.com/arangrhie/T2T-Polish/blob/master/LICENSE)
+
+  > Mc Cartney AM, Shafin K, Alonge M et al. Chasing perfection: validation and polishing strategies for telomere-to-telomere genome assemblies. Nat Methods (2022) doi: <a href="https://doi.org/10.1038/s41592-022-01440-3">10.1038/s41592-022-01440-3</a>
+
+- bedtools, [MIT](https://github.com/arq5x/bedtools2/blob/master/LICENSE)
+
+  > Aaron R. Quinlan, Ira M. Hall, BEDTools: a flexible suite of utilities for comparing genomic features, Bioinformatics, Volume 26, Issue 6, March 2010, Pages 841–842, doi: <a href="https://doi.org/10.1093/bioinformatics/btq033">10.1093/bioinformatics/btq033</a>
+
+- Clair3, [Custom Permissive](https://github.com/HKU-BAL/Clair3/blob/main/LICENSE.md)
+
+  > Zheng, Z., Li, S., Su, J., Leung, A. W. S., Lam, T. W., & Luo, R. (2022). Symphonizing pileup and full-alignment for deep learning-based long-read variant calling. Nature Computational Science, 2(12), 797-803. doi: <a href="https://doi.org/10.1101/2021.12.29.474431">10.1101/2021.12.29.474431</a>
 
 ## Software packaging/containerisation tools
 

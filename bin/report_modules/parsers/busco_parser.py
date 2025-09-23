@@ -1,10 +1,10 @@
-import pandas as pd
-from tabulate import tabulate
-import re
+import base64
 import os
 import re
-import base64
 from pathlib import Path
+
+import pandas as pd
+from tabulate import tabulate
 
 from report_modules.parsers.parsing_commons import sort_list_of_results
 
@@ -33,39 +33,33 @@ class BuscoParser:
 
     def get_busco_version(self):
         p = re.compile("BUSCO version is: (.*)")
-        result = p.search(self.file_text).group(1).strip()
-        return result
+        return p.search(self.file_text).group(1).strip()
 
     def get_lineage_dataset(self):
         p = re.compile("The lineage dataset is: (.*)")
-        result = p.search(self.file_text).group(1).split()[0]
-        return result
+        return p.search(self.file_text).group(1).split()[0]
 
     def get_creation_date(self):
         p = re.compile("The lineage dataset is: (.*)")
         result = p.search(self.file_text)
-        result = result.group(1).split()[3][:-1]
-        return result
+        return result.group(1).split()[3][:-1]
 
     def get_run_mode(self):
         p = re.compile("BUSCO was run in mode: (.*)")
-        result = p.search(self.file_text).group(1)
-        return result
+        return p.search(self.file_text).group(1)
 
     def get_gene_predictor(self):
         p = re.compile("Gene predictor used: (.*)")
         gene_predictor = p.search(self.file_text)
 
-        if gene_predictor == None:
+        if gene_predictor is None:
             return "None"
 
-        result = gene_predictor.group(1)
-        return result
+        return gene_predictor.group(1)
 
     def get_busco_percentages(self):
         p = re.compile("C:(.*)")
-        result = p.search(self.file_text).group(0).strip()
-        return result
+        return p.search(self.file_text).group(0).strip()
 
     def get_deps_and_versions(self):
         list_of_lines = self.file_text.split("\n")
@@ -135,7 +129,7 @@ def parse_busco_folder(folder_name="busco_outputs", data_key="BUSCO"):
     data = {data_key: []}
 
     for file in list_of_files:
-        with open(file, "r") as file:
+        with open(file) as file:
             file_text = file.read()
 
         parser = BuscoParser(file_text)

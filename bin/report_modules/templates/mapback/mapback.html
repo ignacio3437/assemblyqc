@@ -1,0 +1,33 @@
+<div id="MAPBACK" class="tabcontent" style="display: none">
+    <div class="section-para-wrapper">
+        <p class="section-para">
+            A mapback profile is created from long reads mapped to the genome with Winnowmap, GC content computed with
+            bedtools, and 0/1 genotype calls made with Clair3.
+        </p>
+        <p class="section-para"><b>Reference:</b></p>
+        <p class="section-para">
+            Chirag Jain, Arang Rhie, Nancy Hansen, Sergey Koren and Adam Phillippy. "Long-read mapping to repetitive
+            reference sequences using Winnowmap2". Nature Methods, 2022. doi: <a
+                href="https://doi.org/10.1038/s41592-022-01457-8" target="_blank">10.1038/s41592-022-01457-8</a>
+        </p>
+        <p class="section-para">
+            Aaron R. Quinlan, Ira M. Hall, BEDTools: a flexible suite of utilities for comparing genomic features,
+            Bioinformatics, Volume 26, Issue 6, March 2010, Pages 841-842, doi: <a
+                href="https://doi.org/10.1093/bioinformatics/btq033" target="_blank">10.1093/bioinformatics/btq033</a>
+        </p>
+        <p class="section-para">
+            Zheng, Z., Li, S., Su, J., Leung, A. W. S., Lam, T. W., & Luo, R. (2022). Symphonizing pileup and
+            full-alignment for deep learning-based long-read variant calling. Nature Computational Science, 2(12),
+            797-803. doi: <a href="https://doi.org/10.1101/2021.12.29.474431"
+                target="_blank">10.1101/2021.12.29.474431</a>
+        </p>
+        <p class="section-para">
+            <b>Version: {{ all_stats_dicts['VERSIONS']['WINNOWMAP']['winnowmap'] }} (Winnowmap), {{
+                all_stats_dicts['VERSIONS']['BEDTOOLS_NUC']['bedtools'] }} (bedtools){% if 'CLAIR3' in
+                all_stats_dicts['VERSIONS'] %}, {{ all_stats_dicts['VERSIONS']['CLAIR3']['clair3'] }} (Clair3){% endif
+                %}
+            </b>
+        </p>
+    </div>
+    {% include 'mapback/dropdown.html' %} {% include 'mapback/report_contents.html' %}
+</div>

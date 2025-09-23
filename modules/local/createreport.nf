@@ -5,7 +5,7 @@ process CREATEREPORT {
     container "docker.io/gallvp/python3npkgs:v0.7"
 
     input:
-    path fastavalidator_logs        , stageAs: 'fastavalidator_logs/*'
+    path fa_lint_logs               , stageAs: 'fa_lint_logs/*'
     path gff3_validate_logs         , stageAs: 'gff3_validate_logs/*'
     path ncbi_fcs_adaptor_reports   , stageAs: 'ncbi_fcs_adaptor_reports/*'
     path fcs_gx_reports             , stageAs: 'fcs_gx_reports/*'
@@ -21,9 +21,10 @@ process CREATEREPORT {
     path synteny_outputs            , stageAs: 'synteny_outputs/*'
     path merqury_outputs            , stageAs: 'merqury_outputs/*'
     path orthofinder_outputs        , stageAs: 'orthofinder_outputs/*'
+    path mapback_outputs            , stageAs: 'mapback_outputs/*'
     path versions
-    val params_json
-    val params_summary_json
+    path params_as_json_stored
+    path summary_params_as_json_stored
 
     output:
     path 'report.html'              , emit: html
@@ -35,18 +36,7 @@ process CREATEREPORT {
 
     script:
     """
-    echo \\
-        -n \\
-        '$params_json' \\
-        > params_json.json
-
-    echo \\
-        -n \\
-        '$params_summary_json' \\
-        > params_summary_json.json
-
-    assemblyqc.py \\
-        > report.html
+    assemblyqc.py
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
