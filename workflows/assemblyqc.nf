@@ -443,10 +443,10 @@ workflow ASSEMBLYQC {
                                             }
 
     ch_fetchngs_inputs                      = ch_fetchngs_inputs_all
-                                            | map { meta_fetch, meta ->
+                                            | map { meta_fetch, _meta ->
                                                 [
                                                     meta_fetch,
-                                                    meta.id // SRA ID
+                                                    meta_fetch.id // SRA ID
                                                 ]
                                             }
                                             | unique
