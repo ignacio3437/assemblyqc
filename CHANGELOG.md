@@ -5,9 +5,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v3.0.1 - [14-Oct-2025]
 
+### `Added`
+
+1. Added disk cleanup to nf-test GitHub CI action to avoid the runner running out of disk space for `full - stub` runs
+
 ### `Fixed`
 
 1. Fixed an issue in Synteny workflow which caused a pipeline crash when Syri failed for one of the synteny combinations [#315](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/315)
+2. Fixed an issue which cause parameter validation to fail for `hic_map_combinations` when `hic` parameter was set to `null` [#317](https://github.com/Plant-Food-Research-Open/assemblyqc/issues/317)
 
 ### `Dependencies`
 
