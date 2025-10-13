@@ -11,11 +11,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # PRs to the nf-core repo main/master branch are only ok if coming from the nf-core repo `dev` or any `patch` branches
+      # PRs to the nf-core repo main/master branch are only ok if coming from the nf-core repo `dev` or any `patch` or `fix` branches
       - name: Check PRs
         if: github.repository == 'Plant-Food-Research-Open/assemblyqc'
         run: |
-          { [[ ${{ github.event.pull_request.head.repo.full_name }} == Plant-Food-Research-Open/assemblyqc ]] && [[ $GITHUB_HEAD_REF == "dev" ]]; } || [[ $GITHUB_HEAD_REF == "patch" ]]
+          { [[ ${{ github.event.pull_request.head.repo.full_name }} == Plant-Food-Research-Open/assemblyqc ]] && [[ $GITHUB_HEAD_REF == "dev" ]]; } || [[ "${GITHUB_HEAD_REF%%/*}" == "patch" ]] || [[ "${GITHUB_HEAD_REF%%/*}" == "fix" ]]
 
       # If the above check failed, post a comment on the PR explaining the failure
       # NOTE - this doesn't currently work if the PR is coming from a fork, due to limitations in GitHub actions secrets
