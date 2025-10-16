@@ -13,6 +13,32 @@ nextflow_function {
                 input[2] = [
                     [ file('JAD.plotsr.fasta'), file('FI1.plotsr.fasta') ]
                 ]
+                input[3] = 'FI1 JAD TT_2021a'
+                """
+            }
+        }
+
+        then {
+            assert function.success
+            assert function.result
+            assert snapshot (
+                function.result[0],
+                function.result[1].collect { file(it).name },
+                function.result[2].collect { file(it).name },
+                function.result[3],
+            ).match()
+        }
+    }
+
+    test("FI1 - JAD - TT_2021a - null") {
+        when {
+            function {
+                """
+                input[0] = [ id: 'plotsr' ]
+                input[1] = [ file('JAD.on.FI1syri.out') ]
+                input[2] = [
+                    [ file('JAD.plotsr.fasta'), file('FI1.plotsr.fasta') ]
+                ]
                 input[3] = null
                 """
             }

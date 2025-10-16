@@ -419,12 +419,28 @@ def packageSyriOutputsForPlotSR(meta, syri, fastas, plotsr_assembly_order) {
     def available_tags      = []
     proposed_order.each { tag -> if ( tag in syri_tags ) available_tags << tag }
 
+    if ( proposed_order.size() != available_tags.size() ) {
+        log.warn (
+            "Plotsr combinations involving ${proposed_order - available_tags} will be skipped" +
+            " as Syri failed to find synteny for their combinations."
+        )
+    }
+
     def ordered_syri_tags   = []
     available_tags.eachWithIndex { tag, index -> if ( index > 0 ) { ordered_syri_tags << "${tag}.on.${available_tags[index-1]}" } }
 
     def ordered_syri        = []
     ordered_syri_tags.each { tag -> ordered_syri << ( syri.find { it.baseName == "${tag}syri" } ) }
-    ordered_syri            = ordered_syri.findAll { it != null }
+    def first_null_tag_idx  = ordered_syri.findIndexOf { it == null }
+
+    // Remove all Syri files for combinations at and after the first null as Plotsr cannot handle skipped combinations
+    if ( first_null_tag_idx >= 0 ) {
+        ordered_syri        = ordered_syri[0..<first_null_tag_idx]
+        log.warn (
+            "Plotsr combinations from ${ordered_syri_tags} including and all after ${ordered_syri_tags[first_null_tag_idx]} will be skipped" +
+            " as Syri failed to find synteny for it."
+        )
+    }
 
     // Iteration 2: Find available Syri tags from filtered `ordered_syri` to ensure that only those tags are
     // retained for which there is at least one Syri file
