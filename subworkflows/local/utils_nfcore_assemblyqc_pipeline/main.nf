@@ -77,7 +77,12 @@ workflow PIPELINE_INITIALISATION {
     ch_input_validated                      = ch_input
                                             | map { row -> row[0] }
                                             | collect
-                                            | map { tags -> validateInputTags( tags, params.hic_map_combinations ) }
+                                            | map { tags ->
+                                                validateInputTags(
+                                                    tags,
+                                                    params.hic ? params.hic_map_combinations : null
+                                                )
+                                            }
                                             | combine ( ch_input.map { row -> [ row ] } )
                                             | map { _result, row -> row }
 
