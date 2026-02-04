@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Added`
 
 1. Added disk cleanup to nf-test GitHub CI action to avoid the runner running out of disk space for `full - stub` runs
+2. Added hic.bam file speedup by skipping name sort.
 
 ### `Fixed`
 

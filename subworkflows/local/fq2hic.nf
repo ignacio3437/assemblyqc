@@ -73,7 +73,7 @@ workflow FQ2HIC {
     ch_versions                     = ch_versions.mix(SAMTOOLS_SUBSAMPLE_SORT.out.versions)
 
     // MODULE: HICQC
-    ch_bam_and_ref                  = ch_subsampled_sorted_bam
+    ch_sub_bam_and_ref              = ch_subsampled_sorted_bam
                                     | map { meta, bam -> [ meta.ref_id, meta, bam ] }
                                     | join(
                                         ch_sorted_ref.map { meta2, fa -> [ meta2.id, fa ] }
@@ -82,12 +82,22 @@ workflow FQ2HIC {
                                         [ [ id: "${meta.id}.on.${meta.ref_id}", ref_id: meta.ref_id ], bam, fa ]
                                     }
 
-    HICQC ( ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] } )
+    HICQC ( ch_sub_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] } )
 
     ch_hicqc_pdf                    = HICQC.out.pdf
     ch_versions                     = ch_versions.mix(HICQC.out.versions)
 
     // SUBWORKFLOW: BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD
+
+    ch_bam_and_ref                  = ch_bam
+                                    | map { meta, bam -> [ meta.ref_id, meta, bam ] }
+                                    | join(
+                                        ch_sorted_ref.map { meta2, fa -> [ meta2.id, fa ] }
+                                    )
+                                    | map { _ref_id, meta, bam, fa ->
+                                        [ [ id: "${meta.id}.on.${meta.ref_id}", ref_id: meta.ref_id ], bam, fa ]
+                                    }
+
     BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD (
         ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] },
         ch_sorted_ref,
