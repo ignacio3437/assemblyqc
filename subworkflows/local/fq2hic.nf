@@ -73,7 +73,7 @@ workflow FQ2HIC {
     ch_versions                     = ch_versions.mix(SAMTOOLS_SUBSAMPLE_SORT.out.versions)
 
     // MODULE: HICQC
-    ch_bam_and_ref                  = ch_bam
+    ch_bam_and_ref                  = ch_subsampled_sorted_bam
                                     | map { meta, bam -> [ meta.ref_id, meta, bam ] }
                                     | join(
                                         ch_sorted_ref.map { meta2, fa -> [ meta2.id, fa ] }
