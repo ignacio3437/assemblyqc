@@ -1,6 +1,6 @@
 process SAMTOOLS_SUBSAMPLE_SORT {
     tag "$meta.id"
-    label 'process_low'
+    label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -22,14 +22,11 @@ process SAMTOOLS_SUBSAMPLE_SORT {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def fraction = sample_fraction ?: 0.05
-    def seed = 42
-    // Convert fraction to integer percentage for -s flag (0.05 -> 5, 0.10 -> 10)
-    def fraction_int = (fraction * 100).toInteger()
     
     """
     # Subsample reads and sort by name in one go
     # Format for -s is SEED.FRACTION (e.g., 42.05 for 5% with seed 42)
-    samtools view -s ${seed}.${fraction_int} -b ${bam} \\
+    samtools view -@ ${task.cpus} -s ${fraction} -b ${bam} \\
         | samtools sort -n -@ ${task.cpus} ${args} -o ${prefix}.subsampled.sorted.bam -
 
     cat <<-END_VERSIONS > versions.yml
