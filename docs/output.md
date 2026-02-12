@@ -183,7 +183,7 @@ Kraken 2 [assigns taxonomic labels](https://ccb.jhu.edu/software/kraken2/) to se
     - `*_1_fastqc.html/*_2_fastqc.html`: FastQC html report for the reads passed by FASTP.
     - `*_1_fastqc.zip/*_2_fastqc.zip`: FastQC stats for the reads passed by FASTP.
   - `hicqc`
-    - `*_qc_report.pdf`: HiC QC report for reads mapped to an assembly.
+    - `*_qc_report.pdf`: HiC QC report for 5% of the HiC reads mapped to an assembly.
   - `*.hic`: The HiC contact map stored as a multi-resolution `.hic` file.
   - `*.assembly`: Assembly file created when the `hic_assembly_mode` is `true`
   - `*.bed`: The bed file listing the names of the contigs on the `assembly` super-scaffold when `hic_assembly_mode` is `true`

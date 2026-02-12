@@ -1,6 +1,7 @@
 include { FASTQ_FASTQC_UMITOOLS_FASTP   } from '../nf-core/fastq_fastqc_umitools_fastp/main'
 
 include { FASTQ_BWA_MEM_SAMBLASTER      } from '../gallvp/fastq_bwa_mem_samblaster/main'
+include { SAMTOOLS_SUBSAMPLE_SORT       } from '../../modules/local/samtools_subsample_sort.nf'
 include { HICQC                         } from '../../modules/gallvp/hicqc'
 
 include { FASTA_SEQKIT_REFSORT          } from '../gallvp/fasta_seqkit_refsort/main'
@@ -52,7 +53,7 @@ workflow FQ2HIC {
     ch_versions                     = ch_versions.mix(FASTA_SEQKIT_REFSORT.out.versions)
 
     // SUBWORKFLOW: FASTQ_BWA_MEM_SAMBLASTER
-    val_sort_bam = true
+    val_sort_bam = false
     FASTQ_BWA_MEM_SAMBLASTER(
         ch_trim_reads,
         ch_sorted_ref.map { meta2, fa -> [ meta2, fa, [] ] },
@@ -62,7 +63,32 @@ workflow FQ2HIC {
     ch_bam                          = FASTQ_BWA_MEM_SAMBLASTER.out.bam
     ch_versions                     = ch_versions.mix(FASTQ_BWA_MEM_SAMBLASTER.out.versions)
 
+    // MODULE: SAMTOOLS_SUBSAMPLE_SORT
+    SAMTOOLS_SUBSAMPLE_SORT (
+        ch_bam,
+        0.05  // Sample 5% of reads
+    )
+
+    ch_subsampled_sorted_bam        = SAMTOOLS_SUBSAMPLE_SORT.out.bam
+    ch_versions                     = ch_versions.mix(SAMTOOLS_SUBSAMPLE_SORT.out.versions)
+
     // MODULE: HICQC
+    ch_sub_bam_and_ref              = ch_subsampled_sorted_bam
+                                    | map { meta, bam -> [ meta.ref_id, meta, bam ] }
+                                    | join(
+                                        ch_sorted_ref.map { meta2, fa -> [ meta2.id, fa ] }
+                                    )
+                                    | map { _ref_id, meta, bam, fa ->
+                                        [ [ id: "${meta.id}.on.${meta.ref_id}", ref_id: meta.ref_id ], bam, fa ]
+                                    }
+
+    HICQC ( ch_sub_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] } )
+
+    ch_hicqc_pdf                    = HICQC.out.pdf
+    ch_versions                     = ch_versions.mix(HICQC.out.versions)
+
+    // SUBWORKFLOW: BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD
+
     ch_bam_and_ref                  = ch_bam
                                     | map { meta, bam -> [ meta.ref_id, meta, bam ] }
                                     | join(
@@ -72,12 +98,6 @@ workflow FQ2HIC {
                                         [ [ id: "${meta.id}.on.${meta.ref_id}", ref_id: meta.ref_id ], bam, fa ]
                                     }
 
-    HICQC ( ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] } )
-
-    ch_hicqc_pdf                    = HICQC.out.pdf
-    ch_versions                     = ch_versions.mix(HICQC.out.versions)
-
-    // SUBWORKFLOW: BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD
     BAM_FASTA_YAHS_JUICER_PRE_HICTK_LOAD (
         ch_bam_and_ref.map { meta3, bam, _fa -> [ meta3, bam ] },
         ch_sorted_ref,
