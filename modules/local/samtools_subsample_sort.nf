@@ -22,7 +22,7 @@ process SAMTOOLS_SUBSAMPLE_SORT {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def fraction = sample_fraction ?: 0.05
-    
+
     """
     # Subsample reads and sort by name in one go
     # Format for -s is SEED.FRACTION (e.g., 42.05 for 5% with seed 42)

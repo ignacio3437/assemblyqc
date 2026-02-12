@@ -63,10 +63,10 @@ workflow FQ2HIC {
     ch_bam                          = FASTQ_BWA_MEM_SAMBLASTER.out.bam
     ch_versions                     = ch_versions.mix(FASTQ_BWA_MEM_SAMBLASTER.out.versions)
 
-    // MODULE: SAMTOOLS_SUBSAMPLE_SORT 
+    // MODULE: SAMTOOLS_SUBSAMPLE_SORT
     SAMTOOLS_SUBSAMPLE_SORT (
         ch_bam,
-        0.05  // Sample 5% of reads 
+        0.05  // Sample 5% of reads
     )
 
     ch_subsampled_sorted_bam        = SAMTOOLS_SUBSAMPLE_SORT.out.bam
